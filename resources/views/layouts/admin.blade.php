@@ -123,7 +123,7 @@
       <form id="logout-form" action="{{ route('logout') }}" method="POST" >
         {{ csrf_field() }}
         <input type="submit" class="btn btn-primary" value="Logout">
-    </form>
+      </form>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
