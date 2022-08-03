@@ -30,7 +30,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <p>Anda adalah kades!</p>
                 </div>
             </div>
         </div>

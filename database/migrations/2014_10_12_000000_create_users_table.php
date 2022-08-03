@@ -17,15 +17,18 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->bigInteger('id_posyandu')->length(20)->unsigned()->nullable();
             $table->string('name');
+            $table->tinyInteger('role')->default(1);
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('nik')->length(50)->nullable();
             $table->text('alamat')->nullable();
             $table->string('jenis_kelamin')->length(30)->nullable();
             $table->tinyInteger('is_delete')->default(0);
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            // role : 1 => UserNormal, 2 => Kader, 3 => KaDes, 4 => Admin
         });
     }
 

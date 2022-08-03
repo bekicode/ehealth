@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -17,12 +18,33 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Redirect the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
+     * @var role : 1 => UserNormal, 2 => Kader, 3 => KaDes, 4 => Admin
      */
-    public function index()
+    public function redirect()
     {
+        $role = Auth::user()->role;
+
+        switch ($role) {
+            case "1":
+                // return redirect()->route('user.');
+                break;
+            case "2":
+                // return redirect()->route('kader.');
+                break;
+            case "3":
+                echo "kades";
+                return redirect()->route('kades.dashboard');
+                break;
+            case "4":
+                // return redirect()->route('admin.'));
+                break;
+        }
+    }
+
+    public function test() {
         return view('home');
     }
 }
