@@ -44,8 +44,8 @@ Route::prefix('kades')->controller(KadesController::class)->middleware(['isKades
 });
 
 // Admin
-Route::prefix('kades')->controller(KadesController::class)->middleware(['isKades'])->name('kades.')->group(function () {
-    // Route::get('/test', 'test');
+Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin'])->name('admin.')->group(function () {
+    Route::get('/list-posyandu', 'list_posyandu')->name('list_posyandu');
 });
 
 

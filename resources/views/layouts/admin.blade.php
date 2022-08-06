@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E-Health</title>
+  <title>@yield('title', 'E-Health')</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
+  {{-- <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}"> --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist-adminlte/css/adminlte.min.css')}}">
   <script src="{{ asset('js/app.js') }}" defer></script>
+  @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -35,7 +38,7 @@
       <!-- Navbar Search -->
 
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
@@ -91,9 +94,9 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
-      </li>
+      </li> --}}
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
@@ -119,21 +122,21 @@
           
         </div>
       </li>
-      
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+       --}}
+      {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" >
         {{ csrf_field() }}
         <input type="submit" class="btn btn-primary" value="Logout">
-      </form>
+      </form> --}}
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
-      </li>
+      </li> --}}
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -151,7 +154,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('dist-adminlte/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('dist-adminlte/img/avatar-icon.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -164,7 +167,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -192,16 +195,30 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
+          
           <li class="nav-item">
             <a href="../widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                Dashboard
+                <span class="right badge badge-danger">Tests</span>
               </p>
             </a>
           </li>
+
+        @if (Auth::user()->role == 4)
+          <li class="nav-item">
+            <a href="../widgets.html" class="nav-link @if (Request::is('/admin/list-posyandu','/admin/list-posyandu/*')) active @else
+                
+            @endif active">
+              <i class="nav-icon fa-solid fa-hospital"></i>
+              <p>
+                Posyandu
+              </p>
+            </a>
+          </li>
+        @endif
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -261,6 +278,18 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-warning" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+              <i class="nav-icon fa fa-arrow-right-from-bracket"></i>
+                  <p>{{ __('Logout') }}</p>
+              </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </li>
         </ul>
       </nav>
@@ -924,9 +953,9 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
+      <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2022 INSTITUT TEKNOLOGI TELKOM PURWORKERTO.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -946,6 +975,7 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('dist-adminlte/js/adminlte.min.js')}}"></script>
 
-</script>
+@yield('js')
+
 </body>
 </html>

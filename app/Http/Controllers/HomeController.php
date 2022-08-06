@@ -39,8 +39,10 @@ class HomeController extends Controller
                 return redirect()->route('kades.dashboard');
                 break;
             case "4":
-                // return redirect()->route('admin.'));
+                return redirect()->route('admin.list_posyandu');
                 break;
+            default:
+                abort(403);
         }
     }
 

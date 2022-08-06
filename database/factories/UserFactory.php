@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'password' => Hash::make("admin123"), // password
             'nik' => null, 
             'alamat' => null, 
+            'role' => 4, 
             'jenis_kelamin' => "pria", 
             'created_at' => now(),
             'remember_token' => Str::random(10),

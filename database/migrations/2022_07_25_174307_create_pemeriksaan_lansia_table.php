@@ -18,12 +18,12 @@ class CreatePemeriksaanLansiaTable extends Migration
             $table->bigInteger('id_lansia')->length(20)->unsigned();
             $table->bigInteger('id_posyandu')->length(20)->unsigned();
             $table->bigInteger('id_user_petugas')->length(20)->unsigned();
-            $table->integer('berat_badan')->length(20);
-            $table->integer('tinggi_badan')->length(20);
-            $table->integer('gula_darah')->length(20);
-            $table->integer('imt')->length(20);
-            $table->integer('tensi')->length(20);
-            $table->integer('lingkar_perut')->length(20);
+            $table->float('berat_badan')->length(20);
+            $table->float('tinggi_badan')->length(20);
+            $table->float('gula_darah')->length(20);
+            $table->float('imt')->length(20);
+            $table->float('tensi')->length(20);
+            $table->float('lingkar_perut')->length(20);
             $table->tinyInteger('is_deleted')->default(0);
             $table->timestamps();
         });
