@@ -24,6 +24,8 @@ class CreatePemeriksaanLansiaTable extends Migration
             $table->float('imt')->length(20);
             $table->float('tensi')->length(20);
             $table->float('lingkar_perut')->length(20);
+            $table->string('kolesterol')->length(20)->nullable();
+            $table->string('asam_urat')->length(20)->nullable();
             $table->tinyInteger('is_deleted')->default(0);
             $table->timestamps();
         });

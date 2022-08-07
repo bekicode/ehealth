@@ -14,7 +14,16 @@ class CreateIbuHamilTable extends Migration
     public function up()
     {
         Schema::create('ibu_hamil', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_ibu_hamil');
+            $table->bigInteger('id_posyandu')->length(20)->unsigned();
+            $table->string('nama');
+            $table->bigInteger('nik')->length(20);
+            $table->bigInteger('no_kk')->length(20);
+            $table->string('no_telepon')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('nama_ibu')->nullable();
+            $table->string('nama_ayah')->nullable();
+            $table->tinyInteger('is_deleted')->default(0);
             $table->timestamps();
         });
     }

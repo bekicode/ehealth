@@ -209,9 +209,7 @@
 
         @if (Auth::user()->role == 4)
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link @if (Request::is('/admin/list-posyandu','/admin/list-posyandu/*')) active @else
-                
-            @endif active">
+            <a href="../widgets.html" class="nav-link @if (Request::is('/admin/posyandu','/admin/posyandu/*')) active @else active @endif ">
               <i class="nav-icon fa-solid fa-hospital"></i>
               <p>
                 Posyandu

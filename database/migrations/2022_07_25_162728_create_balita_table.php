@@ -19,8 +19,11 @@ class CreateBalitaTable extends Migration
             $table->string('nama');
             $table->bigInteger('nik')->length(20);
             $table->bigInteger('nik_orangtua')->length(20);
+            $table->bigInteger('no_kk')->length(20);
             $table->string('jenis_kelamin')->length(30);
             $table->date('tanggal_lahir');
+            $table->float('berat_badan_lahir')->length(20);
+            $table->float('tinggi_badan_lahir')->length(20);
             $table->tinyInteger('is_deleted')->default(0);
             $table->timestamps();
         });

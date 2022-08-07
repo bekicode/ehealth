@@ -20,7 +20,7 @@ class CreatePemeriksaanBalitaTable extends Migration
             $table->bigInteger('id_user_petugas')->length(20)->unsigned();
             $table->float('berat_badan')->length(20);
             $table->float('tinggi_badan')->length(20);
-            $table->float('lingkar_lengan')->length(20);
+            $table->float('lingkar_lengan_atas')->length(20);
             $table->float('lingkar_kepala')->length(20);
             $table->tinyInteger('is_deleted')->default(0);
             $table->timestamps();

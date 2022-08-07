@@ -5,7 +5,8 @@
 @endsection
 
 @section('css')
-  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 @endsection
 
 @section('content')
@@ -20,7 +21,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
           <li class="breadcrumb-item active">Daftar Posyamdu</li>
         </ol>
       </div>
@@ -36,7 +37,7 @@
         </div>
       
         <div class="card-body">
-          <a href="#" class="btn btn-primary mb-3"><i class="fa-solid fa-pen-to-square"></i> Tambah data</a>
+          <a href="{{ route('admin.tambah_posyandu') }}" class="btn btn-primary mb-3"><i class="fa-solid fa-pen-to-square"></i> Tambah data</a>
           <table id="example1" class="table table-bordered table-striped">
             <thead>
               <tr>
@@ -58,7 +59,7 @@
                   </td>
                 @endforeach
               @else
-                <td colspan="5">Tidak ada data</td>
+                <td colspan="5" class="text-center">Tidak ada data</td>
               @endif
             </tbody>
             {{-- <tfoot>
@@ -70,7 +71,7 @@
             </tfoot> --}}
           </table>
         </div>
-      </div>;
+      </div>
   </div>
 </section>
 @endsection
@@ -91,6 +92,7 @@
   <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
   <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
   <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+  <script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script>
 
   <script>
     $(function () {
@@ -122,5 +124,11 @@
         "responsive": true,
       });
     });
+
+    @if (session('sukses'))
+      $('.toastrDefaultSuccess').ready(function() {
+        toastr.success('{{ session("sukses") }}')
+      });
+    @endif
   </script>
 @endsection

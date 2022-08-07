@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('role')->default(1);
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('no_telp')->nullable();
             $table->integer('nik')->length(50)->nullable();
             $table->text('alamat')->nullable();
             $table->string('jenis_kelamin')->length(30)->nullable();
