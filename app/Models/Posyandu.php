@@ -14,7 +14,6 @@ class Posyandu extends Model
     protected $fillable = [
         'id_posyandu', 
         'nama', 
-        'alamat',
-        'sound_path'
+        'alamat'
     ];
 }

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Tambah Data Posyandu
+    Ubah Data Posyandu
 @endsection
 
 
@@ -12,12 +12,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Tambah Data Posyandu</h1>
+        <h1>Ubah Data Posyandu</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ route('admin.list_posyandu') }}">Posyandu</a></li>
-          <li class="breadcrumb-item active">Tambah Data Posyamdu</li>
+          <li class="breadcrumb-item active">Ubah Data Posyamdu</li>
         </ol>
       </div>
     </div>
@@ -30,7 +30,7 @@
           <h3 class="card-title">Posyandu</h3>
         </div>
       
-        <form action="{{ route('admin.tambah_posyandu_act') }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('admin.update_posyandu_act', $data->id_posyandu) }}" enctype="multipart/form-data" method="POST">
           <div class="card-body">
             @csrf
             <div class="form-group">
@@ -41,7 +41,7 @@
                 class="form-control @error('nama') is-invalid @enderror"
                 id="exampleInput1"
                 placeholder="Nama Posyandu "
-                value="{{ old('nama') }}"
+                value="{{ $data->nama }}"
                 required
               />
               @error('nama') <label class="text-danger">Jenis Posyandu</label> @enderror
@@ -53,8 +53,8 @@
                 id="exampleSelectRounded0" 
                 class="custom-select rounded-0 @error('jenis_posyandu') is-invalid @enderror" 
                 required>
-                <option value="balita" @if (old('title') == "balita" ) selected @endif>Balita</option>
-                <option value="lansia" @if (old('title') == "lansia" ) selected @endif>Lansia</option>
+                <option value="balita" @if ($data->jenis_posyandu == "balita" ) selected @endif>Balita</option>
+                <option value="lansia" @if ($data->jenis_posyandu == "lansia" ) selected @endif>Lansia</option>
               </select>
               @error('jenis_posyandu') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
@@ -66,7 +66,7 @@
                   id="exampleInput2" 
                   rows="3" 
                   placeholder="Alamat ..."
-                  required>{{ old('alamat') }}</textarea>
+                  required>{{ $data->alamat }}</textarea>
             </div>
           </div>
           <div class="card-footer">

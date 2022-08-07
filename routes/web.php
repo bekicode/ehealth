@@ -48,6 +48,9 @@ Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin
     Route::get('/posyandu', 'list_posyandu')->name('list_posyandu');
     Route::get('/posyandu/tambah', 'tambah_posyandu')->name('tambah_posyandu');
     Route::post('/posyandu/tambah', 'tambah_posyandu_act')->name('tambah_posyandu_act');
+    Route::get('/posyandu/update/{id}', 'update_posyandu')->name('update_posyandu');
+    Route::post('/posyandu/update/{id}', 'update_posyandu_act')->name('update_posyandu_act');
+    Route::get('/posyandu/delete/{id}', 'delete_posyandu')->name('delete_posyandu');
 });
 
 

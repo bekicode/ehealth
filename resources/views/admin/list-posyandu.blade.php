@@ -38,38 +38,42 @@
       
         <div class="card-body">
           <a href="{{ route('admin.tambah_posyandu') }}" class="btn btn-primary mb-3"><i class="fa-solid fa-pen-to-square"></i> Tambah data</a>
-          <table id="example1" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Nama</th>
-                <th>Jenis Posyandu</th>
-                <th>Alamat</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              @if (!empty($empty))
-                @foreach ($data as $d)
-                  <td>{{ $d->nama }}</td>
-                  <td >{{ $d->jenis_posyandu }}</td>
-                  <td>{{ $d->alamat }}</td>
-                  <td class="text-center"> 
-                    <a href="#" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> </a> 
-                    <a href="#" class="mt-2 btn btn-danger"> <i class="fa-solid fa-trash-can"></i> </a> 
-                  </td>
-                @endforeach
-              @else
-                <td colspan="5" class="text-center">Tidak ada data</td>
-              @endif
-            </tbody>
-            {{-- <tfoot>
-              <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-              </tr>
-            </tfoot> --}}
-          </table>
+          <div class="table-responsive">
+            <table id="example1" class="table table-bordered table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Jenis Posyandu</th>
+                  <th>Alamat</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if (!empty($empty))
+                  @foreach ($data as $d)
+                  <tr>
+                    <td>{{ $d->nama }}</td>
+                    <td >{{ $d->jenis_posyandu }}</td>
+                    <td>{{ $d->alamat }}</td>
+                    <td class="text-center"> 
+                      <a href="{{ route('admin.update_posyandu', $d->id_posyandu) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
+                      <a href="{{ route('admin.delete_posyandu', $d->id_posyandu) }}" class="mt-2 btn btn-danger" onclick="return confirm('Apakah anda yakin menghapus data {{ $d->nama }}?');"> <i class="fa-solid fa-trash-can"></i> Hapus </a> 
+                    </td>
+                  </tr>
+                  @endforeach
+                @else
+                  <td colspan="5" class="text-center">Tidak ada data</td>
+                @endif
+              </tbody>
+              {{-- <tfoot>
+                <tr>
+                  <th>Rendering engine</th>
+                  <th>Browser</th>
+                  <th>Platform(s)</th>
+                </tr>
+              </tfoot> --}}
+            </table>
+          </div>
         </div>
       </div>
   </div>
@@ -97,7 +101,7 @@
   <script>
     $(function () {
       $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": false, "lengthChange": false, "autoWidth": false,
         // "buttons": ["excel", "pdf", "print"]
         "buttons": [
           {

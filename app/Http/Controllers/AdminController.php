@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posyandu;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule as ValidationRule;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -40,7 +39,7 @@ class AdminController extends Controller
       * 
       * @return view admin/tambah-posyandu
       */
-     public function tambah_posyandu() {
+    public function tambah_posyandu() {
         return view('admin.tambah-posyandu');
      }
 
@@ -50,11 +49,11 @@ class AdminController extends Controller
       * @param Request $req
       * @return redirect()
       */
-      public function tambah_posyandu_act(Request $req) {
+    public function tambah_posyandu_act(Request $req) {
 
         $req->validate([
             'nama'=> 'required|max:255',
-            'jenis_posyandu'=> [ValidationRule::in(['balita', 'lansia']), 'required'],
+            'jenis_posyandu'=> [Rule::in(['balita', 'lansia']), 'required'],
             'alamat'=> 'required',
 
         ],
@@ -76,4 +75,63 @@ class AdminController extends Controller
 
         return redirect()->route('admin.list_posyandu')->with('sukses', 'Berhasil menambahkan data posyandu.');
      }
+
+    /**
+      * Menampilah view admin/update-posyandu
+      * 
+      * @param id_posyandu $id
+      * @return view admin/update-posyandu
+      */
+    public function update_posyandu($id) {
+        $data = Posyandu::findOrFail($id);
+
+        return view('admin.update-posyandu', compact('data'));
+     }
+
+    /**
+      * Update data posyandu ke database
+      * 
+      * @param Request $req
+      * @param id_posyandu $id
+      * @return redirect()
+      */
+    public function update_posyandu_act(Request $req, $id) {
+        $req->validate([
+            'nama'=> 'required|max:255',
+            'jenis_posyandu'=> [Rule::in(['balita', 'lansia']), 'required'],
+            'alamat'=> 'required',
+
+        ],
+        [
+            'nama.required'=> 'Kolom nama harus diisi.',
+            'nama.max'=> 'Jumlah karakter melebihi 255 karakter.',
+            'jenis_posyandu.required'=> 'Kolom jenis posyandu harus diisi.',
+            'jenis_posyandu.in'=> $req->jenis_posyandu . ' tidak valid.',
+            'alamat.required'=> 'Kolom alamat harus diisi.',
+        ]);
+
+        DB::transaction(function () use ($req, $id){
+            $posyandu = Posyandu::find($id);
+            $posyandu->nama = $req->nama;
+            $posyandu->jenis_posyandu = $req->jenis_posyandu;
+            $posyandu->alamat = $req->alamat;
+            $posyandu->update();
+        });
+
+        return redirect()->route('admin.list_posyandu')->with('sukses', 'Berhasil mengubah data posyandu.');
+     }
+
+    /**
+      * Menghapus data posyandu
+      * 
+      * @param id_posyandu $id
+      * @return redirect()
+      */
+    public function delete_posyandu($id) {
+        $posyandu = Posyandu::findOrFail($id);
+        $posyandu->delete(); 
+
+        return redirect()->route('admin.list_posyandu')->with('sukses', 'Berhasil menghapus data posyandu.');
+     }
+
 }
