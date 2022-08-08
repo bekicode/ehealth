@@ -61,7 +61,7 @@ Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin
     Route::post('/balita/update/{id}', 'update_balita_act')->name('update_balita_act');
     Route::post('/balita/delete/{id}', 'delete_balita')->name('delete_balita');
     
-    ;
+    
 });
 
 
