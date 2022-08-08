@@ -44,7 +44,7 @@
                 value="{{ $data->nama }}"
                 required
               />
-              @error('nama') <label class="text-danger">Jenis Posyandu</label> @enderror
+              @error('nama') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
             <div class="form-group">
               <label for="exampleSelectRounded0">Jenis Posyandu</label>
@@ -62,11 +62,12 @@
               <label for="exampleInput2">Alamat</label>
                 <textarea 
                   name="alamat" 
-                  class="form-control @error('title') is-invalid @enderror" 
+                  class="form-control @error('alamat') is-invalid @enderror" 
                   id="exampleInput2" 
                   rows="3" 
                   placeholder="Alamat ..."
                   required>{{ $data->alamat }}</textarea>
+                  @error('alamat') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
           </div>
           <div class="card-footer">

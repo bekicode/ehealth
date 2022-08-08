@@ -45,12 +45,23 @@ Route::prefix('kades')->controller(KadesController::class)->middleware(['isKades
 
 // Admin
 Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin'])->name('admin.')->group(function () {
+    // posyandu
     Route::get('/posyandu', 'list_posyandu')->name('list_posyandu');
     Route::get('/posyandu/tambah', 'tambah_posyandu')->name('tambah_posyandu');
     Route::post('/posyandu/tambah', 'tambah_posyandu_act')->name('tambah_posyandu_act');
     Route::get('/posyandu/update/{id}', 'update_posyandu')->name('update_posyandu');
     Route::post('/posyandu/update/{id}', 'update_posyandu_act')->name('update_posyandu_act');
-    Route::get('/posyandu/delete/{id}', 'delete_posyandu')->name('delete_posyandu');
+    Route::post('/posyandu/delete/{id}', 'delete_posyandu')->name('delete_posyandu');
+
+    // balita
+    Route::get('/balita', 'list_balita')->name('list_balita');
+    Route::get('/balita/tambah', 'tambah_balita')->name('tambah_balita');
+    Route::post('/balita/tambah', 'tambah_balita_act')->name('tambah_balita_act');
+    Route::get('/balita/update/{id}', 'update_balita')->name('update_balita');
+    Route::post('/balita/update/{id}', 'update_balita_act')->name('update_balita_act');
+    Route::post('/balita/delete/{id}', 'delete_balita')->name('delete_balita');
+    
+    ;
 });
 
 

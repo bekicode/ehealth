@@ -17,7 +17,7 @@ class CreateLansiaTable extends Migration
             $table->id('id_lansia');
             $table->bigInteger('id_posyandu')->length(20)->unsigned();
             $table->string('nama');
-            $table->bigInteger('nik')->length(20);
+            $table->bigInteger('nik')->length(20)->unique();
             $table->bigInteger('nik_pendamping')->length(20);
             $table->bigInteger('no_kk')->length(20);
             $table->date('tanggal_lahir');

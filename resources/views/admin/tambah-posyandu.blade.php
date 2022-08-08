@@ -17,7 +17,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ route('admin.list_posyandu') }}">Posyandu</a></li>
-          <li class="breadcrumb-item active">Tambah Data Posyamdu</li>
+          <li class="breadcrumb-item active">Tambah Data Posyandu</li>
         </ol>
       </div>
     </div>
@@ -53,8 +53,8 @@
                 id="exampleSelectRounded0" 
                 class="custom-select rounded-0 @error('jenis_posyandu') is-invalid @enderror" 
                 required>
-                <option value="balita" @if (old('title') == "balita" ) selected @endif>Balita</option>
-                <option value="lansia" @if (old('title') == "lansia" ) selected @endif>Lansia</option>
+                <option value="balita" @if (old('jenis_posyandu') == "balita" ) selected @endif>Balita</option>
+                <option value="lansia" @if (old('jenis_posyandu') == "lansia" ) selected @endif>Lansia</option>
               </select>
               @error('jenis_posyandu') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
@@ -62,11 +62,12 @@
               <label for="exampleInput2">Alamat</label>
                 <textarea 
                   name="alamat" 
-                  class="form-control @error('title') is-invalid @enderror" 
+                  class="form-control @error('alamat') is-invalid @enderror" 
                   id="exampleInput2" 
                   rows="3" 
                   placeholder="Alamat ..."
                   required>{{ old('alamat') }}</textarea>
+                  @error('alamat') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
           </div>
           <div class="card-footer">

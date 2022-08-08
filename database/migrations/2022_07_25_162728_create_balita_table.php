@@ -17,9 +17,10 @@ class CreateBalitaTable extends Migration
             $table->id('id_balita');
             $table->bigInteger('id_posyandu')->length(20)->unsigned();
             $table->string('nama');
-            $table->bigInteger('nik')->length(20);
-            $table->bigInteger('nik_orangtua')->length(20);
+            $table->bigInteger('nik')->length(20)->unique();
             $table->bigInteger('no_kk')->length(20);
+            $table->bigInteger('nik_orangtua')->length(20);
+            $table->string('nama_orangtua');
             $table->string('jenis_kelamin')->length(30);
             $table->date('tanggal_lahir');
             $table->float('berat_badan_lahir')->length(20);

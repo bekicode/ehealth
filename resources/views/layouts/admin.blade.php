@@ -209,21 +209,49 @@
 
         @if (Auth::user()->role == 4)
           <li class="nav-item">
-            <a href="{{ route('admin.list_posyandu') }}" class="nav-link @if (Request::is('/admin/posyandu','/admin/posyandu/*')) active @else active @endif ">
+            <a href="{{ route('admin.list_posyandu') }}" class="nav-link @if (Request::is('admin/posyandu','admin/posyandu/*')) active @endif ">
               <i class="nav-icon fa-solid fa-hospital"></i>
               <p>
                 Posyandu
               </p>
             </a>
           </li>
+          <li class="nav-item @if (Request::is('admin/balita','admin/balita/*')) menu-open @endif">
+            <a href="#" class="nav-link @if (Request::is('admin/balita','admin/balita/*')) active @endif">
+              <i class="nav-icon fa-solid fa-hospital-user"></i>
+              <p>
+                Data anggota
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.list_balita') }}" class="nav-link @if (Request::is('admin/balita','admin/balita/*')) active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Balita</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../layout/top-nav.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ibu Hamil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lansia</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         @endif
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Layout Options
+                Test
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -239,42 +267,6 @@
                   <p>Top Navigation + Sidebar</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="../layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Navbar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -282,8 +274,8 @@
             onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
               <i class="nav-icon fa fa-arrow-right-from-bracket"></i>
-                  <p>{{ __('Logout') }}</p>
-              </a>
+              <p>{{ __('Logout') }}</p>
+            </a>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
