@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Balita;
+use App\Models\IbuHamil;
 use App\Models\Posyandu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -178,7 +179,7 @@ class AdminController extends Controller
     }
 
     /**
-      * Menampilkan view admin/tambah-balita
+      * Menyimpan data balita ke database
       * 
       * @return view admin/tambah-balita
       */
@@ -186,11 +187,12 @@ class AdminController extends Controller
     {
         $req->validate([
             'nama'=> 'required',
-            'nik'=> 'required|digits:16|numeric',
+            'nik'=> 'required|digits:16|numeric|unique:App\Models\Balita,nik',
             'no_kk'=> 'required|digits:16|numeric',
             'nik_orangtua'=> 'required|digits:16|numeric',
             'nama_orangtua'=> 'required',
             'jenis_kelamin'=> ['required', Rule::in(['Laki-laki', 'Perempuan'])],
+            'posyandu'=> 'required|exists:App\Models\Posyandu,id_posyandu',
             'tanggal_lahir'=> 'required|date',
             'berat_badan_lahir'=> 'required|numeric',
             'tinggi_badan_lahir'=> 'required|numeric',
@@ -201,6 +203,8 @@ class AdminController extends Controller
             'nik.required'=> 'Kolom "NIK" harus diisi.',
             'nik.digits'=> 'Jumlah digit "NIK" tidak valid.',
             'nik.numeric'=> 'Kolom "NIK" tidak bisa diisikan selain angka.',
+            'nik.unique'=> 'Nomor "NIK" sudah digunakan.',
+            'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
             'no_kk.required'=> 'Kolom "No Kartu Keluarga" harus diisi.',
             'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
             'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
@@ -210,7 +214,7 @@ class AdminController extends Controller
             'nama_orangtua.required'=> 'Kolom "nama orang tua" harus diisi.',
             'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
             'tanggal_lahir.required'=> 'Kolom "Tanggal lahir" harus diisi.',
-            'tanggal_lahir.date'=> 'Format "tanggal lahir" tidak valid.',
+            'tanggal_lahir.date'=> 'Format tanggal "tanggal lahir" tidak valid.',
             'berat_badan_lahir.required'=> 'Kolom "berat badan saat lahir" harus diisi.',
             'berat_badan_lahir.numeric'=> 'Kolom "berat badan saat lahir" tidak bisa diisikan selain angka.',
             'tinggi_badan_lahir.required'=> 'Kolom "tinggi badan saat lahir" harus diisi.',
@@ -268,6 +272,7 @@ class AdminController extends Controller
             'nik_orangtua'=> 'required|digits:16|numeric',
             'nama_orangtua'=> 'required',
             'jenis_kelamin'=> ['required', Rule::in(['Laki-laki', 'Perempuan'])],
+            'posyandu'=> 'required|exists:App\Models\Posyandu,id_posyandu',
             'tanggal_lahir'=> 'required|date',
             'berat_badan_lahir'=> 'required|numeric',
             'tinggi_badan_lahir'=> 'required|numeric',
@@ -286,8 +291,9 @@ class AdminController extends Controller
             'nik_orangtua.numeric'=> 'Kolom "NIK orang tua" tidak bisa diisikan selain angka.',
             'nama_orangtua.required'=> 'Kolom "nama orang tua" harus diisi.',
             'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
+            'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
             'tanggal_lahir.required'=> 'Kolom "Tanggal lahir" harus diisi.',
-            'tanggal_lahir.date'=> 'Format "tanggal lahir" tidak valid.',
+            'tanggal_lahir.date'=> 'Format tanggal "tanggal lahir" tidak valid.',
             'berat_badan_lahir.required'=> 'Kolom "berat badan saat lahir" harus diisi.',
             'berat_badan_lahir.numeric'=> 'Kolom "berat badan saat lahir" tidak bisa diisikan selain angka.',
             'tinggi_badan_lahir.required'=> 'Kolom "tinggi badan saat lahir" harus diisi.',
@@ -327,5 +333,94 @@ class AdminController extends Controller
         });
 
         return redirect()->route('admin.list_balita')->with('sukses', 'Berhasil menghapus data balita.');
+    }
+
+    /**
+     * Menampilkan daftar data ibu hamil
+     * 
+     * @return void
+     */
+    public function list_ibu_hamil() 
+    {
+        $data = DB::table('ibu_hamil')
+            ->select('id_ibu_hamil', 'nik', 'nama', 'no_kk', 'HPHT', 'HPL', 'no_telepon')
+            ->where('is_deleted', 0)
+            ->get();
+        
+        $empty = count($data);
+
+        return view('admin.list-ibu-hamil', compact(['data', 'empty']));
+    }
+
+    /**
+      * Menampilkan view admin/tambah-ibu-hamil
+      * 
+      * @return view admin/tambah-ibu-hamil
+      */
+    public function tambah_ibu_hamil() 
+    {
+        $posyandu = DB::table('posyandu')
+                    ->select('id_posyandu', 'nama')
+                    ->where('is_deleted', 0)
+                    ->get();
+
+        return view('admin.tambah-ibu-hamil', compact('posyandu'));
+    }
+
+    /**
+      * Menyimpan data ibu hamil ke database
+      * 
+      * @return view admin/tambah-ibu-hamil
+      */
+    public function tambah_ibu_hamil_act(Request $req) 
+    {
+        $req->validate([
+            'nama'=> 'required',
+            'nik'=> 'required|digits:16|numeric|unique:App\Models\IbuHamil,nik',
+            'no_kk'=> 'required|digits:16|numeric',
+            'no_telepon'=> 'required|numeric',
+            'alamat'=> 'required',
+            'nama_ayah'=> 'required',
+            'nama_ibu'=> 'required',
+            'posyandu'=> 'required|exists:App\Models\Posyandu,id_posyandu',
+            'hpht'=> 'required|date',
+            'hpl'=> 'required|date',
+
+        ],
+        [
+            'nama.required'=> 'Kolom nama harus diisi.',
+            'nik.required'=> 'Kolom "NIK" harus diisi.',
+            'nik.digits'=> 'Jumlah digit "NIK" tidak valid.',
+            'nik.numeric'=> 'Kolom "NIK" tidak bisa diisikan selain angka.',
+            'nik.unique'=> 'Nomor "NIK" sudah digunakan.',
+            'no_kk.required'=> 'Kolom "No Kartu Keluarga" harus diisi.',
+            'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
+            'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
+            'alamat.required'=> 'Kolom "alamat" harus diisi.',
+            'nama_ayah.required'=> 'Kolom "nama ayah" harus diisi.',
+            'nama_ibu.required'=> 'Kolom "nama ibu" harus diisi.',
+            'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
+            'hpht.required'=> 'Kolom "Hari Pertama Haid Terakhir" harus diisi.',
+            'hpht.date'=> 'Format tanggal "Hari Pertama Haid Terakhir" tidak valid.',
+            'hpl.required'=> 'Kolom "Hari Perkiraan Lahir" harus diisi.',
+            'hpl.date'=> 'Format tanggal "Hari Perkiraan Lahir" tidak valid.',
+        ]);
+
+        DB::transaction(function () use ($req){
+            $ibu_hamil = new IbuHamil();
+            $ibu_hamil->nama = $req->nama;
+            $ibu_hamil->nik = $req->nik;
+            $ibu_hamil->no_kk = $req->no_kk;
+            $ibu_hamil->no_telepon = $req->no_telepon;
+            $ibu_hamil->alamat = $req->alamat;
+            $ibu_hamil->nama_ayah = $req->nama_ayah;
+            $ibu_hamil->nama_ibu = $req->nama_ibu;
+            $ibu_hamil->id_posyandu = $req->posyandu;
+            $ibu_hamil->HPHT = $req->hpht;
+            $ibu_hamil->HPL = $req->hpl;
+            $ibu_hamil->save();
+        });
+
+        return redirect()->route('admin.list_ibu_hamil')->with('sukses', 'Berhasil menambahkan data ibu hamil.');
     }
 }

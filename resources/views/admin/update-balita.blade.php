@@ -127,7 +127,6 @@
                 name="tanggal_lahir"
                 class="form-control @error('tanggal_lahir') is-invalid @enderror"
                 id="tanggal_lahir"
-                placeholder="Nama Orang Tua ..."
                 style="width: 150px"
                 value="@if (Session::get('tanggal_lahir')){{ old('tanggal_lahir') }}@else{{ $data->tanggal_lahir }}@endif"
                 required

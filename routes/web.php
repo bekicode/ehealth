@@ -61,7 +61,13 @@ Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin
     Route::post('/balita/update/{id}', 'update_balita_act')->name('update_balita_act');
     Route::post('/balita/delete/{id}', 'delete_balita')->name('delete_balita');
     
-    
+    // ibu_hamil
+    Route::get('/ibu-hamil', 'list_ibu_hamil')->name('list_ibu_hamil');
+    Route::get('/ibu-hamil/tambah', 'tambah_ibu_hamil')->name('tambah_ibu_hamil');
+    Route::post('/ibu-hamil/tambah', 'tambah_ibu_hamil_act')->name('tambah_ibu_hamil_act');
+    Route::get('/ibu-hamil/update/{id}', 'update_ibu_hamil')->name('update_ibu_hamil');
+    Route::post('/ibu-hamil/update/{id}', 'update_ibu_hamil_act')->name('update_ibu_hamil_act');
+    Route::post('/ibu-hamil/delete/{id}', 'delete_ibu_hamil')->name('delete_ibu_hamil');
 });
 
 

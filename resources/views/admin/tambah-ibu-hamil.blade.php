@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Tambah Data Balita
+    Tambah Data Ibu Hamil
 @endsection
 
 
@@ -12,12 +12,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Tambah Data Balita</h1>
+        <h1>Tambah Data Ibu Hamil</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{ route('admin.list_balita') }}">Balita</a></li>
-          <li class="breadcrumb-item active">Tambah Data Balita</li>
+          <li class="breadcrumb-item"><a href="{{ route('admin.list_ibu_hamil') }}">Ibu Hamil</a></li>
+          <li class="breadcrumb-item active">Tambah Data Ibu Hamil</li>
         </ol>
       </div>
     </div>
@@ -27,20 +27,20 @@
   <div class="container-fluid">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Balita</h3>
+          <h3 class="card-title">Ibu Hamil</h3>
         </div>
       
-        <form action="{{ route('admin.tambah_balita_act') }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('admin.tambah_ibu_hamil_act') }}" enctype="multipart/form-data" method="POST">
           <div class="card-body">
             @csrf
             <div class="form-group">
-              <label for="nama">Nama Balita</label>
+              <label for="nama">Nama Ibu Hamil</label>
               <input
                 type="text"
                 name="nama"
                 class="form-control @error('nama') is-invalid @enderror"
                 id="nama"
-                placeholder="Nama Balita ..."
+                placeholder="Nama Ibu Hamil ..."
                 value="{{ old('nama') }}"
                 required
               />
@@ -52,7 +52,7 @@
                 name="nik"
                 class="form-control @error('nik') is-invalid @enderror"
                 id="nik"
-                placeholder="NIK Balita ..."
+                placeholder="NIK Ibu Hamil ..."
                 value="{{ old('nik') }}"
                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                 type = "number"
@@ -79,33 +79,57 @@
               @error('no_kk') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
             <div class="form-group">
-              <label for="nik_orangtua">NIK Orang Tua</label>
+              <label for="no_telepon">No telepon</label>
               <input
-                name="nik_orangtua"
-                class="form-control @error('nik_orangtua') is-invalid @enderror"
-                id="nik_orangtua"
-                placeholder="NIK Orang Tua ..."
-                value="{{ old('nik_orangtua') }}"
+                name="no_telepon"
+                class="form-control @error('no_telepon') is-invalid @enderror"
+                id="no_telepon"
+                placeholder="No telepon ..."
+                value="{{ old('no_telepon') }}"
                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                 type = "number"
-                maxlength = "16"
+                maxlength = "15"
                 min="0"
                 required
               />
-              @error('nik_orangtua') <label class="text-danger">{{ $message }}</label> @enderror
+              @error('no_telepon') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
             <div class="form-group">
-              <label for="nama_orangtua">Nama Orang Tua</label>
+              <label for="alamat">Alamat</label>
+                <textarea 
+                  name="alamat" 
+                  class="form-control @error('alamat') is-invalid @enderror" 
+                  id="alamat" 
+                  rows="3" 
+                  placeholder="Alamat ..."
+                  required>{{ old('alamat') }}</textarea>
+                  @error('alamat') <label class="text-danger">{{ $message }}</label> @enderror
+            </div>
+            <div class="form-group">
+              <label for="nama_ayah">Nama ayah</label>
               <input
                 type="text"
-                name="nama_orangtua"
-                class="form-control @error('nama_orangtua') is-invalid @enderror"
-                id="nama_orangtua"
-                placeholder="Nama Orang Tua ..."
-                value="{{ old('nama_orangtua') }}"
+                name="nama_ayah"
+                class="form-control @error('nama_ayah') is-invalid @enderror"
+                id="nama_ayah"
+                placeholder="Nama ayah ..."
+                value="{{ old('nama_ayah') }}"
                 required
               />
-              @error('nama_orangtua') <label class="text-danger">{{ $message }}</label> @enderror
+              @error('nama_ayah') <label class="text-danger">{{ $message }}</label> @enderror
+            </div>
+            <div class="form-group">
+              <label for="nama_ibu">Nama ibu</label>
+              <input
+                type="text"
+                name="nama_ibu"
+                class="form-control @error('nama_ibu') is-invalid @enderror"
+                id="nama_ibu"
+                placeholder="Nama ibu ..."
+                value="{{ old('nama_ibu') }}"
+                required
+              />
+              @error('nama_ibu') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
             <div class="form-group">
               <label for="exampleSelectRounded0">Posyandu</label>
@@ -115,65 +139,36 @@
                 class="custom-select rounded-0 @error('posyandu') is-invalid @enderror" 
                 required>
                 @foreach ($posyandu as $p)
-                  <option value="{{ $p->id_posyandu }}">{{ $p->nama }}</option>  
+                  <option value="{{ $p->id_posyandu }}" @if (Session::get('posyandu') == $p->id_posyandu ) selected @endif>{{ $p->nama }}</option>  
                 @endforeach
               </select>
               @error('posyandu') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
             <div class="form-group">
-              <label for="tanggal_lahir">Tanggal lahir</label>
+              <label for="hpht">Hari Pertama Haid Terakhir</label>
               <input
                 type="date"
-                name="tanggal_lahir"
-                class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                id="tanggal_lahir"
+                name="hpht"
+                class="form-control @error('hpht') is-invalid @enderror"
+                id="hpht"
                 style="width: 150px"
-                value="@if (Session::get('tanggal_lahir')){{ old('tanggal_lahir') }}@else{{ "2019-01-22" }}@endif"
+                value="{{ old('hpht') }}"
                 required
               />
-              @error('tanggal_lahir') <label class="text-danger">{{ $message }}</label> @enderror
+              @error('hpht') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
             <div class="form-group">
-              <label for="exampleSelectRounded0">Jenis Kelamin</label>
-              <select 
-                name="jenis_kelamin" 
-                id="exampleSelectRounded0" 
-                class="custom-select rounded-0 @error('jenis_kelamin') is-invalid @enderror" 
-                required>
-                <option value="Laki-laki" @if (old('jenis_kelamin') == "Laki-laki" ) selected @endif>Laki-laki</option>
-                <option value="Perempuan" @if (old('jenis_kelamin') == "Perempuan" ) selected @endif>Perempuan</option>
-              </select>
-              @error('jenis_kelamin') <label class="text-danger">{{ $message }}</label> @enderror
-            </div>
-            <div class="form-group">
-              <label for="berat_badan_lahir">Berat badan saat lahir</label>
+              <label for="hpht">Hari Perkiraan Lahir</label>
               <input
-                type="number"
-                name="berat_badan_lahir"
-                class="form-control @error('berat_badan_lahir') is-invalid @enderror"
-                id="berat_badan_lahir"
-                placeholder="Berat badan saat lahir ..."
-                value="{{ old('berat_badan_lahir') }}"
-                min="0"
-                step="0.01"
+                type="date"
+                name="hpl"
+                class="form-control @error('hpl') is-invalid @enderror"
+                id="hpl"
+                style="width: 150px"
+                value="{{ old('hpl') }}"
                 required
               />
-              @error('berat_badan_lahir') <label class="text-danger">{{ $message }}</label> @enderror
-            </div>
-            <div class="form-group">
-              <label for="tinggi_badan_lahir">Tinggi badan saat lahir</label>
-              <input
-                type="number"
-                name="tinggi_badan_lahir"
-                class="form-control @error('tinggi_badan_lahir') is-invalid @enderror"
-                id="tinggi_badan_lahir"
-                placeholder="Tinggi badan saat lahir ..."
-                value="{{ old('tinggi_badan_lahir') }}"
-                min="0"
-                step="0.01"
-                required
-              />
-              @error('tinggi_badan_lahir') <label class="text-danger">{{ $message }}</label> @enderror
+              @error('hpl') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
           </div>
           <div class="card-footer">

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Balita
+    Data Ibu Hamil
 @endsection
 
 @section('css')
@@ -17,12 +17,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Balita</h1>
+        <h1>Ibu Hamil</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-          <li class="breadcrumb-item active">Daftar data balita</li>
+          <li class="breadcrumb-item active">Daftar data ibu hamil</li>
         </ol>
       </div>
     </div>
@@ -33,21 +33,21 @@
     {{-- <div class="card card-default color-palette-box"> --}}
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Daftar data balita yang ada di desa Grujugan</h3>
+          <h3 class="card-title">Daftar data ibu hamil yang ada di desa Grujugan</h3>
         </div>
       
         <div class="card-body">
-          <a href="{{ route('admin.tambah_balita') }}" class="btn btn-primary mb-3"><i class="fa-solid fa-pen-to-square"></i> Tambah data</a>
+          <a href="{{ route('admin.tambah_ibu_hamil') }}" class="btn btn-primary mb-3"><i class="fa-solid fa-pen-to-square"></i> Tambah data</a>
           <div class="table-responsive">
             <table id="example1" class="table table-bordered table-hover table-striped">
               <thead>
                 <tr>
                   <th>Nama</th>
                   <th>NIK</th>
-                  <th>Orang Tua</th>
                   <th>No KK</th>
-                  <th>Jenis Kelamin</th>
-                  <th>Tanggal lahir</th>
+                  <th>HPHT</th>
+                  <th>HPL</th>
+                  <th>No telepon</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -57,17 +57,17 @@
                   <tr>
                     <td>{{ $d->nama }}</td>
                     <td >{{ $d->nik }}</td>
-                    <td>{{ $d->nama_orangtua }}</td>
                     <td>{{ $d->no_kk }}</td>
-                    <td>{{ $d->jenis_kelamin }}</td>
-                    <td>{{ $d->tanggal_lahir }}</td>
+                    <td>{{ $d->HPHT }}</td>
+                    <td>{{ $d->HPL }}</td>
+                    <td>{{ $d->no_telepon }}</td>
                     <td class="text-center"> 
-                      <a href="{{ route('admin.update_balita', $d->id_balita) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
+                      <a href="{{ route('admin.update_ibu_hamil', $d->id_ibu_hamil) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
                       <a type="submit" class="mt-2 btn btn-danger" onclick="if (confirm('Apakah anda yakin menghapus data {{ $d->nama }}?')) { 
                         event.preventDefault();
-                        document.getElementById('delete-data{{ $d->id_balita }}').submit(); 
+                        document.getElementById('delete-data{{ $d->id_ibu_hamil }}').submit(); 
                       }"> <i class="fa-solid fa-trash-can"></i> Hapus </a> 
-                      <form id="delete-data{{ $d->id_balita }}" action="{{ route('admin.delete_balita', $d->id_balita) }}" method="POST" style="display: none;">
+                      <form id="delete-data{{ $d->id_ibu_hamil }}" action="{{ route('admin.delete_ibu_hamil', $d->id_ibu_hamil) }}" method="POST" style="display: none;">
                         @csrf
                       </form> 
                     </td>

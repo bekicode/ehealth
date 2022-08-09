@@ -20,8 +20,6 @@ class CreatePemeriksaanIbuHamil extends Migration
             $table->bigInteger('id_user_petugas')->length(20)->unsigned();
             $table->float('tensi')->nullable();
             $table->float('gula_darah')->nullable();
-            $table->date('HPHT')->nullable();
-            $table->date('HPL')->nullable();
             $table->string('hasil_lab')->nullable();
             $table->string('USG')->nullable();
             $table->tinyInteger('is_deleted')->default(0);

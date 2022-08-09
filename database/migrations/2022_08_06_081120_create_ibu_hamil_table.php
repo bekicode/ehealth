@@ -23,6 +23,8 @@ class CreateIbuHamilTable extends Migration
             $table->string('alamat')->nullable();
             $table->string('nama_ibu')->nullable();
             $table->string('nama_ayah')->nullable();
+            $table->date('HPHT')->nullable();
+            $table->date('HPL')->nullable();
             $table->tinyInteger('is_deleted')->default(0);
             $table->timestamps();
         });
