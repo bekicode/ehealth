@@ -213,6 +213,7 @@ class AdminController extends Controller
             'nik_orangtua.digits'=> 'Jumlah digit "NIK orang tua" tidak valid.',
             'nik_orangtua.numeric'=> 'Kolom "NIK orang tua" tidak bisa diisikan selain angka.',
             'nama_orangtua.required'=> 'Kolom "nama orang tua" wajib diisi.',
+            'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
             'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
             'tanggal_lahir.required'=> 'Kolom "Tanggal lahir" wajib diisi.',
             'tanggal_lahir.date'=> 'Format tanggal "tanggal lahir" tidak valid.',
@@ -291,6 +292,7 @@ class AdminController extends Controller
             'nik_orangtua.digits'=> 'Jumlah digit "NIK orang tua" tidak valid.',
             'nik_orangtua.numeric'=> 'Kolom "NIK orang tua" tidak bisa diisikan selain angka.',
             'nama_orangtua.required'=> 'Kolom "nama orang tua" wajib diisi.',
+            'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
             'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
             'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
             'tanggal_lahir.required'=> 'Kolom "Tanggal lahir" wajib diisi.',
@@ -550,16 +552,16 @@ class AdminController extends Controller
         return view('admin.tambah-lansia', compact('posyandu'));
     }
 
-/**
+    /**
      * Menyimpan data lansia ke database
-    * 
-    * @return redirect to admin.list_lansia
-    */
+     * 
+     * @return redirect to admin.list_lansia
+     */
     public function tambah_lansia_act(Request $req) 
     {
         $req->validate([
             'nama'=> 'required',
-            'nik'=> 'required|digits:16|numeric|unique:App\Models\IbuHamil,nik',
+            'nik'=> 'required|digits:16|numeric|unique:App\Models\Lansia,nik',
             'no_kk'=> 'required|digits:16|numeric',
             'tanggal_lahir'=> 'required|date',
             'jenis_kelamin'=> ['required', Rule::in(['Laki-laki', 'Perempuan'])],
@@ -575,6 +577,7 @@ class AdminController extends Controller
             'no_kk.required'=> 'Kolom "No Kartu Keluarga" wajib diisi.',
             'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
             'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
+            'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
             'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
             'tanggal_lahir.required'=> 'Kolom "Tanggal lahir" wajib diisi.',
             'tanggal_lahir.date'=> 'Format tanggal "Hari Perkiraan Lahir" tidak valid.',
@@ -593,5 +596,85 @@ class AdminController extends Controller
         });
 
         return redirect()->route('admin.list_lansia')->with('sukses', 'Berhasil menambahkan data lansia.');
+    }
+
+    /**
+      * Menampilkan view admin/update-lansia
+      * 
+      * @param id_lansia $id
+      * @return view admin/update-lansia
+      */
+    public function update_lansia($id) 
+    {
+        $data = Lansia::findOrFail($id);
+
+        $posyandu = DB::table('posyandu')
+                    ->select('id_posyandu', 'nama')
+                    ->where('is_deleted', 0)
+                    ->get();
+
+        return view('admin.update-lansia', compact('data', 'posyandu'));
+    }
+
+    /**
+     * Mengubah data lansia ke database
+     * 
+     * @param id_lansia $id
+     * @return redirect to admin.list_lansia
+     */
+    public function update_lansia_act(Request $req, $id) 
+    {
+        $req->validate([
+            'nama'=> 'required',
+            'nik'=> 'required|digits:16|numeric',
+            'no_kk'=> 'required|digits:16|numeric',
+            'tanggal_lahir'=> 'required|date',
+            'jenis_kelamin'=> ['required', Rule::in(['Laki-laki', 'Perempuan'])],
+            'posyandu'=> 'required|exists:App\Models\Posyandu,id_posyandu',
+        ],
+        [
+            'nama.required'=> 'Kolom nama wajib diisi.',
+            'nik.required'=> 'Kolom "NIK" wajib diisi.',
+            'nik.digits'=> 'Jumlah digit "NIK" tidak valid.',
+            'nik.numeric'=> 'Kolom "NIK" tidak bisa diisikan selain angka.',
+            'no_kk.required'=> 'Kolom "No Kartu Keluarga" wajib diisi.',
+            'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
+            'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
+            'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
+            'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
+            'tanggal_lahir.required'=> 'Kolom "Tanggal lahir" wajib diisi.',
+            'tanggal_lahir.date'=> 'Format tanggal "Hari Perkiraan Lahir" tidak valid.',
+            'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
+        ]);
+
+        DB::transaction(function () use ($req, $id){
+            $lansia = Lansia::findOrFail($id);
+            $lansia->nama = $req->nama;
+            $lansia->nik = $req->nik;
+            $lansia->no_kk = $req->no_kk;
+            $lansia->tanggal_lahir = $req->tanggal_lahir;
+            $lansia->jenis_kelamin = $req->jenis_kelamin;
+            $lansia->id_posyandu = $req->posyandu;
+            $lansia->update();
+        });
+
+        return redirect()->route('admin.list_lansia')->with('sukses', 'Berhasil mengubah data lansia.');
+    }
+
+    /**
+      * Menghapus data lansia
+      * 
+      * @param id_lansia $id
+      * @return redirect()
+      */
+    public function delete_lansia($id) 
+    {
+        DB::transaction(function () use ($id){
+            $lansia = Lansia::findOrFail($id);
+            $lansia->is_deleted = 1;
+            $lansia->update();
+        });
+
+        return redirect()->route('admin.list_lansia')->with('sukses', 'Berhasil menghapus data lansia.');
     }
 }
