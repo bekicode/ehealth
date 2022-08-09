@@ -515,4 +515,21 @@ class AdminController extends Controller
 
         return redirect()->route('admin.list_ibu_hamil')->with('sukses', 'Berhasil menghapus data ibu hamil.');
     }
+
+    /**
+     * Menampilkan daftar data lansia
+     * 
+     * @return view admin.list-lansia
+     */
+    public function list_lansia() 
+    {
+        $data = DB::table('lansia')
+            ->select('id_lansia', 'nik', 'nama', 'no_kk', 'tanggal_lahir', 'jenis_kelamin')
+            ->where('is_deleted', 0)
+            ->get();
+        
+        $empty = count($data);
+
+        return view('admin.list-lansia', compact(['data', 'empty']));
+    }
 }

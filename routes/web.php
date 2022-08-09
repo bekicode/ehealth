@@ -68,6 +68,14 @@ Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin
     Route::get('/ibu-hamil/update/{id}', 'update_ibu_hamil')->name('update_ibu_hamil');
     Route::post('/ibu-hamil/update/{id}', 'update_ibu_hamil_act')->name('update_ibu_hamil_act');
     Route::post('/ibu-hamil/delete/{id}', 'delete_ibu_hamil')->name('delete_ibu_hamil');
+
+    // lansia
+    Route::get('/lansia', 'list_lansia')->name('list_lansia');
+    Route::get('/lansia/tambah', 'tambah_lansia')->name('tambah_lansia');
+    Route::post('/lansia/tambah', 'tambah_lansia_act')->name('tambah_lansia_act');
+    Route::get('/lansia/update/{id}', 'update_lansia')->name('update_lansia');
+    Route::post('/lansia/update/{id}', 'update_lansia_act')->name('update_lansia_act');
+    Route::post('/lansia/delete/{id}', 'delete_lansia')->name('delete_lansia');
 });
 
 

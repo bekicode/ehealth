@@ -64,7 +64,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
          
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
@@ -104,7 +104,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{ route('admin.list_lansia') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lansia</p>
                 </a>
@@ -122,13 +122,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../layout/top-nav.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Top Navigation</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Top Navigation + Sidebar</p>
                 </a>
