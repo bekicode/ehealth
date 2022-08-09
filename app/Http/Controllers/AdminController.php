@@ -99,7 +99,7 @@ class AdminController extends Controller
       * 
       * @param Request $req
       * @param id_posyandu $id
-      * @return redirect()
+      * @return redirect to admin.list_posyandu
       */
     public function update_posyandu_act(Request $req, $id) 
     {
@@ -181,7 +181,7 @@ class AdminController extends Controller
     /**
       * Menyimpan data balita ke database
       * 
-      * @return view admin/tambah-balita
+      * @return redirect to admin.list_balita
       */
     public function tambah_balita_act(Request $req) 
     {
@@ -261,7 +261,7 @@ class AdminController extends Controller
       * Mengubah data balita
       * 
       * @param id_balita $id
-      * @return view admin/tambah-balita
+      * @return redirect to admin.list_balita
       */
     public function update_balita_act(Request $req, $id) 
     {
@@ -370,7 +370,7 @@ class AdminController extends Controller
     /**
       * Menyimpan data ibu hamil ke database
       * 
-      * @return view admin/tambah-ibu-hamil
+      * @return redirect to admin.list_ibu_hamil
       */
     public function tambah_ibu_hamil_act(Request $req) 
     {
@@ -422,5 +422,80 @@ class AdminController extends Controller
         });
 
         return redirect()->route('admin.list_ibu_hamil')->with('sukses', 'Berhasil menambahkan data ibu hamil.');
+    }
+
+    /**
+      * Menampilkan view admin/update-ibu-hamil
+      * 
+      * @param id_ibu_hamil $id
+      * @return view admin/update-ibu-hamil
+      */
+    public function update_ibu_hamil($id) 
+    {
+        $data = IbuHamil::findOrFail($id);
+
+        $posyandu = DB::table('posyandu')
+                    ->select('id_posyandu', 'nama')
+                    ->where('is_deleted', 0)
+                    ->get();
+
+        return view('admin.update-ibu-hamil', compact('data', 'posyandu'));
+    }
+
+    /**
+      * Mengubah data ibu hamil ke database
+      * 
+      * @param id_ibu_hamil $id
+      * @return redirect to admin.list_ibu_hamil
+      */
+    public function update_ibu_hamil_act(Request $req, $id) 
+    {
+        $req->validate([
+            'nama'=> 'required',
+            'nik'=> 'required|digits:16|numeric',
+            'no_kk'=> 'required|digits:16|numeric',
+            'no_telepon'=> 'required|numeric',
+            'alamat'=> 'required',
+            'nama_ayah'=> 'required',
+            'nama_ibu'=> 'required',
+            'posyandu'=> 'required|exists:App\Models\Posyandu,id_posyandu',
+            'hpht'=> 'required|date',
+            'hpl'=> 'required|date',
+
+        ],
+        [
+            'nama.required'=> 'Kolom nama harus diisi.',
+            'nik.required'=> 'Kolom "NIK" harus diisi.',
+            'nik.digits'=> 'Jumlah digit "NIK" tidak valid.',
+            'nik.numeric'=> 'Kolom "NIK" tidak bisa diisikan selain angka.',
+            'no_kk.required'=> 'Kolom "No Kartu Keluarga" harus diisi.',
+            'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
+            'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
+            'alamat.required'=> 'Kolom "alamat" harus diisi.',
+            'nama_ayah.required'=> 'Kolom "nama ayah" harus diisi.',
+            'nama_ibu.required'=> 'Kolom "nama ibu" harus diisi.',
+            'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
+            'hpht.required'=> 'Kolom "Hari Pertama Haid Terakhir" harus diisi.',
+            'hpht.date'=> 'Format tanggal "Hari Pertama Haid Terakhir" tidak valid.',
+            'hpl.required'=> 'Kolom "Hari Perkiraan Lahir" harus diisi.',
+            'hpl.date'=> 'Format tanggal "Hari Perkiraan Lahir" tidak valid.',
+        ]);
+
+        DB::transaction(function () use ($req, $id){
+            $ibu_hamil = IbuHamil::findOrFail($id);
+            $ibu_hamil->nama = $req->nama;
+            $ibu_hamil->nik = $req->nik;
+            $ibu_hamil->no_kk = $req->no_kk;
+            $ibu_hamil->no_telepon = $req->no_telepon;
+            $ibu_hamil->alamat = $req->alamat;
+            $ibu_hamil->nama_ayah = $req->nama_ayah;
+            $ibu_hamil->nama_ibu = $req->nama_ibu;
+            $ibu_hamil->id_posyandu = $req->posyandu;
+            $ibu_hamil->HPHT = $req->hpht;
+            $ibu_hamil->HPL = $req->hpl;
+            $ibu_hamil->update();
+        });
+
+        return redirect()->route('admin.list_ibu_hamil')->with('sukses', 'Berhasil mengubah data ibu hamil.');
     }
 }
