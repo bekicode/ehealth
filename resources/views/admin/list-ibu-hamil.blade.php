@@ -127,7 +127,12 @@
                 columns: [0, 1, 2, 3, 4, 5]
             }
           }, 
-          {extend: "print"}
+          {
+            extend: "print",
+            exportOptions: {
+                columns: [0, 1, 2, 3, 4, 5]
+            }
+          }
         ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({

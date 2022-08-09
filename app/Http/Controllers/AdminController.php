@@ -498,4 +498,21 @@ class AdminController extends Controller
 
         return redirect()->route('admin.list_ibu_hamil')->with('sukses', 'Berhasil mengubah data ibu hamil.');
     }
+
+    /**
+      * Menghapus data ibu hamil
+      * 
+      * @param id_ibu_hamil $id
+      * @return redirect()
+      */
+    public function delete_ibu_hamil($id) 
+    {
+        DB::transaction(function () use ($id){
+            $ibu_hamil = IbuHamil::findOrFail($id);
+            $ibu_hamil->is_deleted = 1;
+            $ibu_hamil->update();
+        });
+
+        return redirect()->route('admin.list_ibu_hamil')->with('sukses', 'Berhasil menghapus data ibu hamil.');
+    }
 }
