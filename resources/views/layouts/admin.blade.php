@@ -75,10 +75,10 @@
 
         @if (Auth::user()->role == 4)
           <li class="nav-item">
-            <a href="{{ route('admin.list_posyandu') }}" class="nav-link @if (Request::is('admin/posyandu','admin/posyandu/*')) active @endif ">
-              <i class="nav-icon fa-solid fa-hospital"></i>
+            <a href="{{ route('admin.list_akun') }}" class="nav-link @if (Request::is('admin/akun','admin/akun/*')) active @endif ">
+              <i class="nav-icon fa-solid fa-user-tie"></i>
               <p>
-                Posyandu
+                Data Akun
               </p>
             </a>
           </li>
@@ -110,6 +110,14 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.list_posyandu') }}" class="nav-link @if (Request::is('admin/posyandu','admin/posyandu/*')) active @endif ">
+              <i class="nav-icon fa-solid fa-hospital"></i>
+              <p>
+                Posyandu
+              </p>
+            </a>
           </li>
         @endif
           <li class="nav-item">

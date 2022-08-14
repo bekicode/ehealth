@@ -677,4 +677,22 @@ class AdminController extends Controller
 
         return redirect()->route('admin.list_lansia')->with('sukses', 'Berhasil menghapus data lansia.');
     }
+
+    /**
+     * Menampilkan daftar data akun
+     * 
+     * @return view admin.list-akun
+     */
+    public function list_akun() 
+    {
+        $data = DB::table('users')
+            ->where('is_delete', 0)
+            ->select('id', 'name', 'no_telp', 'nik', 'role', 'alamat')
+            ->get();
+        
+        $empty = count($data);
+        // dd($data);
+
+        return view('admin.list-akun', compact(['data', 'empty']));
+    }
 }

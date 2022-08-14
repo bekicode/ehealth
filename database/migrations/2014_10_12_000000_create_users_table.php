@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('no_telp')->nullable();
-            $table->integer('nik')->length(50)->nullable();
+            $table->bigInteger('nik')->unique()->length(20)->nullable();
             $table->text('alamat')->nullable();
             $table->string('jenis_kelamin')->length(30)->nullable();
             $table->tinyInteger('is_delete')->default(0);
