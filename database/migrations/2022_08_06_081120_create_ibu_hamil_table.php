@@ -17,8 +17,8 @@ class CreateIbuHamilTable extends Migration
             $table->id('id_ibu_hamil');
             $table->bigInteger('id_posyandu')->length(20)->unsigned();
             $table->string('nama');
-            $table->bigInteger('nik')->length(20);
-            $table->bigInteger('no_kk')->length(20);
+            $table->bigInteger('nik')->length(20)->unsigned();
+            $table->bigInteger('no_kk')->length(20)->unsigned();
             $table->string('no_telepon')->nullable();
             $table->string('alamat')->nullable();
             $table->string('nama_ibu')->nullable();

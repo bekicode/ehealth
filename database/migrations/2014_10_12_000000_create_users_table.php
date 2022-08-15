@@ -18,10 +18,11 @@ class CreateUsersTable extends Migration
             $table->bigInteger('id_posyandu')->length(20)->unsigned()->nullable();
             $table->string('name');
             $table->tinyInteger('role')->default(1);
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->string('no_telp')->nullable();
-            $table->bigInteger('nik')->unique()->length(20)->nullable();
+            $table->bigInteger('nik')->unique()->length(20)->unsigned()->nullable();
+            $table->bigInteger('no_kk')->length(20)->unsigned()->nullable();
             $table->text('alamat')->nullable();
             $table->string('jenis_kelamin')->length(30)->nullable();
             $table->tinyInteger('is_delete')->default(0);

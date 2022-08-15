@@ -691,7 +691,6 @@ class AdminController extends Controller
             ->get();
         
         $empty = count($data);
-        // dd($data);
 
         return view('admin.list-akun', compact(['data', 'empty']));
     }

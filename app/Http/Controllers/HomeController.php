@@ -32,7 +32,7 @@ class HomeController extends Controller
                 // return redirect()->route('user.');
                 break;
             case "2":
-                // return redirect()->route('kader.');
+                return redirect()->route('kader.list_balita');
                 break;
             case "3":
                 echo "kades";

@@ -35,7 +35,13 @@ Route::prefix('user')->controller(NormalUserController::class)->middleware(['isN
 
 // Kader
 Route::prefix('kader')->controller(KaderController::class)->middleware(['isKader'])->name('kader.')->group(function () {
-    // Route::get('/test', 'test');
+    // balita
+    Route::get('/balita', 'list_balita')->name('list_balita');
+    Route::get('/balita/periksa', 'periksa_balita')->name('periksa_balita');
+    Route::post('/balita/periksa', 'periksa_balita_act')->name('periksa_balita_act');
+    Route::get('/balita/update/{id}', 'update_balita')->name('update_balita');
+    Route::post('/balita/update/{id}', 'update_balita_act')->name('update_balita_act');
+    Route::post('/balita/delete/{id}', 'delete_balita')->name('delete_balita');
 });
 
 // kades

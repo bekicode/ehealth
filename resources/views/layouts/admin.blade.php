@@ -62,7 +62,10 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-         
+          @php
+            $role = Auth::user()->role;
+          @endphp
+          @if ($role == 2)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -72,8 +75,27 @@
               </p>
             </a>
           </li>
-
-        @if (Auth::user()->role == 4)
+          <li class="nav-header">Pemeriksaan</li>
+          <li class="nav-item">
+            <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif ">
+              <i class="fa-solid fa-id-card-clip nav-icon"></i>
+              <p>
+                Pemeriksaan Balita
+              </p>
+            </a>
+          </li>
+          @endif
+          @if ($role == 4)
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Dashboard
+                <span class="right badge badge-danger">Tests</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-header">Admin Panel</li>
           <li class="nav-item">
             <a href="{{ route('admin.list_akun') }}" class="nav-link @if (Request::is('admin/akun','admin/akun/*')) active @endif ">
               <i class="nav-icon fa-solid fa-user-tie"></i>
@@ -120,29 +142,6 @@
             </a>
           </li>
         @endif
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Test
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
-                </a>
-              </li>
-            </ul>
-          </li>
           <li class="nav-item">
             <a class="nav-link text-warning" href="{{ route('logout') }}"
             onclick="event.preventDefault();
