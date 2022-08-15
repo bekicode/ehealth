@@ -162,6 +162,34 @@
             </ul>
           </li>
           @endif
+          @if ($role == 1 || $role == 4)
+          
+          @if ($role == 1)
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Dashboard
+                <span class="right badge badge-danger">Tests</span>
+              </p>
+            </a>
+          </li>
+          @endif
+          <li class="nav-header">Riwayat pemeriksaan keluarga</li>
+            <li class="nav-item">
+              <a href="{{ route('user.list_balita') }}" class="nav-link @if (Request::is('user/balita','user/balita/*')) active @endif">
+                <i class="nav-icon far fa-solid fa-child"></i>
+                <p>Balita</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('user.list_lansia') }}" class="nav-link @if (Request::is('user/lansia','user/lansia/*')) active @endif">
+                <i class="nav-icon fa-solid fa-person-cane"></i>
+                <p>Lansia</p>
+              </a>
+            </li>
+          </li>
+          @endif
           
           <li class="nav-item">
             <a class="nav-link text-warning" href="{{ route('logout') }}"
