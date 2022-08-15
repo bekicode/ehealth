@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Pemeriksaan Balita
+    Data Pemeriksaan Lansia
 @endsection
 
 @section('css')
@@ -21,12 +21,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Pemeriksaan balita</h1>
+        <h1>Pemeriksaan lansia</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-          <li class="breadcrumb-item active">Daftar data pemeriksaan balita</li>
+          <li class="breadcrumb-item active">Daftar data pemeriksaan lansia</li>
         </ol>
       </div>
     </div>
@@ -37,17 +37,17 @@
     {{-- <div class="card card-default color-palette-box"> --}}
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Daftar pemeriksaan balita</h3>
+          <h3 class="card-title">Daftar pemeriksaan lansia</h3>
         </div>
         
         <div class="card-body">
-            <form action="{{ route('kader.periksa_balita') }}" method="get">
+            <form action="{{ route('kader.periksa_lansia') }}" method="get">
               @csrf
               <div class="form-group">
-                <label>Pilih nama balita yang ingin diinput</label>
-                <select class="form-control select2" style="height: 120%; width: 300px" name="id_balita">
-                  @foreach ($balita as $b)
-                    <option value="{{ $b->id_balita }}">{{ $b->nama }} - {{ $b->nama_orangtua }}</option>
+                <label>Pilih nama lansia yang ingin diinput</label>
+                <select class="form-control select2" style="height: 100%; width: 300px" name="id_lansia" style="font-size: 0.9em">
+                  @foreach ($lansia as $b)
+                    <option value="{{ $b->id_lansia }}">{{ $b->nama }} - {{ $b->nik }}</option>
                   @endforeach
                 </select>
               </div>
@@ -57,14 +57,18 @@
             <table id="example1" class="table table-bordered table-hover table-striped">
               <thead>
                 <tr>
+                  <th>Aksi</th>
                   <th>Tanggal</th>
                   <th>Nama</th>
                   <th>NIK</th>
                   <th>Berat</th>
                   <th>Tinggi</th>
-                  <th>Lingkar lengan</th>
-                  <th>Lingkar kepala</th>
-                  <th>Aksi</th>
+                  <th>Lingkar Perut</th>
+                  <th>Gula</th>
+                  <th>IMT</th>
+                  <th>Tensi</th>
+                  <th>Kolesterol</th>
+                  <th>Asam Urat</th>
                 </tr>
               </thead>
               <tbody>
@@ -75,27 +79,31 @@
                       $date=date_create($d->created_at);
                       $date = date_format($date,"Y/m/d");
                     @endphp
+                    <td class="text-center"> 
+                      <a href="{{ route('kader.update_lansia', $d->id_pemeriksaan_lansia) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
+                      <a type="submit" class="mt-2 btn btn-danger" onclick="if (confirm('Apakah anda yakin menghapus data {{ $d->nama }}?')) { 
+                        event.preventDefault();
+                        document.getElementById('delete-data{{ $d->id_pemeriksaan_lansia }}').submit(); 
+                      }"> <i class="fa-solid fa-trash-can"></i> Hapus </a> 
+                      <form id="delete-data{{ $d->id_pemeriksaan_lansia }}" action="{{ route('kader.delete_lansia', $d->id_pemeriksaan_lansia) }}" method="POST" style="display: none;">
+                        @csrf
+                      </form>
+                    </td>
                     <td>{{ $date }}</td>
                     <td >{{ $d->nama }}</td>
                     <td>{{ $d->nik }}</td>
                     <td>{{ $d->berat_badan }}</td>
                     <td>{{ $d->tinggi_badan }}</td>
-                    <td>{{ $d->lingkar_lengan_atas }}</td>
-                    <td>{{ $d->lingkar_kepala }}</td>
-                    <td class="text-center"> 
-                      <a href="{{ route('kader.update_balita', $d->id_pemeriksaan_balita) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
-                      <a type="submit" class="mt-2 btn btn-danger" onclick="if (confirm('Apakah anda yakin menghapus data {{ $d->nama }}?')) { 
-                        event.preventDefault();
-                        document.getElementById('delete-data{{ $d->id_pemeriksaan_balita }}').submit(); 
-                      }"> <i class="fa-solid fa-trash-can"></i> Hapus </a> 
-                      <form id="delete-data{{ $d->id_pemeriksaan_balita }}" action="{{ route('kader.delete_balita', $d->id_pemeriksaan_balita) }}" method="POST" style="display: none;">
-                        @csrf
-                      </form>
-                    </td>
+                    <td>{{ $d->lingkar_perut }}</td>
+                    <td>{{ $d->gula_darah }}</td>
+                    <td>{{ $d->imt }}</td>
+                    <td>{{ $d->tensi }}</td>
+                    <td>{{ $d->kolesterol }}</td>
+                    <td>{{ $d->asam_urat }}</td>
                   </tr>
                   @endforeach
                 @else
-                  <td colspan="8" class="text-center">Tidak ada data</td>
+                  <td colspan="12" class="text-center">Tidak ada data</td>
                 @endif
               </tbody>
               {{-- <tfoot>
@@ -139,7 +147,7 @@
     $(function () {
       $("#example1").DataTable({
         "responsive": false, "lengthChange": false, "autoWidth": false,
-        order: [[0, 'desc']],
+        order: [[1, 'desc']],
         // "buttons": ["excel", "pdf", "print"]
         "buttons": [
           // {
@@ -156,7 +164,7 @@
           {
             extend: "print",
             exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6]
+                columns: [1, 2, 3, 4, 5, 6, 7 , 8, 9, 10, 11]
             }
           }
         ]

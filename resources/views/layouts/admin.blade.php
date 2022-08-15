@@ -76,8 +76,8 @@
             </a>
           </li>
           <li class="nav-header">Pemeriksaan</li>
-          <li class="nav-item @if (Request::is('kader/balita','kader/balita/*')) menu-open @endif">
-            <a href="#" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
+          <li class="nav-item @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) menu-open @endif">
+            <a href="#" class="nav-link @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) active @endif">
               <i class="nav-icon fa-solid fa-hospital-user"></i>
               <p>
                 Data Pemeriksaan
@@ -89,6 +89,14 @@
                 <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Balita</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('kader.list_lansia') }}" class="nav-link @if (Request::is('kader/lansia','kader/lansia/*')) active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lansia</p>
                 </a>
               </li>
             </ul>

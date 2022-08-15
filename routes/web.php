@@ -42,6 +42,14 @@ Route::prefix('kader')->controller(KaderController::class)->middleware(['isKader
     Route::get('/balita/update/{id}', 'update_balita')->name('update_balita');
     Route::post('/balita/update/{id}', 'update_balita_act')->name('update_balita_act');
     Route::post('/balita/delete/{id}', 'delete_balita')->name('delete_balita');
+    
+    // lansia
+    Route::get('/lansia', 'list_lansia')->name('list_lansia');
+    Route::get('/lansia/periksa', 'periksa_lansia')->name('periksa_lansia');
+    Route::post('/lansia/periksa', 'periksa_lansia_act')->name('periksa_lansia_act');
+    Route::get('/lansia/update/{id}', 'update_lansia')->name('update_lansia');
+    Route::post('/lansia/update/{id}', 'update_lansia_act')->name('update_lansia_act');
+    Route::post('/lansia/delete/{id}', 'delete_lansia')->name('delete_lansia');
 });
 
 // kades

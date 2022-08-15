@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Tambah Data Lansia
+    Update Data Lansia
 @endsection
 
 
@@ -12,12 +12,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Tambah Data Lansia</h1>
+        <h1>Update Data Lansia</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ route('admin.list_lansia') }}">Lansia</a></li>
-          <li class="breadcrumb-item active">Tambah Data Lansia</li>
+          <li class="breadcrumb-item active">Update Data Lansia</li>
         </ol>
       </div>
     </div>
