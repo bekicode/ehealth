@@ -65,43 +65,6 @@
           @php
             $role = Auth::user()->role;
           @endphp
-          @if ($role == 2)
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Dashboard
-                <span class="right badge badge-danger">Tests</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">Pemeriksaan</li>
-          <li class="nav-item @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) menu-open @endif">
-            <a href="#" class="nav-link @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) active @endif">
-              <i class="nav-icon fa-solid fa-hospital-user"></i>
-              <p>
-                Data Pemeriksaan
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Balita</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('kader.list_lansia') }}" class="nav-link @if (Request::is('kader/lansia','kader/lansia/*')) active @endif">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Lansia</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @endif
           @if ($role == 4)
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -158,7 +121,48 @@
               </p>
             </a>
           </li>
-        @endif
+          @endif
+          @if ($role == 2 || $role == 4)
+          
+          @if ($role == 2)
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Dashboard
+                <span class="right badge badge-danger">Tests</span>
+              </p>
+            </a>
+          </li>
+          @endif
+          <li class="nav-header">Pemeriksaan</li>
+          <li class="nav-item @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) menu-open @endif">
+            <a href="#" class="nav-link @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) active @endif">
+              <i class="nav-icon fa-solid fa-hospital-user"></i>
+              <p>
+                Data Pemeriksaan
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Balita</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('kader.list_lansia') }}" class="nav-link @if (Request::is('kader/lansia','kader/lansia/*')) active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lansia</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+          
           <li class="nav-item">
             <a class="nav-link text-warning" href="{{ route('logout') }}"
             onclick="event.preventDefault();
