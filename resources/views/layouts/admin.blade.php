@@ -76,13 +76,22 @@
             </a>
           </li>
           <li class="nav-header">Pemeriksaan</li>
-          <li class="nav-item">
-            <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif ">
-              <i class="fa-solid fa-id-card-clip nav-icon"></i>
+          <li class="nav-item @if (Request::is('kader/balita','kader/balita/*')) menu-open @endif">
+            <a href="#" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
+              <i class="nav-icon fa-solid fa-hospital-user"></i>
               <p>
-                Pemeriksaan Balita
+                Data Pemeriksaan
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Balita</p>
+                </a>
+              </li>
+            </ul>
           </li>
           @endif
           @if ($role == 4)

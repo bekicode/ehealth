@@ -315,7 +315,7 @@ class AdminController extends Controller
             $balita->berat_badan_lahir = $req->berat_badan_lahir;
             $balita->tinggi_badan_lahir = $req->tinggi_badan_lahir;
             $balita->id_posyandu = $req->posyandu;
-            $balita->save();
+            $balita->update();
         });
 
         return redirect()->route('admin.list_balita')->with('sukses', 'Berhasil mengubah data balita.');

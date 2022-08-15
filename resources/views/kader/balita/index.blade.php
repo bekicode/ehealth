@@ -7,6 +7,10 @@
 @section('css')
   <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
@@ -35,10 +39,21 @@
         <div class="card-header">
           <h3 class="card-title">Daftar pemeriksaan balita</h3>
         </div>
-      
+        
         <div class="card-body">
-          <a href="{{ route('admin.tambah_balita') }}" class="btn btn-primary mb-3"><i class="fa-solid fa-pen-to-square"></i> Tambah data pemeriksaan</a>
-          <div class="table-responsive">
+            <form action="{{ route('kader.periksa_balita') }}" method="get">
+              @csrf
+              <div class="form-group">
+                <label>Pilih nama balita yang ingin diinput</label>
+                <select class="form-control select2" style="height: 120%; width: 300px" name="id_balita">
+                  @foreach ($balita as $b)
+                    <option value="{{ $b->id_balita }}">{{ $b->nama }} - {{ $b->nama_orangtua }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <button class="btn btn-primary mb-3" type="submit"><i class="fa-solid fa-pen-to-square"></i> Tambah data pemeriksaan</button>
+            </form>
+            <div class="table-responsive">
             <table id="example1" class="table table-bordered table-hover table-striped">
               <thead>
                 <tr>
@@ -68,12 +83,12 @@
                     <td>{{ $d->lingkar_lengan_atas }}</td>
                     <td>{{ $d->lingkar_kepala }}</td>
                     <td class="text-center"> 
-                      <a href="{{ route('admin.update_balita', $d->id_pemeriksaan_balita) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
+                      <a href="{{ route('kader.update_balita', $d->id_pemeriksaan_balita) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
                       <a type="submit" class="mt-2 btn btn-danger" onclick="if (confirm('Apakah anda yakin menghapus data {{ $d->nama }}?')) { 
                         event.preventDefault();
                         document.getElementById('delete-data{{ $d->id_pemeriksaan_balita }}').submit(); 
                       }"> <i class="fa-solid fa-trash-can"></i> Hapus </a> 
-                      <form id="delete-data{{ $d->id_pemeriksaan_balita }}" action="{{ route('admin.delete_balita', $d->id_pemeriksaan_balita) }}" method="POST" style="display: none;">
+                      <form id="delete-data{{ $d->id_pemeriksaan_balita }}" action="{{ route('kader.delete_balita', $d->id_pemeriksaan_balita) }}" method="POST" style="display: none;">
                         @csrf
                       </form>
                     </td>
@@ -117,10 +132,14 @@
   {{-- <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script> --}}
   <script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script>
 
+  <!-- Select2 -->
+  <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+
   <script>
     $(function () {
       $("#example1").DataTable({
         "responsive": false, "lengthChange": false, "autoWidth": false,
+        order: [[0, 'desc']],
         // "buttons": ["excel", "pdf", "print"]
         "buttons": [
           // {
@@ -143,10 +162,11 @@
         ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
+        order: [[0, 'desc']],
         "paging": true,
         "lengthChange": false,
         "searching": false,
-        "ordering": true,
+        // "ordering": true,
         "info": true,
         "autoWidth": false,
         "responsive": true,
@@ -158,5 +178,11 @@
         toastr.success('{{ session("sukses") }}')
       });
     @endif
+
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+    })
   </script>
+
 @endsection
