@@ -6,6 +6,7 @@ use App\Models\Balita;
 use App\Models\IbuHamil;
 use App\Models\Lansia;
 use App\Models\Posyandu;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -693,5 +694,75 @@ class AdminController extends Controller
         $empty = count($data);
 
         return view('admin.list-akun', compact(['data', 'empty']));
+    }
+
+    /**
+     * Menampilkan view tambah akun
+     * 
+     * @return view
+     */
+    public function tambah_akun() {
+        $posyandu = DB::table('posyandu')
+            ->select('id_posyandu', 'nama')
+            ->where('is_deleted', 0)
+            ->get();
+
+        // dd($posyandu);
+        return view('admin.tambah-akun', compact('posyandu'));
+    }
+
+    /**
+     * Menyimpan data oengguna
+     * 
+     * @param Request $req
+     * 
+     * @return Redirect
+     */
+    public function tambah_akun_act(Request $req)
+    {
+        $req->validate([
+            'nama'=> 'required',
+            'nik'=> 'required|digits:16|numeric|unique:App\Models\User,nik',
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'no_kk'=> 'required|digits:16|numeric',
+            'no_telp'=> 'numeric',
+            'jenis_kelamin'=> ['required', Rule::in(['Laki-laki', 'Perempuan'])],
+            'role'=> ['required', Rule::in(['1', '2', '3', '4'])],
+            'posyandu'=> 'required|exists:App\Models\Posyandu,id_posyandu',
+
+        ],
+        [
+            'nama.required'=> 'Kolom nama wajib diisi.',
+            'nik.required'=> 'Kolom "NIK" wajib diisi.',
+            'nik.digits'=> 'Jumlah digit "NIK" tidak valid.',
+            'nik.numeric'=> 'Kolom "NIK" tidak bisa diisikan selain angka.',
+            'nik.unique'=> 'Nomor "NIK" sudah digunakan.',
+            'no_kk.required'=> 'Kolom "No Kartu Keluarga" wajib diisi.',
+            'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
+            'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
+            'no_telp.digits'=> 'Jumlah digit "No telepon" tidak valid.',
+            'password.required'=> 'Kolom "Password" wajib diisi.',
+            'password.confirmed'=> 'Kolom "Password" dan kolom "Konfirmasi Password" tidak sama.',
+            'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
+            'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
+            'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
+        ]);
+
+        DB::transaction(function () use ($req){
+            $user = new User();
+            $user->name = $req->nama;
+            $user->email = 'admin' . rand(1,999) . '@email.test';
+            $user->nik = $req->nik;
+            $user->no_kk = $req->no_kk;
+            $user->password = $req->password;
+            $user->no_telp = $req->no_telepon;
+            $user->alamat = $req->alamat;
+            $user->jenis_kelamin = $req->jenis_kelamin;
+            $user->role = $req->role;
+            $user->id_posyandu = $req->posyandu;
+            $user->save();
+        });
+
+        return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil menambahkan data akun '. $req->nama . '.');
     }
 }
