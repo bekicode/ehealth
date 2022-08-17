@@ -754,7 +754,7 @@ class AdminController extends Controller
             $user->email = 'admin' . rand(1,999) . '@email.test';
             $user->nik = $req->nik;
             $user->no_kk = $req->no_kk;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->no_telp = $req->no_telepon;
             $user->alamat = $req->alamat;
             $user->jenis_kelamin = $req->jenis_kelamin;
