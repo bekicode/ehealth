@@ -742,6 +742,7 @@ class AdminController extends Controller
             'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
             'no_telp.digits'=> 'Jumlah digit "No telepon" tidak valid.',
             'password.required'=> 'Kolom "Password" wajib diisi.',
+            'password.min'=> 'Kolom "Password" harus minimal 8 karakter.',
             'password.confirmed'=> 'Kolom "Password" dan kolom "Konfirmasi Password" tidak sama.',
             'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
             'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
@@ -764,5 +765,99 @@ class AdminController extends Controller
         });
 
         return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil menambahkan data akun '. $req->nama . '.');
+    }
+
+    
+    /**
+     * Menampilkan view update data akun
+     * 
+     * @param user_id $id
+     * 
+     * @return view
+     */
+    public function update_akun($id)
+    {
+        $data = User::where([
+                    ['is_delete', 0],
+                    ['id', $id],
+                ])->firstOrFail();
+
+        $posyandu = DB::table('posyandu')
+                ->select('id_posyandu', 'nama')
+                ->where('is_deleted', 0)
+                ->get();
+
+        return view('admin.update-akun', compact('data', 'posyandu'));
+    }
+
+    /**
+     * mengubah data akun
+     * 
+     * @param Request $req
+     * @param user_id $id
+     * 
+     * @return [type]
+     */
+    public function update_akun_act(Request $req, $id)
+    {
+        $req->validate([
+            'nama'=> 'required',
+            'nik'=> 'required|digits:16|numeric',
+            'no_kk'=> 'required|digits:16|numeric',
+            'no_telp'=> 'numeric',
+            'jenis_kelamin'=> ['required', Rule::in(['Laki-laki', 'Perempuan'])],
+            'role'=> ['required', Rule::in(['1', '2', '3', '4'])],
+            'posyandu'=> 'required|exists:App\Models\Posyandu,id_posyandu',
+
+        ],
+        [
+            'password.required'=> 'Kolom "Password" wajib diisi.',
+            'password.confirmed'=> 'Kolom "Password" dan kolom "Konfirmasi Password" tidak sama.',
+        ]);
+
+        DB::transaction(function () use ($req, $id){
+            $user = User::findOrFail($id);
+            $user->name = $req->nama;
+            $user->email = 'admin' . rand(1,999) . '@email.test';
+            $user->nik = $req->nik;
+            $user->no_kk = $req->no_kk;
+            $user->no_telp = $req->no_telepon;
+            $user->alamat = $req->alamat;
+            $user->jenis_kelamin = $req->jenis_kelamin;
+            $user->role = $req->role;
+            $user->id_posyandu = $req->posyandu;
+            $user->save();
+        });
+
+        return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil mengubah data akun '. $req->nama . '.');
+    }
+
+    /**
+     * Mengubah password akun pengguna
+     * 
+     * @param Request $req
+     * @param user_id $id
+     * 
+     * @return redirect
+     */
+    public function update_password_act(Request $req, $id)
+    {
+        $req->validate([
+            'password.required'=> 'Kolom "Password" wajib diisi.',
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],
+        [
+            'password.required'=> 'Kolom "Password" wajib diisi.',
+            'password.confirmed'=> 'Kolom "Password" dan kolom "Konfirmasi Password" tidak sama.',
+            'password.min'=> 'Kolom "Password" harus minimal 8 karakter.',
+        ]);
+
+        DB::transaction(function () use ($req, $id){
+            $user = User::findOrFail($id);
+            $user->password = Hash::make($req->password);
+            $user->save();
+        });
+
+        return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil mengubah data akun.');
     }
 }

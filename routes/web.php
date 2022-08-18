@@ -103,6 +103,7 @@ Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin
     Route::post('/akun/tambah', 'tambah_akun_act')->name('tambah_akun_act');
     Route::get('/akun/update/{id}', 'update_akun')->name('update_akun');
     Route::post('/akun/update/{id}', 'update_akun_act')->name('update_akun_act');
+    Route::post('/akun/update-password/{id}', 'update_password_act')->name('update_password_act');
     Route::post('/akun/delete/{id}', 'delete_akun')->name('delete_akun');
 });
 
