@@ -41,7 +41,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/" class="brand-link">
       <img src="{{ asset('dist-adminlte/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">E-Health</span>
     </a>
@@ -65,9 +65,8 @@
           @php
             $role = Auth::user()->role;
           @endphp
-          @if ($role == 4)
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="@if($role == 1){{ "#1" }}@elseif($role == 2){{ "#2" }}@elseif($role == 3){{ route('kades.dashboard') }}@elseif($role == 4){{ "#4" }}@endif" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
@@ -75,6 +74,7 @@
               </p>
             </a>
           </li>
+  @if ($role == 4)
           <li class="nav-header">Admin Panel</li>
           <li class="nav-item">
             <a href="{{ route('admin.list_akun') }}" class="nav-link @if (Request::is('admin/akun','admin/akun/*')) active @endif ">
@@ -121,20 +121,8 @@
               </p>
             </a>
           </li>
-          @endif
-          @if ($role == 2 || $role == 4)
-          
-          @if ($role == 2)
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Dashboard
-                <span class="right badge badge-danger">Tests</span>
-              </p>
-            </a>
-          </li>
-          @endif
+  @endif
+  @if ($role == 2 || $role == 4)
           <li class="nav-header">Pemeriksaan</li>
           <li class="nav-item @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) menu-open @endif">
             <a href="#" class="nav-link @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) active @endif">
@@ -161,20 +149,8 @@
               </li>
             </ul>
           </li>
-          @endif
-          @if ($role == 1 || $role == 4)
-          
-          @if ($role == 1)
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Dashboard
-                <span class="right badge badge-danger">Tests</span>
-              </p>
-            </a>
-          </li>
-          @endif
+  @endif
+  @if ($role == 1 || $role == 2 || $role == 3 || $role == 4 )
           <li class="nav-header">Riwayat pemeriksaan keluarga</li>
             <li class="nav-item">
               <a href="{{ route('user.list_balita') }}" class="nav-link @if (Request::is('user/balita','user/balita/*')) active @endif">
@@ -189,7 +165,7 @@
               </a>
             </li>
           </li>
-          @endif
+  @endif
           
           <li class="nav-item">
             <a class="nav-link text-warning" href="{{ route('logout') }}"

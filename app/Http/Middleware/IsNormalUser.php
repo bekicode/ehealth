@@ -18,7 +18,7 @@ class IsNormalUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role == 1 || Auth::user()->role == 4){
+        if(Auth::check() && Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3 || Auth::user()->role == 4){
             return $next($request);
         }else{
             return abort(404);
