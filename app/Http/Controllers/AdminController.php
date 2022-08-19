@@ -27,24 +27,31 @@ class AdminController extends Controller
         $dataPemeriksaanBalita = DB::table('pemeriksaan_balita')
                 ->select('id_pemeriksaan_balita', 'created_at', DB::raw('YEAR(created_at) as tahun, month(created_at) as bulan, count(created_at) as jumlah'))
                 ->groupBy(DB::raw('month(created_at)'))
-                ->where('created_at', '>', Carbon::now()->subYear())
-                ->get();
+                ->where([
+                    ['is_deleted', 0],
+                    ['created_at', '>', Carbon::now()->subYear()]
+                ])->get();
 
         $dataPemeriksaanLansia = DB::table('pemeriksaan_lansia')
                 ->select('created_at', DB::raw('YEAR(created_at) as tahun, month(created_at) as bulan, count(created_at) as jumlah'))
                 ->groupBy(DB::raw('month(created_at)'))
-                ->where('created_at', '>', Carbon::now()->subYear())
-                ->get();
+                ->where([
+                    ['is_deleted', 0],
+                    ['created_at', '>', Carbon::now()->subYear()]
+                ])->get();
 
         $dataJumlahPosyandu = DB::table('posyandu')
                 ->select(DB::raw('count(id_posyandu) as jumlah'))
+                ->where('is_deleted', 0)
                 ->get();
         $dataJumlahBalita = DB::table('balita')
                 ->select(DB::raw('count(id_balita) as jumlah'))
+                ->where('is_deleted', 0)
                 ->get();
 
         $dataJumlahLansia = DB::table('lansia')
                 ->select(DB::raw('count(id_lansia) as jumlah'))
+                ->where('is_deleted', 0)
                 ->get();
 
         // dd($dataJumlahBalita);

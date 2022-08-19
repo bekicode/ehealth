@@ -36,6 +36,7 @@ class KaderController extends Controller
                 ->select('id_pemeriksaan_balita', 'created_at', DB::raw('YEAR(created_at) as tahun, month(created_at) as bulan, count(created_at) as jumlah'))
                 ->groupBy(DB::raw('month(created_at)'))
                 ->where([
+                    ['is_deleted', 0],
                     ['created_at', '>', Carbon::now()->subYear()],
                     ['id_posyandu', $user->id_posyandu],
                 ])->get();
@@ -44,6 +45,7 @@ class KaderController extends Controller
                 ->select('created_at', DB::raw('YEAR(created_at) as tahun, month(created_at) as bulan, count(created_at) as jumlah'))
                 ->groupBy(DB::raw('month(created_at)'))
                 ->where([
+                    ['is_deleted', 0],
                     ['created_at', '>', Carbon::now()->subYear()],
                     ['id_posyandu', $user->id_posyandu],
                 ])
@@ -52,6 +54,7 @@ class KaderController extends Controller
         $dataJumlahBalita = DB::table('balita')
                 ->select(DB::raw('count(id_balita) as jumlah'))
                 ->where([
+                    ['is_deleted', 0],
                     ['created_at', '>', Carbon::now()->subYear()],
                     ['id_posyandu', $user->id_posyandu],
                 ])->get();
@@ -59,6 +62,7 @@ class KaderController extends Controller
         $dataJumlahLansia = DB::table('lansia')
                 ->select(DB::raw('count(id_lansia) as jumlah'))
                 ->where([
+                    ['is_deleted', 0],
                     ['created_at', '>', Carbon::now()->subYear()],
                     ['id_posyandu', $user->id_posyandu],
                 ])->get();
