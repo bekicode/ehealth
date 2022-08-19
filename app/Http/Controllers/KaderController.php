@@ -6,6 +6,7 @@ use App\Models\Balita;
 use App\Models\Lansia;
 use App\Models\PemeriksaanBalita;
 use App\Models\PemeriksaanLansia;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,55 @@ class KaderController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    /**
+     * Menampilkan view dashboard kader
+     * 
+     * @return view
+     */
+    public function dashboard()
+    {
+        $user = Auth::user();
+        
+        $dataPemeriksaanBalita = DB::table('pemeriksaan_balita')
+                ->select('id_pemeriksaan_balita', 'created_at', DB::raw('YEAR(created_at) as tahun, month(created_at) as bulan, count(created_at) as jumlah'))
+                ->groupBy(DB::raw('month(created_at)'))
+                ->where([
+                    ['created_at', '>', Carbon::now()->subYear()],
+                    ['id_posyandu', $user->id_posyandu],
+                ])->get();
+
+        $dataPemeriksaanLansia = DB::table('pemeriksaan_lansia')
+                ->select('created_at', DB::raw('YEAR(created_at) as tahun, month(created_at) as bulan, count(created_at) as jumlah'))
+                ->groupBy(DB::raw('month(created_at)'))
+                ->where([
+                    ['created_at', '>', Carbon::now()->subYear()],
+                    ['id_posyandu', $user->id_posyandu],
+                ])
+                ->get();
+
+        $dataJumlahBalita = DB::table('balita')
+                ->select(DB::raw('count(id_balita) as jumlah'))
+                ->where([
+                    ['created_at', '>', Carbon::now()->subYear()],
+                    ['id_posyandu', $user->id_posyandu],
+                ])->get();
+
+        $dataJumlahLansia = DB::table('lansia')
+                ->select(DB::raw('count(id_lansia) as jumlah'))
+                ->where([
+                    ['created_at', '>', Carbon::now()->subYear()],
+                    ['id_posyandu', $user->id_posyandu],
+                ])->get();
+
+        // dd($dataJumlahBalita);
+        return view('kader.dashboard', compact(
+            'dataPemeriksaanBalita', 
+            'dataPemeriksaanLansia',
+            'dataJumlahBalita', 
+            'dataJumlahLansia'
+        ));
     }
 
     /**

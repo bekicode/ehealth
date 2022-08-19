@@ -41,6 +41,9 @@ Route::prefix('user')->controller(NormalUserController::class)->middleware(['isN
 
 // Kader
 Route::prefix('kader')->controller(KaderController::class)->middleware(['isKader'])->name('kader.')->group(function () {
+
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+
     // balita
     Route::get('/balita', 'list_balita')->name('list_balita');
     Route::get('/balita/periksa', 'periksa_balita')->name('periksa_balita');
@@ -65,7 +68,7 @@ Route::prefix('kades')->controller(KadesController::class)->middleware(['isKades
 
 // Admin
 Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin'])->name('admin.')->group(function () {
-    
+
     Route::get('/dashboard', 'dashboard')->name('dashboard');
 
     // posyandu

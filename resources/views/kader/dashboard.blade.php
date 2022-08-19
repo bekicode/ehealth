@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Dashboard Admin
+  Dashboard Kader
 @endsection
 
 @section('css')
@@ -15,7 +15,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Dashboard Admin</h1>
+        <h1>Dashboard Kader</h1>
       </div>
     </div>
   </div><!-- /.container-fluid -->
@@ -23,23 +23,12 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-4 col-12">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $dataJumlahPosyandu[0]->jumlah }}</h3>
-            <p>Total Posyandu</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-home"></i>
-          </div>
-        </div>
-      </div>
     
-      <div class="col-lg-4 col-6">
+      <div class="col-lg-6 col-6">
         <div class="small-box bg-success">
           <div class="inner">
             <h3>{{ $dataJumlahBalita[0]->jumlah }}</h3>
-            <p>Total Balita</p>
+            <p>Total Balita Pada Posyandu</p>
           </div>
           <div class="icon">
             <i class="ion ion-person"></i>
@@ -47,11 +36,11 @@
         </div>
       </div>
     
-      <div class="col-lg-4 col-6">
+      <div class="col-lg-6 col-6">
         <div class="small-box bg-warning">
           <div class="inner">
             <h3>{{ $dataJumlahLansia[0]->jumlah }}</h3>
-            <p>Total Lansia</p>
+            <p>Total Lansia Pada Posyandu</p>
           </div>
           <div class="icon">
             <i class="ion ion-person"></i>
@@ -177,7 +166,6 @@
     config
   );
 </script>
-
 
 <script>
 

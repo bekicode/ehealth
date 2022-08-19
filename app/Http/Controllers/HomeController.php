@@ -32,14 +32,14 @@ class HomeController extends Controller
                 return redirect()->route('user.list_balita');
                 break;
             case "2":
-                return redirect()->route('kader.list_balita');
+                return redirect()->route('kader.dashboard');
                 break;
             case "3":
                 echo "kades";
                 return redirect()->route('kades.dashboard');
                 break;
             case "4":
-                return redirect()->route('admin.list_posyandu');
+                return redirect()->route('admin.dashboard');
                 break;
             default:
                 abort(403);
