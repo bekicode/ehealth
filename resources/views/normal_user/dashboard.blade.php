@@ -28,7 +28,7 @@
         <div class="small-box bg-success">
           <div class="inner">
             <h3>{{ $dataJumlahBalita[0]->jumlah }}</h3>
-            <p>Total Balita Pada Posyandu</p>
+            <p>Total Balita Di Keluarga</p>
           </div>
           <div class="icon">
             <i class="ion ion-person"></i>
@@ -40,7 +40,7 @@
         <div class="small-box bg-warning">
           <div class="inner">
             <h3>{{ $dataJumlahLansia[0]->jumlah }}</h3>
-            <p>Total Lansia Pada Posyandu</p>
+            <p>Total Lansia Di Keluarga</p>
           </div>
           <div class="icon">
             <i class="ion ion-person"></i>
@@ -65,15 +65,15 @@
         <div class="card">
           <div class="card-header border-0">
             <div class="d-flex justify-content-between">
-              <h3 class="card-title">Grafik Balita dan Lansia</h3>
+              <h3 class="card-title">Grafik Balita dan Lansia Di Keluarga</h3>
               <a href="{{ route('user.list_balita') }}">Lihat data</a>
             </div>
           </div>
           <div class="card-body">
       
             <div class="position-relative mb-4">
-              @if (empty($emptyBalita) && empty($emptyLansia))
-              <canvas id="pieChart" height="100"></canvas>
+              @if (($dataJumlahBalita[0]->jumlah > 0 || $dataJumlahLansia[0]->jumlah > 0))
+              <canvas id="pieChart" height="100px" width="100px"></canvas>
               @else
                 <div class="justify-content-center d-flex ">
                   <img src="{{ asset('asset/undraw_to_the_mooni.svg') }}" alt="" srcset="" width="30%">
@@ -117,7 +117,7 @@
         },
         title: {
           display: true,
-          text: 'Grafik Balita dan Lansia'
+          text: 'Grafik Balita dan Lansia Di Keluarga' 
         }
       }
     },

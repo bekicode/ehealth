@@ -31,6 +31,7 @@ class NormalUserController extends Controller
         $dataJumlahBalita = DB::table('balita')
                 ->select(DB::raw('count(id_balita) as jumlah'))
                 ->where([
+                    ['is_deleted', 1],
                     ['created_at', '>', Carbon::now()->subYear()],
                     ['no_kk', $user->no_kk],
                 ])->get();
@@ -38,19 +39,14 @@ class NormalUserController extends Controller
         $dataJumlahLansia = DB::table('lansia')
                 ->select(DB::raw('count(id_lansia) as jumlah'))
                 ->where([
+                    ['is_deleted', 0],
                     ['created_at', '>', Carbon::now()->subYear()],
                     ['no_kk', $user->no_kk],
                 ])->get();
 
-        $emptyBalita = count($dataJumlahBalita);
-        $emptyLansia = count($dataJumlahLansia);
-
-        // dd($dataJumlahBalita);
         return view('normal_user.dashboard', compact(
             'dataJumlahBalita', 
             'dataJumlahLansia',
-            'emptyBalita',
-            'emptyLansia'
         ));
     }
 
