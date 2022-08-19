@@ -66,11 +66,10 @@
             $role = Auth::user()->role;
           @endphp
           <li class="nav-item">
-            <a href="@if($role == 1){{ "#1" }}@elseif($role == 2){{ "#2" }}@elseif($role == 3){{ route('kades.dashboard') }}@elseif($role == 4){{ "#4" }}@endif" class="nav-link">
+            <a href="@if($role == 1){{ "#1" }}@elseif($role == 2){{ "#2" }}@elseif($role == 3){{ route('kades.dashboard') }}@elseif($role == 4){{ route('admin.dashboard') }}@endif" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
-                <span class="right badge badge-danger">Tests</span>
               </p>
             </a>
           </li>

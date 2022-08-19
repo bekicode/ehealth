@@ -7,12 +7,56 @@ use App\Models\IbuHamil;
 use App\Models\Lansia;
 use App\Models\Posyandu;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
+
+    /**
+     * Menampilkan view dashboard admin
+     * 
+     * @return view
+     */
+    public function dashboard()
+    {
+        // dd(Carbon::now()->subYear(1));
+        $dataPemeriksaanBalita = DB::table('pemeriksaan_balita')
+                ->select('id_pemeriksaan_balita', 'created_at', DB::raw('YEAR(created_at) as tahun, month(created_at) as bulan, count(created_at) as jumlah'))
+                ->groupBy(DB::raw('month(created_at)'))
+                ->where('created_at', '>', Carbon::now()->subYear())
+                ->get();
+
+        $dataPemeriksaanLansia = DB::table('pemeriksaan_lansia')
+                ->select('created_at', DB::raw('YEAR(created_at) as tahun, month(created_at) as bulan, count(created_at) as jumlah'))
+                ->groupBy(DB::raw('month(created_at)'))
+                ->where('created_at', '>', Carbon::now()->subYear())
+                ->get();
+
+        $dataJumlahPosyandu = DB::table('posyandu')
+                ->select(DB::raw('count(id_posyandu) as jumlah'))
+                ->get();
+        $dataJumlahBalita = DB::table('balita')
+                ->select(DB::raw('count(id_balita) as jumlah'))
+                ->get();
+
+        $dataJumlahLansia = DB::table('lansia')
+                ->select(DB::raw('count(id_lansia) as jumlah'))
+                ->get();
+
+        // dd($dataJumlahBalita);
+        return view('admin.dashboard', compact(
+            'dataPemeriksaanBalita', 
+            'dataPemeriksaanLansia', 
+            'dataJumlahPosyandu',
+            'dataJumlahBalita', 
+            'dataJumlahLansia'
+        ));
+    }
+
+
     /**
      * Create a new controller instance.
      *

@@ -65,6 +65,9 @@ Route::prefix('kades')->controller(KadesController::class)->middleware(['isKades
 
 // Admin
 Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin'])->name('admin.')->group(function () {
+    
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+
     // posyandu
     Route::get('/posyandu', 'list_posyandu')->name('list_posyandu');
     Route::get('/posyandu/tambah', 'tambah_posyandu')->name('tambah_posyandu');
