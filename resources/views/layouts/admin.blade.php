@@ -12,7 +12,8 @@
   <link prerender rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
   <!-- Theme style -->
-  <link prerender rel="stylesheet" href="{{ asset('dist-adminlte/css/adminlte.min.css')}}">
+  {{-- <link prerender rel="stylesheet" href="{{ asset('dist-adminlte/css/adminlte.min.css')}}"> --}}
+  <link prerender rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -214,7 +215,8 @@
 <!-- bs-custom-file-input -->
 <script async src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script async src="{{ asset('dist-adminlte/js/adminlte.min.js')}}"></script>
+{{-- <script async src="{{ asset('dist-adminlte/js/adminlte.min.js')}}"></script> --}}
+<script async src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 <script async src="{{ asset('js/app.js') }}" defer></script>
 @yield('js')
 
