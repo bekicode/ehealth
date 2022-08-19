@@ -71,13 +71,6 @@
                     <td>{{ $d->alamat }}</td>
                     <td class="text-center"> 
                       <a href="{{ route('admin.update_akun', $d->id) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
-                      <a type="submit" class="mt-2 btn btn-danger" onclick="if (confirm('Apakah anda yakin menghapus data {{ $d->name }}?')) { 
-                        event.preventDefault();
-                        document.getElementById('delete-data{{ $d->id }}').submit(); 
-                      }"> <i class="fa-solid fa-trash-can"></i> Hapus </a> 
-                      <form id="delete-data{{ $d->id }}" action="{{ route('admin.delete_akun', $d->id) }}" method="POST" style="display: none;">
-                        @csrf
-                      </form>
                     </td>
                   </tr>
                   @endforeach

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Data Riwayat Pemeriksaan Balita
+    Data Riwayat Pemeriksaan Lansia
 @endsection
 
 @section('css')
@@ -17,12 +17,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Riwayat Pemeriksaan Balita</h1>
+        <h1>Riwayat Pemeriksaan Lansia</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-          <li class="breadcrumb-item active">Daftar data pemeriksaan balita</li>
+          <li class="breadcrumb-item active">Daftar data pemeriksaan lansia</li>
         </ol>
       </div>
     </div>
@@ -33,7 +33,7 @@
     {{-- <div class="card card-default color-palette-box"> --}}
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Daftar riwayat pemeriksaan balita</h3>
+          <h3 class="card-title">Daftar riwayat pemeriksaan lansia</h3>
         </div>
         
         <div class="card-body">

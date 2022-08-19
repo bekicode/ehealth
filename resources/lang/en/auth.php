@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Gagal melakukan proses autentikasi. Mohon untuk mengisi email & password dengan benar.',
+    'failed' => 'Gagal melakukan proses autentikasi. Mohon untuk mengisi NIK & password dengan benar.',
     'password' => 'Password yang anda masukan salah.',
     'throttle' => 'Terlalu banyak percobaan login. Silahkan tunggu hingga :seconds detik.',
 
