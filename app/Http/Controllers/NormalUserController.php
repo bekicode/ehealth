@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,40 @@ class NormalUserController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Menampilkan view dashboard user
+     * 
+     * @return view
+     */
+    public function dashboard()
+    {
+        $user = Auth::user();
+
+        $dataJumlahBalita = DB::table('balita')
+                ->select(DB::raw('count(id_balita) as jumlah'))
+                ->where([
+                    ['created_at', '>', Carbon::now()->subYear()],
+                    ['no_kk', $user->no_kk],
+                ])->get();
+
+        $dataJumlahLansia = DB::table('lansia')
+                ->select(DB::raw('count(id_lansia) as jumlah'))
+                ->where([
+                    ['created_at', '>', Carbon::now()->subYear()],
+                    ['no_kk', $user->no_kk],
+                ])->get();
+
+        $emptyBalita = count($dataJumlahBalita);
+        $emptyLansia = count($dataJumlahLansia);
+
+        // dd($dataJumlahBalita);
+        return view('normal_user.dashboard', compact(
+            'dataJumlahBalita', 
+            'dataJumlahLansia',
+            'emptyBalita',
+            'emptyLansia'
+        ));
+    }
 
     /**
      * menampilkan balita di keluarga berdasarkan no kk

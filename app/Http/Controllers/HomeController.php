@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         switch ($role) {
             case "1":
-                return redirect()->route('user.list_balita');
+                return redirect()->route('user.dashboard');
                 break;
             case "2":
                 return redirect()->route('kader.dashboard');

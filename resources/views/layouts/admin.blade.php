@@ -66,7 +66,7 @@
             $role = Auth::user()->role;
           @endphp
           <li class="nav-item">
-            <a href="@if($role == 1){{ "#1" }}@elseif($role == 2){{ route('kader.dashboard') }}@elseif($role == 3){{ route('kades.dashboard') }}@elseif($role == 4){{ route('admin.dashboard') }}@endif" class="nav-link @if (Request::is('user/dashboard','user/dashboard/*', 'kader/dashboard','kader/dashboard/*', 'kades/dashboard','kades/dashboard/*', 'admin/dashboard','admin/dashboard/*')) active @endif">
+            <a href="@if($role == 1){{ route('user.dashboard') }}@elseif($role == 2){{ route('kader.dashboard') }}@elseif($role == 3){{ route('kades.dashboard') }}@elseif($role == 4){{ route('admin.dashboard') }}@endif" class="nav-link @if (Request::is('user/dashboard','user/dashboard/*', 'kader/dashboard','kader/dashboard/*', 'kades/dashboard','kades/dashboard/*', 'admin/dashboard','admin/dashboard/*')) active @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard

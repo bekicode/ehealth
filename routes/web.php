@@ -30,6 +30,8 @@ Route::get('/test', [HomeController::class, 'test'])->name('test');
 
 // Normal User
 Route::prefix('user')->controller(NormalUserController::class)->middleware(['isNormalUser'])->name('user.')->group(function () {
+
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
     // balita
     Route::get('/balita', 'list_balita')->name('list_balita');
     Route::get('/balita/riwayat/{id}', 'riwayat_balita')->name('riwayat_balita');
