@@ -870,7 +870,7 @@ class AdminController extends Controller
             'no_kk.required'=> 'Kolom "No Kartu Keluarga" wajib diisi.',
             'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
             'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
-            'no_telp.digits'=> 'Jumlah digit "No telepon" tidak valid.',
+            'no_telp.numeric'=> 'Jumlah digit "No telepon" tidak valid.',
             'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
             'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
             'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
@@ -889,7 +889,7 @@ class AdminController extends Controller
             $user->jenis_kelamin = $req->jenis_kelamin;
             $user->role = $req->role;
             $user->id_posyandu = $req->posyandu;
-            $user->save();
+            $user->update();
         });
 
         return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil mengubah data akun '. $req->nama . '.');

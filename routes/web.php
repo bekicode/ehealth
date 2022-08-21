@@ -46,21 +46,46 @@ Route::prefix('kader')->controller(KaderController::class)->middleware(['isKader
 
     Route::get('/dashboard', 'dashboard')->name('dashboard');
 
+    // pemeriksaan balita
+    Route::get('/pemeriksaan_balita', 'list_pemeriksaan_balita')->name('list_pemeriksaan_balita');
+    Route::get('/pemeriksaan_balita/periksa', 'periksa_balita')->name('periksa_balita');
+    Route::post('/pemeriksaan_balita/periksa', 'periksa_balita_act')->name('periksa_balita_act');
+    Route::get('/pemeriksaan_balita/update/{id}', 'update_pemeriksaan_balita')->name('update_pemeriksaan_balita');
+    Route::post('/pemeriksaan_balita/update/{id}', 'update_pemeriksaan_balita_act')->name('update_pemeriksaan_balita_act');
+    Route::post('/pemeriksaan_balita/delete/{id}', 'delete_pemeriksaan_balita')->name('delete_pemeriksaan_balita');
+    
+    // pemeriksaan lansia
+    Route::get('/pemeriksaan_lansia', 'list_pemeriksaan_lansia')->name('list_pemeriksaan_lansia');
+    Route::get('/pemeriksaan_lansia/periksa', 'periksa_lansia')->name('periksa_lansia');
+    Route::post('/pemeriksaan_lansia/periksa', 'periksa_lansia_act')->name('periksa_lansia_act');
+    Route::get('/pemeriksaan_lansia/update/{id}', 'update_pemeriksaan_lansia')->name('update_pemeriksaan_lansia');
+    Route::post('/pemeriksaan_lansia/update/{id}', 'update_pemeriksaan_lansia_act')->name('update_pemeriksaan_lansia_act');
+    Route::post('/pemeriksaan_lansia/delete/{id}', 'delete_pemeriksaan_lansia')->name('delete_pemeriksaan_lansia');
+
     // balita
     Route::get('/balita', 'list_balita')->name('list_balita');
-    Route::get('/balita/periksa', 'periksa_balita')->name('periksa_balita');
-    Route::post('/balita/periksa', 'periksa_balita_act')->name('periksa_balita_act');
+    Route::get('/balita/tambah', 'tambah_balita')->name('tambah_balita');
+    Route::post('/balita/tambah', 'tambah_balita_act')->name('tambah_balita_act');
     Route::get('/balita/update/{id}', 'update_balita')->name('update_balita');
     Route::post('/balita/update/{id}', 'update_balita_act')->name('update_balita_act');
     Route::post('/balita/delete/{id}', 'delete_balita')->name('delete_balita');
-    
+
     // lansia
     Route::get('/lansia', 'list_lansia')->name('list_lansia');
-    Route::get('/lansia/periksa', 'periksa_lansia')->name('periksa_lansia');
-    Route::post('/lansia/periksa', 'periksa_lansia_act')->name('periksa_lansia_act');
+    Route::get('/lansia/tambah', 'tambah_lansia')->name('tambah_lansia');
+    Route::post('/lansia/tambah', 'tambah_lansia_act')->name('tambah_lansia_act');
     Route::get('/lansia/update/{id}', 'update_lansia')->name('update_lansia');
     Route::post('/lansia/update/{id}', 'update_lansia_act')->name('update_lansia_act');
     Route::post('/lansia/delete/{id}', 'delete_lansia')->name('delete_lansia');
+
+    // akun
+    Route::get('/akun', 'list_akun')->name('list_akun');
+    Route::get('/akun/tambah', 'tambah_akun')->name('tambah_akun');
+    Route::post('/akun/tambah', 'tambah_akun_act')->name('tambah_akun_act');
+    Route::get('/akun/update/{id}', 'update_akun')->name('update_akun');
+    Route::post('/akun/update/{id}', 'update_akun_act')->name('update_akun_act');
+    Route::post('/akun/update-password/{id}', 'update_password_act')->name('update_password_act');
+    Route::post('/akun/delete/{id}', 'delete_akun')->name('delete_akun');
 });
 
 // kades

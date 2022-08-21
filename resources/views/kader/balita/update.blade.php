@@ -15,7 +15,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{ route('kader.list_balita') }}">List Pemeriksaan Balita</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('kader.list_pemeriksaan_balita') }}">List Pemeriksaan Balita</a></li>
           <li class="breadcrumb-item active">Update Data Pemeriksaan Balita</li>
         </ol>
       </div>
@@ -29,7 +29,7 @@
           <h3 class="card-title">Pemeriksaan Balita</h3>
         </div>
       
-        <form action="{{ route('kader.update_balita_act', $data->id_pemeriksaan_balita) }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('kader.update_pemeriksaan_balita_act', $data->id_pemeriksaan_balita) }}" enctype="multipart/form-data" method="POST">
           @csrf
           <input type="hidden" name="id_pemeriksaan_balita" value="{{ $data->id_pemeriksaan_balita }}"/>
           <div class="card-body">

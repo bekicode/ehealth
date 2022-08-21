@@ -37,7 +37,7 @@
     {{-- <div class="card card-default color-palette-box"> --}}
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Daftar pemeriksaan balita</h3>
+          <h3 class="card-title">Daftar data pemeriksaan balita</h3>
         </div>
         
         <div class="card-body">
@@ -83,12 +83,12 @@
                     <td>{{ $d->lingkar_lengan_atas }}</td>
                     <td>{{ $d->lingkar_kepala }}</td>
                     <td class="text-center"> 
-                      <a href="{{ route('kader.update_balita', $d->id_pemeriksaan_balita) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
+                      <a href="{{ route('kader.update_pemeriksaan_balita', $d->id_pemeriksaan_balita) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
                       <a type="submit" class="mt-2 btn btn-danger" onclick="if (confirm('Apakah anda yakin menghapus data {{ $d->nama }}?')) { 
                         event.preventDefault();
                         document.getElementById('delete-data{{ $d->id_pemeriksaan_balita }}').submit(); 
                       }"> <i class="fa-solid fa-trash-can"></i> Hapus </a> 
-                      <form id="delete-data{{ $d->id_pemeriksaan_balita }}" action="{{ route('kader.delete_balita', $d->id_pemeriksaan_balita) }}" method="POST" style="display: none;">
+                      <form id="delete-data{{ $d->id_pemeriksaan_balita }}" action="{{ route('kader.delete_pemeriksaan_balita', $d->id_pemeriksaan_balita) }}" method="POST" style="display: none;">
                         @csrf
                       </form>
                     </td>

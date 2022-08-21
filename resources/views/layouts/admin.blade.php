@@ -84,35 +84,18 @@
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item @if (Request::is('admin/balita','admin/balita/*', 'admin/ibu-hamil','admin/ibu-hamil/*', 'admin/lansia','admin/lansia/*')) menu-open @endif">
-            <a href="#" class="nav-link @if (Request::is('admin/balita','admin/balita/*', 'admin/ibu-hamil','admin/ibu-hamil/*', 'admin/lansia','admin/lansia/*')) active @endif">
-              <i class="nav-icon fa-solid fa-hospital-user"></i>
-              <p>
-                Data anggota
-                <i class="fas fa-angle-left right"></i>
-              </p>
+          <li class="nav-item">
+            <a href="{{ route('admin.list_balita') }}" class="nav-link @if (Request::is('admin/balita','admin/balita/*')) active @endif">
+              <i class="nav-icon fa-solid fa-clipboard-user"></i>
+              <p>Data Balita</p>
             </a>
-            <ul class="nav nav-treeview"> --}}
-              <li class="nav-item">
-                <a href="{{ route('admin.list_balita') }}" class="nav-link @if (Request::is('admin/balita','admin/balita/*')) active @endif">
-                  <i class="nav-icon fa-solid fa-clipboard-user"></i>
-                  <p>Data Balita</p>
-                </a>
-              </li>
-              {{-- <li class="nav-item">
-                <a href="{{ route('admin.list_ibu_hamil') }}" class="nav-link @if (Request::is('admin/ibu-hamil','admin/ibu-hamil/*')) active @endif">
-                  <i class="nav-icon fa-solid fa-clipboard-user"></i>
-                  <p>Ibu Hamil</p>
-                </a>
-              </li> --}}
-              <li class="nav-item">
-                <a href="{{ route('admin.list_lansia') }}" class="nav-link @if (Request::is('admin/lansia','admin/lansia/*')) active @endif">
-                  <i class="nav-icon fa-solid fa-clipboard-user"></i>
-                  <p>Data Lansia</p>
-                </a>
-              </li>
-            {{-- </ul>
-          </li> --}}
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.list_lansia') }}" class="nav-link @if (Request::is('admin/lansia','admin/lansia/*')) active @endif">
+              <i class="nav-icon fa-solid fa-clipboard-user"></i>
+              <p>Data Lansia</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{{ route('admin.list_posyandu') }}" class="nav-link @if (Request::is('admin/posyandu','admin/posyandu/*')) active @endif ">
               <i class="nav-icon fa-solid fa-hospital"></i>
@@ -124,18 +107,41 @@
   @endif
   @if ($role == 2 || $role == 4)
           <li class="nav-header">Data Pemeriksaan</li>
-            <li class="nav-item">
-              <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
-                <i class="nav-icon fa-solid fa-hospital-user"></i>
-                <p>Pemeriksaan Balita</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('kader.list_lansia') }}" class="nav-link @if (Request::is('kader/lansia','kader/lansia/*')) active @endif">
-                <i class="nav-icon fa-solid fa-hospital-user"></i>
-                <p>Pemeriksaan Lansia</p>
-              </a>
-            </li>
+          <li class="nav-item">
+            <a href="{{ route('kader.list_pemeriksaan_balita') }}" class="nav-link @if (Request::is('kader/pemeriksaan_balita','kader/pemeriksaan_balita/*')) active @endif">
+              <i class="nav-icon fa-solid fa-hospital-user"></i>
+              <p>Pemeriksaan Balita</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('kader.list_pemeriksaan_lansia') }}" class="nav-link @if (Request::is('kader/pemeriksaan_lansia','kader/pemeriksaan_lansia/*')) active @endif">
+              <i class="nav-icon fa-solid fa-hospital-user"></i>
+              <p>Pemeriksaan Lansia</p>
+            </a>
+          </li>
+          @if ($role == 2)
+          <li class="nav-header">Data Peserta</li>
+          <li class="nav-item">
+            <a href="{{ route('kader.list_akun') }}" class="nav-link @if (Request::is('kader/akun','kader/akun/*')) active @endif ">
+              <i class="nav-icon fa-solid fa-user-tie"></i>
+              <p>
+                Data Akun
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
+              <i class="nav-icon fa-solid fa-clipboard-user"></i>
+              <p>Data Balita</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('kader.list_lansia') }}" class="nav-link @if (Request::is('kader/lansia','kader/lansia/*')) active @endif">
+              <i class="nav-icon fa-solid fa-clipboard-user"></i>
+              <p>Data Lansia</p>
+            </a>
+          </li>
+          @endif
   @endif
   @if ($role == 1 || $role == 2 || $role == 3 || $role == 4 )
           <li class="nav-header">Riwayat pemeriksaan keluarga</li>

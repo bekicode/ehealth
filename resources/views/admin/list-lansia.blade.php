@@ -22,7 +22,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-          <li class="breadcrumb-item active">Daftar data lansia</li>
+          <li class="breadcrumb-item active">Data lansia</li>
         </ol>
       </div>
     </div>
@@ -33,7 +33,7 @@
     {{-- <div class="card card-default color-palette-box"> --}}
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Daftar data lansia yang ada di desa Grujugan</h3>
+          <h3 class="card-title">Data lansia yang terdaftar di Desa Grujugan</h3>
         </div>
       
         <div class="card-body">

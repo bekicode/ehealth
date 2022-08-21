@@ -33,7 +33,7 @@
     {{-- <div class="card card-default color-palette-box"> --}}
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Daftar data ibu hamil yang ada di desa Grujugan</h3>
+          <h3 class="card-title">Data ibu hamil yang ada di desa Grujugan</h3>
         </div>
       
         <div class="card-body">

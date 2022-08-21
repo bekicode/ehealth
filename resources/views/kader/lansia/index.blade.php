@@ -37,7 +37,7 @@
     {{-- <div class="card card-default color-palette-box"> --}}
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Daftar pemeriksaan lansia</h3>
+          <h3 class="card-title">Daftar data pemeriksaan lansia</h3>
         </div>
         
         <div class="card-body">
@@ -80,12 +80,12 @@
                       $date = date_format($date,"Y/m/d");
                     @endphp
                     <td class="text-center"> 
-                      <a href="{{ route('kader.update_lansia', $d->id_pemeriksaan_lansia) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
+                      <a href="{{ route('kader.update_pemeriksaan_lansia', $d->id_pemeriksaan_lansia) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
                       <a type="submit" class="mt-2 btn btn-danger" onclick="if (confirm('Apakah anda yakin menghapus data {{ $d->nama }}?')) { 
                         event.preventDefault();
                         document.getElementById('delete-data{{ $d->id_pemeriksaan_lansia }}').submit(); 
                       }"> <i class="fa-solid fa-trash-can"></i> Hapus </a> 
-                      <form id="delete-data{{ $d->id_pemeriksaan_lansia }}" action="{{ route('kader.delete_lansia', $d->id_pemeriksaan_lansia) }}" method="POST" style="display: none;">
+                      <form id="delete-data{{ $d->id_pemeriksaan_lansia }}" action="{{ route('kader.delete_pemeriksaan_lansia', $d->id_pemeriksaan_lansia) }}" method="POST" style="display: none;">
                         @csrf
                       </form>
                     </td>

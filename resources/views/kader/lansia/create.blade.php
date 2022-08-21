@@ -15,7 +15,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{ route('kader.list_lansia') }}">List Pemeriksaan lansia</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('kader.list_pemeriksaan_lansia') }}">List Pemeriksaan lansia</a></li>
           <li class="breadcrumb-item active">Tambah Data Pemeriksaan lansia</li>
         </ol>
       </div>
