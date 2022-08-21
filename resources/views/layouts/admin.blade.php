@@ -13,7 +13,7 @@
 
   <!-- Theme style -->
   {{-- <link prerender rel="stylesheet" href="{{ asset('dist-adminlte/css/adminlte.min.css')}}"> --}}
-  <link prerender rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+  <link prerender rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -52,7 +52,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('dist-adminlte/img/avatar-icon.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('dist-adminlte/img/avatar-icon.webp') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -84,7 +84,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item @if (Request::is('admin/balita','admin/balita/*', 'admin/ibu-hamil','admin/ibu-hamil/*', 'admin/lansia','admin/lansia/*')) menu-open @endif">
+          {{-- <li class="nav-item @if (Request::is('admin/balita','admin/balita/*', 'admin/ibu-hamil','admin/ibu-hamil/*', 'admin/lansia','admin/lansia/*')) menu-open @endif">
             <a href="#" class="nav-link @if (Request::is('admin/balita','admin/balita/*', 'admin/ibu-hamil','admin/ibu-hamil/*', 'admin/lansia','admin/lansia/*')) active @endif">
               <i class="nav-icon fa-solid fa-hospital-user"></i>
               <p>
@@ -92,63 +92,50 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview"> --}}
               <li class="nav-item">
                 <a href="{{ route('admin.list_balita') }}" class="nav-link @if (Request::is('admin/balita','admin/balita/*')) active @endif">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Balita</p>
+                  <i class="nav-icon fa-solid fa-clipboard-user"></i>
+                  <p>Data Balita</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ route('admin.list_ibu_hamil') }}" class="nav-link @if (Request::is('admin/ibu-hamil','admin/ibu-hamil/*')) active @endif">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="nav-icon fa-solid fa-clipboard-user"></i>
                   <p>Ibu Hamil</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a href="{{ route('admin.list_lansia') }}" class="nav-link @if (Request::is('admin/lansia','admin/lansia/*')) active @endif">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Lansia</p>
+                  <i class="nav-icon fa-solid fa-clipboard-user"></i>
+                  <p>Data Lansia</p>
                 </a>
               </li>
-            </ul>
-          </li>
+            {{-- </ul>
+          </li> --}}
           <li class="nav-item">
             <a href="{{ route('admin.list_posyandu') }}" class="nav-link @if (Request::is('admin/posyandu','admin/posyandu/*')) active @endif ">
               <i class="nav-icon fa-solid fa-hospital"></i>
               <p>
-                Posyandu
+                Data Posyandu
               </p>
             </a>
           </li>
   @endif
   @if ($role == 2 || $role == 4)
-          <li class="nav-header">Pemeriksaan</li>
-          <li class="nav-item @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) menu-open @endif">
-            <a href="#" class="nav-link @if (Request::is('kader/balita','kader/balita/*','kader/lansia','kader/lansia/*')) active @endif">
-              <i class="nav-icon fa-solid fa-hospital-user"></i>
-              <p>
-                Data Pemeriksaan
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Balita</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('kader.list_lansia') }}" class="nav-link @if (Request::is('kader/lansia','kader/lansia/*')) active @endif">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Lansia</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <li class="nav-header">Data Pemeriksaan</li>
+            <li class="nav-item">
+              <a href="{{ route('kader.list_balita') }}" class="nav-link @if (Request::is('kader/balita','kader/balita/*')) active @endif">
+                <i class="nav-icon fa-solid fa-hospital-user"></i>
+                <p>Pemeriksaan Balita</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('kader.list_lansia') }}" class="nav-link @if (Request::is('kader/lansia','kader/lansia/*')) active @endif">
+                <i class="nav-icon fa-solid fa-hospital-user"></i>
+                <p>Pemeriksaan Lansia</p>
+              </a>
+            </li>
   @endif
   @if ($role == 1 || $role == 2 || $role == 3 || $role == 4 )
           <li class="nav-header">Riwayat pemeriksaan keluarga</li>
@@ -209,14 +196,15 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script async src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
+{{-- <script async src="{{ asset('plugins/jquery/jquery.min.js')}}"></script> --}}
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script async src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- bs-custom-file-input -->
-<script async src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- AdminLTE App -->
 {{-- <script async src="{{ asset('dist-adminlte/js/adminlte.min.js')}}"></script> --}}
-<script async src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
 <script async src="{{ asset('js/app.js') }}" defer></script>
 @yield('js')
 
