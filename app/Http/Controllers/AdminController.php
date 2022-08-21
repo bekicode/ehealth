@@ -792,7 +792,7 @@ class AdminController extends Controller
             'no_kk.required'=> 'Kolom "No Kartu Keluarga" wajib diisi.',
             'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
             'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
-            'no_telp.digits'=> 'Jumlah digit "No telepon" tidak valid.',
+            'no_telp.numeric'=> 'Jumlah digit "No telepon" tidak valid.',
             'password.required'=> 'Kolom "Password" wajib diisi.',
             'password.min'=> 'Kolom "Password" harus minimal 8 karakter.',
             'password.confirmed'=> 'Kolom "Password" dan kolom "Konfirmasi Password" tidak sama.',
@@ -839,7 +839,7 @@ class AdminController extends Controller
                 ->where('is_deleted', 0)
                 ->get();
 
-        return view('admin.update-akun', compact('data', 'posyandu'));
+        return view('admin.update-akun', compact('data', 'posyandu'))->with('sukses', 'Berhasil menambahkan data akun.');
     }
 
     /**
@@ -863,6 +863,18 @@ class AdminController extends Controller
 
         ],
         [
+            'nama.required'=> 'Kolom "Nama" wajib diisi.',
+            'nik.required'=> 'Kolom "NIK" wajib diisi.',
+            'nik.digits'=> 'Jumlah digit "NIK" tidak valid.',
+            'nik.numeric'=> 'Kolom "NIK" tidak bisa diisikan selain angka.',
+            'no_kk.required'=> 'Kolom "No Kartu Keluarga" wajib diisi.',
+            'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
+            'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
+            'no_telp.digits'=> 'Jumlah digit "No telepon" tidak valid.',
+            'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
+            'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
+            'posyandu.exists'=> 'Posyandu tidak ada didalam database.',
+            'role.in'=> $req->role . ' tidak valid.',
             'password.required'=> 'Kolom "Password" wajib diisi.',
             'password.confirmed'=> 'Kolom "Password" dan kolom "Konfirmasi Password" tidak sama.',
         ]);
@@ -870,7 +882,6 @@ class AdminController extends Controller
         DB::transaction(function () use ($req, $id){
             $user = User::findOrFail($id);
             $user->name = $req->nama;
-            $user->email = 'admin' . rand(1,999) . '@email.test';
             $user->nik = $req->nik;
             $user->no_kk = $req->no_kk;
             $user->no_telp = $req->no_telepon;
