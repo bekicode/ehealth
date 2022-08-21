@@ -75,9 +75,11 @@ class NormalUserController extends Controller
     /**
      * menampilkan riwayat pemeriksaan balita berdasarkan no kk
      * 
+     * @var id_balita $id
+     * 
      * @return view
      */
-    public function riwayat_balita() 
+    public function riwayat_balita($id) 
     {
         $user = Auth::user();
 
@@ -86,6 +88,7 @@ class NormalUserController extends Controller
             ->select('pemeriksaan_balita.*', 'balita.nik', 'balita.nama')
             ->where([
                 ['pemeriksaan_balita.is_deleted', 0],
+                ['pemeriksaan_balita.id_balita', $id],
                 ['balita.is_deleted', 0],
                 ['balita.no_kk', $user->no_kk],
             ])->orderByDesc('id_pemeriksaan_balita')
@@ -121,9 +124,11 @@ class NormalUserController extends Controller
     /**
      * menampilkan riwayat pemeriksaan lansia berdasarkan no kk
      * 
+     * @var id_lansia $id
+     * 
      * @return view
      */
-    public function riwayat_lansia() 
+    public function riwayat_lansia($id) 
     {
         $user = Auth::user();
 
@@ -132,6 +137,7 @@ class NormalUserController extends Controller
             ->select('pemeriksaan_lansia.*', 'lansia.nik', 'lansia.nama')
             ->where([
                 ['pemeriksaan_lansia.is_deleted', 0],
+                ['pemeriksaan_lansia.id_lansia', $id],
                 ['lansia.is_deleted', 0],
                 ['lansia.no_kk', $user->no_kk],
             ])->orderByDesc('id_pemeriksaan_lansia')
