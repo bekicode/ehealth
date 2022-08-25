@@ -804,7 +804,7 @@ class AdminController extends Controller
         DB::transaction(function () use ($req){
             $user = new User();
             $user->name = $req->nama;
-            $user->email = 'admin' . rand(1,999) . '@email.test';
+            // $user->email = 'admin' . rand(1,999) . '@email.test';
             $user->nik = $req->nik;
             $user->no_kk = $req->no_kk;
             $user->password = Hash::make($req->password);

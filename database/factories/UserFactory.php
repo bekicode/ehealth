@@ -18,10 +18,10 @@ class UserFactory extends Factory
         return [
             'id_posyandu' => "1",
             'name' => "name-test",
-            'email' => "email@ehealth.test",
+            // 'email' => "email@ehealth.test",
             'email_verified_at' => now(),
             'password' => Hash::make("admin123"), // password
-            'nik' => null, 
+            'nik' => 1111111111111111, 
             'alamat' => null, 
             'role' => 4, 
             'jenis_kelamin' => "pria", 
