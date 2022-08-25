@@ -17,6 +17,7 @@ class Artikel extends Model
         'title',
         'description', 
         'image', 
+        'is_deleted', 
         'id_user', 
     ];
 }

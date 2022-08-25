@@ -19,6 +19,7 @@ class CreateArtikelsTable extends Migration
             $table->text('title');
             $table->text('description');
             $table->text('image')->nullable();
+            $table->tinyInteger('is_deleted')->default(0);
             $table->bigInteger('id_user')->length(20)->unsigned();
             $table->timestamps();
         });

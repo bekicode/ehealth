@@ -923,4 +923,16 @@ class AdminController extends Controller
 
         return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil mengubah data akun.');
     }
+
+    /**
+     * Menampilkan daftar artikel
+     * 
+     * @return view
+     */
+    public function list_artikel() 
+    {
+        $data = DB::table('artikel')->get();
+                
+        return view('admin.list-artikel', compact('data'));
+    }
 }
