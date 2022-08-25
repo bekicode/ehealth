@@ -934,7 +934,10 @@ class AdminController extends Controller
      */
     public function list_artikel() 
     {
-        $data = DB::table('artikel')->get();
+        $data = DB::table('artikel')
+                ->where([
+                    ['is_deleted', 0]
+                ])->get();
 
         $empty = count($data);
 
@@ -974,17 +977,98 @@ class AdminController extends Controller
         $slug = Str::kebab($slug);
         
         if($img->save($lokasi."/".$name)){
-            $artikel = new Artikel();
-            $artikel->title = $req->title;
-            $artikel->image = $name;
-            $artikel->slug = $slug;
-            $artikel->description = $req->description;
+            DB::transaction(function () use ($req, $slug, $name){
+                $artikel = new Artikel();
+                $artikel->title = $req->title;
+                $artikel->image = $name;
+                $artikel->slug = $slug;
+                $artikel->description = $req->description;
 
-            if($artikel->save()){
-                return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
-            }
+                if($artikel->save()){
+                    return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
+                }
+            });
 
             return redirect()->route('admin.list_artikel')->with('error','Gagal menyimpan artikel!');
         }
     }
+
+    /**
+     * Menampilkan halaman ubah artikel
+     * 
+     * @param id_artikel $id
+     * 
+     * @return view
+     */
+    public function update_artikel($id) 
+    {
+        $data = Artikel::where([
+            ['is_deleted', 0]
+        ])->findOrFail($id);
+
+        return view('admin.update-artikel', compact('data'));
+    }
+
+    /**
+     * Mengubah data artikel
+     * 
+     * @param Request $req
+     * @param id_artikel $id
+     * 
+     * @return redirect
+     */
+    public function update_artikel_act(Request $req, $id)
+    {
+        $req->validate([
+            'title'=> 'required|max:255',
+            'image'=> 'image|mimes:png,jpg,jpeg|max:2500',
+            'description'=> 'required',
+        ]);
+
+        if($req->image){
+            $img = $req->image;
+            $img = Webp::make($img);
+            
+            $name = Str::kebab($req->title) . time().'.webp';
+            $lokasi = public_path('image');
+            
+            $slug = $req->title . '-' . time();
+            $slug = Str::kebab($slug);
+            
+            if($img->save($lokasi."/".$name)){
+                DB::transaction(function () use ($req, $id, $slug, $name){
+                    $artikel = Artikel::findOrFail($id);
+                    $artikel->title = $req->title;
+                    $artikel->image = $name;
+                    $artikel->slug = $slug;
+                    $artikel->description = $req->description;
+
+                    if($artikel->save()){
+                        return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
+                    }
+                });
+
+                return redirect()->route('admin.list_artikel')->with('error','Gagal menyimpan artikel!');
+            }
+
+        }else{
+
+            $slug = $req->title . '-' . time();
+            $slug = Str::kebab($slug);
+
+            DB::transaction(function () use ($req, $id, $slug){
+                $artikel = Artikel::findOrFail($id);
+                $artikel->title = $req->title;
+                $artikel->slug = $slug;
+                $artikel->description = $req->description;
+
+                if($artikel->save()){
+                    return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
+                }
+            });
+
+            return redirect()->route('admin.list_artikel')->with('error','Gagal menyimpan artikel!');
+        }
+    }
+
 }
