@@ -24,8 +24,8 @@ Route::get('/', function () {
 });
 
 Route::get('/artikel', function () {
-    return view('artikel');
-});
+    return view('article');
+})->name('article');
 
 Auth::routes(['register' => false]);
 
