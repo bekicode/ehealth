@@ -104,6 +104,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.list_artikel') }}" class="nav-link @if (Request::is('admin/artikel','admin/artikel/*')) active @endif ">
+              <i class="nav-icon fa-solid fa-newspaper"></i>
+              <p>
+                Artikel
+              </p>
+            </a>
+          </li>
   @endif
   @if ($role == 2 || $role == 4)
           <li class="nav-header">Data Pemeriksaan</li>
