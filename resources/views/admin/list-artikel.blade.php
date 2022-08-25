@@ -57,11 +57,7 @@
                   <tr>
                     <td>{{ $d->title }}</td>
                     <td class="text-center"><img src="{{ url(asset('image')) }}/{{ $d->image }}" alt="{{ $d->title }}" height="100px" >  </td>
-                    @php
-                      $date= date_create($d->created_at);
-                      $date = date_format($date,"Y-m-d");
-                    @endphp
-                    <td>{{ $date }}</td>
+                    <td>{{ $d->created_at }}</td>
                     <td class="text-center"> 
                       <a href="{{ route('admin.update_artikel', $d->id_artikel) }}" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Ubah </a> 
                       <a type="submit" class="mt-2 btn btn-danger" onclick="if (confirm('Apakah anda yakin menghapus artikel {{ $d->title }}?')) { 

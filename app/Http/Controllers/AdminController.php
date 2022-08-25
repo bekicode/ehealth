@@ -1071,4 +1071,21 @@ class AdminController extends Controller
         }
     }
 
+    /**
+     * menghapus artikel
+     * 
+     * @param id_artikel $id
+     * 
+     * @return redirect
+     */
+    public function delete_artikel($id)
+    {
+        DB::transaction(function () use ($id){
+            $artikel = Artikel::findOrFail($id);
+            $artikel->is_deleted = 1;
+            $artikel->update();
+        });
+
+        return redirect()->route('admin.list_artikel')->with('sukses', 'Berhasil menghapus artikel.');
+    }
 }
