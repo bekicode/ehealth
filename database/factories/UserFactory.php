@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make("admin123"), // password
             'nik' => 1111111111111111, 
+            'no_kk' => 1111111111111112, 
             'alamat' => null, 
             'role' => 4, 
             'jenis_kelamin' => "pria", 

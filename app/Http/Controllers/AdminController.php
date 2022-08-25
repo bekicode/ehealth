@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
 use App\Models\Balita;
 use App\Models\IbuHamil;
 use App\Models\Lansia;
@@ -11,7 +12,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Webp;
 
 class AdminController extends Controller
 {
@@ -922,5 +925,167 @@ class AdminController extends Controller
         });
 
         return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil mengubah data akun.');
+    }
+
+    /**
+     * Menampilkan daftar artikel
+     * 
+     * @return view
+     */
+    public function list_artikel() 
+    {
+        $data = DB::table('artikel')
+                ->where([
+                    ['is_deleted', 0]
+                ])->get();
+
+        $empty = count($data);
+
+        return view('admin.list-artikel', compact('data', 'empty'));
+    }
+
+    /**
+     * @return view
+     */
+    public function tambah_artikel() 
+    {                
+        return view('admin.tambah-artikel');
+    }
+
+    /**
+     * Menyimpan artikel
+     * 
+     * @param Request $req
+     * 
+     * @return redirect
+     */
+    public function tambah_artikel_act(Request $req)
+    {
+        $req->validate([
+            'title'=> 'required|max:255',
+            'image'=> 'required|image|mimes:png,jpg,jpeg|max:2500',
+            'description'=> 'required',
+        ]);
+
+        $img = $req->image;
+        $img = Webp::make($img);
+        
+        $name = $req->title . time().'.webp';
+        $lokasi = public_path('image');
+        
+        $slug = $req->title . '-' . time();
+        $slug = Str::kebab($slug);
+        
+        if($img->save($lokasi."/".$name)){
+            DB::transaction(function () use ($req, $slug, $name){
+                $artikel = new Artikel();
+                $artikel->title = $req->title;
+                $artikel->image = $name;
+                $artikel->slug = $slug;
+                $artikel->description = $req->description;
+
+                if($artikel->save()){
+                    return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
+                }
+            });
+
+            return redirect()->route('admin.list_artikel')->with('error','Gagal menyimpan artikel!');
+        }
+    }
+
+    /**
+     * Menampilkan halaman ubah artikel
+     * 
+     * @param id_artikel $id
+     * 
+     * @return view
+     */
+    public function update_artikel($id) 
+    {
+        $data = Artikel::where([
+            ['is_deleted', 0]
+        ])->findOrFail($id);
+
+        return view('admin.update-artikel', compact('data'));
+    }
+
+    /**
+     * Mengubah data artikel
+     * 
+     * @param Request $req
+     * @param id_artikel $id
+     * 
+     * @return redirect
+     */
+    public function update_artikel_act(Request $req, $id)
+    {
+        $req->validate([
+            'title'=> 'required|max:255',
+            'image'=> 'image|mimes:png,jpg,jpeg|max:2500',
+            'description'=> 'required',
+        ]);
+
+        if($req->image){
+            $img = $req->image;
+            $img = Webp::make($img);
+            
+            $name = Str::kebab($req->title) . time().'.webp';
+            $lokasi = public_path('image');
+            
+            $slug = $req->title . '-' . time();
+            $slug = Str::kebab($slug);
+            
+            if($img->save($lokasi."/".$name)){
+                DB::transaction(function () use ($req, $id, $slug, $name){
+                    $artikel = Artikel::findOrFail($id);
+                    $artikel->title = $req->title;
+                    $artikel->image = $name;
+                    $artikel->slug = $slug;
+                    $artikel->description = $req->description;
+
+                    if($artikel->save()){
+                        return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
+                    }
+                });
+
+                return redirect()->route('admin.list_artikel')->with('error','Gagal menyimpan artikel!');
+            }
+
+        }else{
+
+            $slug = $req->title . '-' . time();
+            $slug = Str::kebab($slug);
+
+            DB::transaction(function () use ($req, $id, $slug){
+                $artikel = Artikel::findOrFail($id);
+                $artikel->title = $req->title;
+                $artikel->slug = $slug;
+                $artikel->description = $req->description;
+
+                if($artikel->save()){
+                    return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
+                }
+            });
+
+            return redirect()->route('admin.list_artikel')->with('error','Gagal menyimpan artikel!');
+        }
+    }
+
+    /**
+     * menghapus artikel
+     * 
+     * @param id_artikel $id
+     * 
+     * @return redirect
+     */
+    public function delete_artikel($id)
+    {
+        DB::transaction(function () use ($id){
+            $artikel = Artikel::findOrFail($id);
+            $artikel->is_deleted = 1;
+            $artikel->update();
+        });
+
+        return redirect()->route('admin.list_artikel')->with('sukses', 'Berhasil menghapus artikel.');
     }
 }

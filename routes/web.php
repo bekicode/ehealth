@@ -138,6 +138,14 @@ Route::prefix('admin')->controller(AdminController::class)->middleware(['isAdmin
     Route::post('/akun/update/{id}', 'update_akun_act')->name('update_akun_act');
     Route::post('/akun/update-password/{id}', 'update_password_act')->name('update_password_act');
     Route::post('/akun/delete/{id}', 'delete_akun')->name('delete_akun');
+
+    // artikel
+    Route::get('/artikel', 'list_artikel')->name('list_artikel');
+    Route::get('/artikel/tambah', 'tambah_artikel')->name('tambah_artikel');
+    Route::post('/artikel/tambah', 'tambah_artikel_act')->name('tambah_artikel_act');
+    Route::get('/artikel/update/{id}', 'update_artikel')->name('update_artikel');
+    Route::post('/artikel/update/{id}', 'update_artikel_act')->name('update_artikel_act');
+    Route::post('/artikel/delete/{id}', 'delete_artikel')->name('delete_artikel');
 });
 
 
