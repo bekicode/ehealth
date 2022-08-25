@@ -56,10 +56,10 @@
                   @foreach ($data as $d)
                   <tr>
                     <td>{{ $d->title }}</td>
-                    <td >{{ $d->image }}</td>
+                    <td class="text-center"><img src="{{ url(asset('image')) }}/{{ $d->image }}" alt="{{ $d->title }}" height="100px" >  </td>
                     @php
-                      $date=date_create($d->created_at);
-                      $date = date_format($d,"Y-m-d");
+                      $date= date_create($d->created_at);
+                      $date = date_format($date,"Y-m-d");
                     @endphp
                     <td>{{ $date }}</td>
                     <td class="text-center"> 
@@ -112,6 +112,7 @@
     $(function () {
       $("#example1").DataTable({
         "responsive": false, "lengthChange": false, "autoWidth": false,
+        order: [[2, 'desc']],
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
