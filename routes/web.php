@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/artikel', function () {
+    return view('artikel');
+});
+
 Auth::routes(['register' => false]);
 
 Route::get('/home', [HomeController::class, 'redirect'])->name('home');
