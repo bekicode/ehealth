@@ -984,6 +984,7 @@ class AdminController extends Controller
                 $artikel->image = $name;
                 $artikel->slug = $slug;
                 $artikel->description = $req->description;
+                $artikel->id_user = Auth::user()->id;
 
                 if($artikel->save()){
                     return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
@@ -1043,6 +1044,7 @@ class AdminController extends Controller
                     $artikel->image = $name;
                     $artikel->slug = $slug;
                     $artikel->description = $req->description;
+                    $artikel->id_user = Auth::user()->id;
 
                     if($artikel->save()){
                         return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');
@@ -1062,6 +1064,7 @@ class AdminController extends Controller
                 $artikel->title = $req->title;
                 $artikel->slug = $slug;
                 $artikel->description = $req->description;
+                $artikel->id_user = Auth::user()->id;
 
                 if($artikel->save()){
                     return redirect()->route('admin.list_artikel')->with('sukses','Berhasil menulis artikel!');

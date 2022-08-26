@@ -8,12 +8,12 @@
     <!-- ===============================================-->
     <main class="main" id="top">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
-        <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="{{url('/')}}"><img class="d-inline-block me-3" src="{{asset('asset/img/icons/logo.png')}}" alt="" />Posyandu</a>
+        <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="{{url('/')}}"><img class="d-inline-block me-3" src="{{asset('asset/img/icons/logo.png')}}" alt="" />E-Posyandu</a>
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
               <li class="nav-item"><a class="nav-link" aria-current="page" href="{{url('/')}}">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{route('article')}}">Artikel</a></li>
+              <li class="nav-item"><a class="nav-link fw-bold active" href="{{route('article')}}">Artikel</a></li>
               <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Masuk</a></li>
             </ul>
           </div>
@@ -85,7 +85,7 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-12 col-lg-4 order-0 order-sm-0 pe-6"><a class="text-decoration-none" href="#"><img class="img-fluid me-2" src="{{asset('asset/img/icons/footer-logo.png')}}" alt="" /><span class="fw-bold fs-1 text-light">Posyandu</span></a>
+            <div class="col-12 col-lg-4 order-0 order-sm-0 pe-6"><a class="text-decoration-none" href="#"><img class="img-fluid me-2" src="{{asset('asset/img/icons/footer-logo.png')}}" alt="" /><span class="fw-bold fs-1 text-light">E-Posyandu</span></a>
               <p class="mt-3 text-white">Posyandu provides progressive, and affordable healthcare, accessible on mobile and online for everyone</p>
             </div>
             <div class="col-4 col-md-4 col-lg mb-3 order-2 order-sm-1">
@@ -98,9 +98,9 @@
             <div class="col-4 col-md-4 col-lg mb-3 order-2 order-sm-1">
               <h6 class="lh-lg fw-bold text-light">Alamat</h6>
               <ul class="list-unstyled mb-md-4 mb-lg-0">
-                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 1: Jl. Lorem ipsum dolor sit amet.</span></li>
-                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 2: Jl. Lorem ipsum dolor sit amet consectetur.</span></li>
-                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 3: Jl. Lorem ipsum dolor sit amet consectetur.</span></li>
+                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Desa Grujugan, Kecamatan Petanahan, Kebumen, Jawa Tengah, Indonesia.</span></li>
+                {{-- <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 2: Jl. Lorem ipsum dolor sit amet consectetur.</span></li>
+                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 3: Jl. Lorem ipsum dolor sit amet consectetur.</span></li> --}}
               </ul>
             </div>
           </div>
@@ -109,7 +109,7 @@
           <div class="row">
             <div class="col-12">
               <div class="text-center">
-                <p class="text-white mb-0">&copy; {{date('Y')}} All right reserved
+                <p class="text-white mb-0">&copy; {{date('Y')}} All right reserved | INSTITUT TEKNOLOGI TELKOM PURWOKERTO
                 </p>
               </div>
             </div>

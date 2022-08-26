@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaderController;
 use App\Http\Controllers\KadesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\NormalUserController;
 use App\Http\Controllers\HomeController;
 
@@ -19,30 +20,14 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    $artikel = DB::Table('artikel')->where('is_deleted',false)->orderby('updated_at','desc')->limit('3')->get();
-    return view('welcome',compact('artikel'));
-});
-
-Route::get('/artikel', function () {
-    $artikel = DB::Table('artikel')->where('is_deleted',false)->orderby('updated_at','desc')->limit('3')->get();
-    return view('article',compact('artikel'));
-})->name('article');
-
-Route::get('/{slug}', function ($slug) {
-    $artikel = DB::Table('artikel')->join('users','artikel.id_user','users.id')->select('artikel.*','users.name as username')->where('slug', $slug)->where('is_deleted',false)->first();
-    if($artikel)
-    {
-        $allarticle = DB::Table('artikel')->where('slug','!=',$slug)->where('is_deleted',false)->orderby('updated_at','desc')->limit('8')->get();
-        return view('article-detail',compact('artikel','allarticle'));
-    }
-    return abort(404);
-})->name('article-detail');
+Route::get('/', [FrontController::class, 'index'])->name('index');
+Route::get('/artikel', [FrontController::class, 'article'])->name('article');
+Route::get('/artikel/{slug}', [FrontController::class, 'article_detail'])->name('article-detail');
 
 Auth::routes(['register' => false]);
 
 Route::get('/home', [HomeController::class, 'redirect'])->name('home');
-Route::get('/test', [HomeController::class, 'test'])->name('test');
+// Route::get('/test', [HomeController::class, 'test'])->name('test');
 
 // Normal User
 Route::prefix('user')->controller(NormalUserController::class)->middleware(['isNormalUser'])->name('user.')->group(function () {

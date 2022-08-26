@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title','Home')
+@section('title','E-Posyandu | Desa Grujugan')
 @section('css')
 <style>
 .card
@@ -21,7 +21,7 @@
     <!-- ===============================================-->
     <main class="main" id="top">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
-        <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="{{url('/')}}"><img class="d-inline-block me-3" src="{{asset('asset/img/icons/logo.png')}}" alt="" />Posyandu</a>
+        <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="{{url('/')}}"><img class="d-inline-block me-3" src="{{asset('asset/img/icons/logo.png')}}" alt="" />E-Posyandu</a>
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
@@ -46,11 +46,11 @@
         <div class="container position-relative">
           <div class="row align-items-center">
             <div class="col-md-5 col-lg-6 order-md-1 pt-8">
-              <img class="img-fluid" src="{{asset('asset/img/illustrations/hero-header.png')}}" alt="" />
+              <img class="img-fluid" src="{{asset('asset/img/illustrations/hero-header.webp')}}" alt="" />
             </div>
             <div class="col-md-7 col-lg-6 text-center text-md-start pt-5 pt-md-9">
 			<p class="mt-3 mb-4 fs-1">Selamat datang di website</p>
-              <h1 class="mb-4 display-3 fw-bold">Posyandu<br>Desa Grujugan</h1>
+              <h1 class="mb-4 display-3 fw-bold">E-Posyandu<br>Desa Grujugan</h1>
 			  <a class="btn btn-lg btn-primary rounded-pill hover-top" href="#tentang" role="button">Eksplor</a>
             </div>
           </div>
@@ -153,20 +153,16 @@
           <div class="row justify-content-start">
             <div class="pb-3"></div>
             <div class="col-12">
-				<p>
-          Mengenal perkembangan pertumbuhan anak
-          <br>
-          Keberhasilan anak dalam mencapai pertumbuhan dan perkembangan yang optimal akan mempengaruhi masa depan suatu bangsa. Tahun-tahun pertama merupakan periode terpenting dalam pertumbuhan dan perkembangan baik positif maupun negatif. Nutrisi yang cukup, status kesehatan yang baik, pengasuhan yang benar dan stimulasi yang tepat akan membantu anak untuk tumbuh dan berkembang untuk mencapai kemampuan optimal.
-          <br>
-          Pengertian pertumbuhan dan perkembangan
-          <br>
-          Pertumbuhan adalah bertambahnya ukuran dan jumlah sel serta jaringan interseluler, berarti bertambahnya ukuran fisik dan struktur tubuh sebagian atau keseluruhan. Perkembangan adalah bertambahnya struktur dan fungsi tubuh yang lebih kompleks dalam kemampuan gerak, bicara, sosialisasi dan kemandirian. Pertumbuhan terjadi secara simultan dengan perkembangan. 
-          <br>
-          Faktor mempengaruhi tumbuh kembang anak
-          <br>
-          Kualitas tumbuh kembang anak merupakan hasil interaksi berbagai faktor yang mempengaruhi mulai dari faktor internal maupun eksternal. 
+
+          <p><strong style="font-size: 1.2em"> Mengenal perkembangan pertumbuhan anak  </strong></p>
+          <p>Keberhasilan anak dalam mencapai pertumbuhan dan perkembangan yang optimal akan mempengaruhi masa depan suatu bangsa. Tahun-tahun pertama merupakan periode terpenting dalam pertumbuhan dan perkembangan baik positif maupun negatif. Nutrisi yang cukup, status kesehatan yang baik, pengasuhan yang benar dan stimulasi yang tepat akan membantu anak untuk tumbuh dan berkembang untuk mencapai kemampuan optimal.</p>
+          <p><strong style="font-size: 1.2em">Pengertian pertumbuhan dan perkembangan</strong></p>
+          <p> Pertumbuhan adalah bertambahnya ukuran dan jumlah sel serta jaringan interseluler, berarti bertambahnya ukuran fisik dan struktur tubuh sebagian atau keseluruhan. Perkembangan adalah bertambahnya struktur dan fungsi tubuh yang lebih kompleks dalam kemampuan gerak, bicara, sosialisasi dan kemandirian. Pertumbuhan terjadi secara simultan dengan perkembangan. </p>
+          <p><strong style="font-size: 1.2em">Faktor mempengaruhi tumbuh kembang anak</strong></p>
+          <p>Kualitas tumbuh kembang anak merupakan hasil interaksi berbagai faktor yang mempengaruhi mulai dari faktor internal maupun eksternal. </p>
 				
         <div class="collapse" id="collapseExample">
+          <p>
           <ol type="a">
             <li>
               Faktor internal yang mempengaruhi tumbuh kembang anak seperti: ras/etnik, keluarga, umur, jenis kelamin, dan genetik. 
@@ -186,8 +182,9 @@
               </ol>
             </li>
           </ol>
-          Tahapan perkembangan anak menurut umur
-          <br>
+          </p>
+          <p><strong style="font-size: 1.2em">Tahapan perkembangan anak menurut umur</strong></p>
+          <p>
           <ol>
             <li>
               Umur 0-3 bulan
@@ -446,7 +443,9 @@
               <br>
             </li>
           </ol>
-          Masalah/Gangguan yang mempengaruhi tumbuh kembang anak
+         </p>
+          <p><strong style="font-size: 1.2em">Masalah/Gangguan yang mempengaruhi tumbuh kembang anak</strong></p>
+          <p>
           <ol>
             <li>
               Gangguan bicara dan bahasa
@@ -484,9 +483,12 @@
               Merupakan gangguan dimana anak mengalami kesulitan untuk memusatkan perhatian yang seringkali disertai dengan hiperaktivitas.
             </li>
           </ol>
-          Stimulasi tumbuh kembang balita
-          <br>
+          </p>
+         <p><strong style="font-size: 1.2em">Stimulasi tumbuh kembang balita</strong></p>
+         <p>
           Stimulasi adalah kegiatan merangsang kemampuan dasar anak umur 0-6 tahun agar tumbuh dan berkembang secara optimal. Stimulasi tumbuh kembang anak dilakukan oleh orang terdekat (ibu dan ayah), pengasuh, anggota keluarga lain, maupun masyarakat sekitar. Kurangnya stimulasi dapat menyebabkan penyimpangan tumbuh kembang anak bahkan gangguan tetap. Kemampuan dasar anak seperti kemampuan gerak dan bicara perlu dirangsang dengan stimulasi terarah. Perkembangan kemampuan dasar anak mempunyai pola yang tetap dan berlangsung secara berurutan. Ada prinsip yang perlu diperhatikan dalam melakukan stimulasi, yaitu:
+        </p>
+        <p>
           <ol>
             <li>
               Stimulasi dilakukan dengan dilandasi rasa cinta dan kasih sayang. 
@@ -513,8 +515,8 @@
               Anak selalu diberi pujian, bila perlu diberi hadiah atas keberhasilannya
             </li>
           </ol>
-        </div>
         </p>
+        </div>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -674,12 +676,13 @@
                       <span class="circle text-white d-flex align-items-center justify-content-center">
                         1
                       </span>
-                      Posyandu 1
+                      Desa Grujugan
                     </h4>
                     <p class="text-caption">
-                      Jl. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, laborum.
+                      Desa Grujugan, Kecamatan Petanahan, Kebumen, Jawa Tengah, Indonesia.
                     </p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.887490152004!2d109.27448201428037!3d-7.36650647453498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655f4c33e3b0bb%3A0x7902a3f0b78369f1!2sSDN%20Ciberem!5e0!3m2!1sid!2sid!4v1651050760040!5m2!1sid!2sid" width="100%" height="200" style="border:0;" allowfullscreen="loading=lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    </li><li class="list-unstyled" style="margin-bottom: 2rem">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15814.568906052384!2d109.59751771782042!3d-7.721480910947752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7acb0fb98abaeb%3A0x18c3c6a7970f9bca!2sGrujugan%2C%20Kec.%20Petanahan%2C%20Kabupaten%20Kebumen%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1661516569328!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="loading=lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    </li>
+                    {{-- <li class="list-unstyled" style="margin-bottom: 2rem">
                     <h4 class="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
                       <span class="circle text-white d-flex align-items-center justify-content-center">
                         1
@@ -719,7 +722,7 @@
                     <p class="text-caption">
                       Jl. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt, laborum.
                     </p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.887490152004!2d109.27448201428037!3d-7.36650647453498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655f4c33e3b0bb%3A0x7902a3f0b78369f1!2sSDN%20Ciberem!5e0!3m2!1sid!2sid!4v1651050760040!5m2!1sid!2sid" width="100%" height="200" style="border:0;" allowfullscreen="loading=lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    </li>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.887490152004!2d109.27448201428037!3d-7.36650647453498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655f4c33e3b0bb%3A0x7902a3f0b78369f1!2sSDN%20Ciberem!5e0!3m2!1sid!2sid!4v1651050760040!5m2!1sid!2sid" width="100%" height="200" style="border:0;" allowfullscreen="loading=lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    </li> --}}
                     </ul>
                   
               </div>
@@ -763,7 +766,7 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-12 col-lg-4 order-0 order-sm-0 pe-6"><a class="text-decoration-none" href="#"><img class="img-fluid me-2" src="{{asset('asset/img/icons/footer-logo.png')}}" alt="" /><span class="fw-bold fs-1 text-light">Posyandu</span></a>
+            <div class="col-12 col-lg-4 order-0 order-sm-0 pe-6"><a class="text-decoration-none" href="#"><img class="img-fluid me-2" src="{{asset('asset/img/icons/footer-logo.png')}}" alt="" /><span class="fw-bold fs-1 text-light">E-Posyandu</span></a>
               <p class="mt-3 text-white">Posyandu provides progressive, and affordable healthcare, accessible on mobile and online for everyone</p>
             </div>
             <div class="col-4 col-md-4 col-lg mb-3 order-2 order-sm-1">
@@ -776,9 +779,9 @@
             <div class="col-4 col-md-4 col-lg mb-3 order-2 order-sm-1">
               <h6 class="lh-lg fw-bold text-light">Alamat</h6>
               <ul class="list-unstyled mb-md-4 mb-lg-0">
-                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 1: Jl. Lorem ipsum dolor sit amet.</span></li>
-                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 2: Jl. Lorem ipsum dolor sit amet consectetur.</span></li>
-                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 3: Jl. Lorem ipsum dolor sit amet consectetur.</span></li>
+                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Desa Grujugan, Kecamatan Petanahan, Kebumen, Jawa Tengah, Indonesia.</span></li>
+                {{-- <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 2: Jl. Lorem ipsum dolor sit amet consectetur.</span></li>
+                <li class="lh-lg"><span class="text-light fs--1 text-decoration-none">Posyandu 3: Jl. Lorem ipsum dolor sit amet consectetur.</span></li> --}}
               </ul>
             </div>
           </div>
@@ -787,7 +790,7 @@
           <div class="row">
             <div class="col-12">
               <div class="text-center">
-                <p class="text-white mb-0">&copy; {{date('Y')}} All right reserved
+                <p class="text-white mb-0">&copy; {{date('Y')}} All right reserved | INSTITUT TEKNOLOGI TELKOM PURWOKERTO
                 </p>
               </div>
             </div>

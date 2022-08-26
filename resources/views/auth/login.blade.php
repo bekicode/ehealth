@@ -1,182 +1,200 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>E-Health</title>
+      <title>E-Posyandu</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     </head>
-    <body>
+    <body> --}}
+@extends('layouts.front')
+@section('title','Login')
+@section('content')
+@section('css')
+<style scoped>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+  .content-4-1 .btn:focus,
+  .content-4-1 .btn:active {
+    outline: none !important;
+  }
+
+  .content-4-1 .width-left {
+    width: 0%;
+  }
+
+  .content-4-1 .width-right {
+    width: 100%;
+    height: 100%;
+    padding: 8rem 2rem;
+    background-color: #fcfdff;
+  }
+
+  .content-4-1 .centered {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .content-4-1 .right {
+    width: 100%;
+  }
+
+  .content-4-1 .title-text {
+    font: 600 1.875rem/2.25rem Poppins, sans-serif;
+    margin-bottom: 0.75rem;
+  }
+
+  .content-4-1 .caption-text {
+    font: 400 0.875rem/1.75rem Poppins, sans-serif;
+    color: #a8adb7;
+  }
+
+  .content-4-1 .input-label {
+    font: 500 1.125rem/1.75rem Poppins, sans-serif;
+    color: #39465b;
+  }
+
+  .content-4-1 .div-input {
+    font: 300 1rem/1.5rem Poppins, sans-serif;
+    padding: 1rem 1.25rem;
+    margin-top: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid #cacbce;
+    color: #2a3240;
+    transition: 0.3s;
+  }
+
+  .content-4-1 .div-input:focus-within {
+    border: 1px solid #458FF6;
+    color: #2a3240;
+    transition: 0.3s;
+  }
+
+  .content-4-1 .div-input input::placeholder {
+    color: #cacbce;
+    transition: 0.3s;
+  }
+
+  .content-4-1 .div-input:focus-within input::placeholder {
+    color: #2a3240;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  .content-4-1 .div-input .icon-toggle-empty-4-1 path,
+  .content-4-1 .div-input:focus-within .icon path {
+    transition: 0.3;
+    fill: #458FF6;
+    transition: 0.3s;
+  }
+
+  .content-4-1 .input-field {
+    font: 300 1rem/1.5rem Poppins, sans-serif;
+    width: 100%;
+    background-color: #fcfdff;
+    transition: 0.3s;
+  }
+
+  .content-4-1 .input-field:focus {
+    outline: none;
+    transition: 0.3s;
+  }
+
+  .content-4-1 .forgot-password {
+    font: 400 0.875rem/1.25rem Poppins, sans-serif;
+    color: #cacbce;
+    transition: 0.3s;
+    text-decoration: none;
+  }
+
+  .content-4-1 .forgot-password:hover {
+    color: #2a3240;
+  }
+
+  .content-4-1 .btn-fill {
+    font: 500 1.25rem/1.75rem Poppins, sans-serif;
+    background-image: linear-gradient(rgb(91, 143, 203),
+        rgb(39, 132, 194));
+    padding: 0.75rem 1rem;
+    margin-top: 2.25rem;
+    border-radius: 0.75rem;
+    transition: 0.5s;
+  }
+
+  .content-4-1 .btn-fill:hover {
+    background-image: linear-gradient(#458FF6, #458FF6);
+    transition: 0.5s;
+  }
+
+  .content-4-1 .bottom-caption {
+    font: 400 0.875rem/1.25rem Poppins, sans-serif;
+    margin-top: 2rem;
+    color: #2a3240;
+  }
+
+  .content-4-1 .green-bottom-caption {
+    color: #458FF6;
+    font-weight: 500;
+  }
+
+  .content-4-1 .green-bottom-caption:hover {
+    color: #458FF6;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  @media (min-width: 576px) {
+    .content-4-1 .width-right {
+      padding: 8rem 4rem;
+    }
+
+    .content-4-1 .right {
+      width: 58.333333%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .content-4-1 .right {
+      width: 66.666667%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .content-4-1 .width-left {
+      width: 48%;
+    }
+
+    .content-4-1 .width-right {
+      width: 52%;
+    }
+
+    .content-4-1 .right {
+      width: 75%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .content-4-1 .right {
+      width: 58.333333%;
+    }
+  }
+</style>
+@endsection
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-white" data-navbar-on-scroll="data-navbar-on-scroll">
+    <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="{{url('/')}}"><img class="d-inline-block me-3" src="{{asset('asset/img/icons/logo.png')}}" alt="" />E-Posyandu</a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
+          <li class="nav-item"><a class="nav-link" aria-current="page" href="{{url('/')}}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('article')}}">Artikel</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold active" href="{{route('login')}}">Masuk</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
        <section class="h-100 w-100" style="box-sizing: border-box; background-color: #f5f5f5">
-    <style scoped>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-      .content-4-1 .btn:focus,
-      .content-4-1 .btn:active {
-        outline: none !important;
-      }
-
-      .content-4-1 .width-left {
-        width: 0%;
-      }
-
-      .content-4-1 .width-right {
-        width: 100%;
-        height: 100%;
-        padding: 8rem 2rem;
-        background-color: #fcfdff;
-      }
-
-      .content-4-1 .centered {
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .content-4-1 .right {
-        width: 100%;
-      }
-
-      .content-4-1 .title-text {
-        font: 600 1.875rem/2.25rem Poppins, sans-serif;
-        margin-bottom: 0.75rem;
-      }
-
-      .content-4-1 .caption-text {
-        font: 400 0.875rem/1.75rem Poppins, sans-serif;
-        color: #a8adb7;
-      }
-
-      .content-4-1 .input-label {
-        font: 500 1.125rem/1.75rem Poppins, sans-serif;
-        color: #39465b;
-      }
-
-      .content-4-1 .div-input {
-        font: 300 1rem/1.5rem Poppins, sans-serif;
-        padding: 1rem 1.25rem;
-        margin-top: 0.75rem;
-        border-radius: 0.75rem;
-        border: 1px solid #cacbce;
-        color: #2a3240;
-        transition: 0.3s;
-      }
-
-      .content-4-1 .div-input:focus-within {
-        border: 1px solid #458FF6;
-        color: #2a3240;
-        transition: 0.3s;
-      }
-
-      .content-4-1 .div-input input::placeholder {
-        color: #cacbce;
-        transition: 0.3s;
-      }
-
-      .content-4-1 .div-input:focus-within input::placeholder {
-        color: #2a3240;
-        outline: none;
-        transition: 0.3s;
-      }
-
-      .content-4-1 .div-input .icon-toggle-empty-4-1 path,
-      .content-4-1 .div-input:focus-within .icon path {
-        transition: 0.3;
-        fill: #458FF6;
-        transition: 0.3s;
-      }
-
-      .content-4-1 .input-field {
-        font: 300 1rem/1.5rem Poppins, sans-serif;
-        width: 100%;
-        background-color: #fcfdff;
-        transition: 0.3s;
-      }
-
-      .content-4-1 .input-field:focus {
-        outline: none;
-        transition: 0.3s;
-      }
-
-      .content-4-1 .forgot-password {
-        font: 400 0.875rem/1.25rem Poppins, sans-serif;
-        color: #cacbce;
-        transition: 0.3s;
-        text-decoration: none;
-      }
-
-      .content-4-1 .forgot-password:hover {
-        color: #2a3240;
-      }
-
-      .content-4-1 .btn-fill {
-        font: 500 1.25rem/1.75rem Poppins, sans-serif;
-        background-image: linear-gradient(rgb(91, 143, 203),
-            rgb(39, 132, 194));
-        padding: 0.75rem 1rem;
-        margin-top: 2.25rem;
-        border-radius: 0.75rem;
-        transition: 0.5s;
-      }
-
-      .content-4-1 .btn-fill:hover {
-        background-image: linear-gradient(#458FF6, #458FF6);
-        transition: 0.5s;
-      }
-
-      .content-4-1 .bottom-caption {
-        font: 400 0.875rem/1.25rem Poppins, sans-serif;
-        margin-top: 2rem;
-        color: #2a3240;
-      }
-
-      .content-4-1 .green-bottom-caption {
-        color: #458FF6;
-        font-weight: 500;
-      }
-
-      .content-4-1 .green-bottom-caption:hover {
-        color: #458FF6;
-        cursor: pointer;
-        text-decoration: underline;
-      }
-
-      @media (min-width: 576px) {
-        .content-4-1 .width-right {
-          padding: 8rem 4rem;
-        }
-
-        .content-4-1 .right {
-          width: 58.333333%;
-        }
-      }
-
-      @media (min-width: 768px) {
-        .content-4-1 .right {
-          width: 66.666667%;
-        }
-      }
-
-      @media (min-width: 992px) {
-        .content-4-1 .width-left {
-          width: 48%;
-        }
-
-        .content-4-1 .width-right {
-          width: 52%;
-        }
-
-        .content-4-1 .right {
-          width: 75%;
-        }
-      }
-
-      @media (min-width: 1200px) {
-        .content-4-1 .right {
-          width: 58.333333%;
-        }
-      }
-    </style>
+    
     <div class="content-4-1 d-flex flex-column align-items-center h-100 flex-lg-row"
       style="font-family: 'Poppins', sans-serif">
       <div class="position-relative d-none d-lg-block h-100 width-left">
@@ -292,5 +310,7 @@
     </script>
   </section> 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    </body>
-  </html>
+    {{-- </body>
+  </html> --}}
+
+@endsection
