@@ -32,10 +32,7 @@
               <li class="nav-item"><a class="nav-link" href="#artikel">Artikel</a></li>
               <li class="nav-item"><a class="nav-link" href="#alamat">Alamat</a></li>
               <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
-              @guest
               <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Masuk</a></li>
-              @else
-              @endguest
             </ul>
           </div>
         </div>

@@ -14,6 +14,7 @@
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
               <li class="nav-item"><a class="nav-link" aria-current="page" href="{{url('/')}}">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="{{route('article')}}">Artikel</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Masuk</a></li>
             </ul>
           </div>
         </div>
