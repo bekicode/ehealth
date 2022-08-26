@@ -29,6 +29,8 @@
     <!--    Stylesheets-->
     <!-- ===============================================-->
     <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet" />
+    
+    @yield('css')
 
   </head>
 
