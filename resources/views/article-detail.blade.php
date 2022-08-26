@@ -45,6 +45,7 @@
               </div>
             </div>
             <div class="col-12 col-md-3">
+            @if(count($allarticle) > 0)
                 <div class="sticky-top" style="z-index: 0; top: 100px;">
                     <div class="text-center">
                     <h4 class="fw-bold">Artikel Lainnya</h4>
@@ -67,6 +68,7 @@
                     @endforeach
                   </div>
                 </div>
+            @endif
             </div>
           </div>
         </div>
