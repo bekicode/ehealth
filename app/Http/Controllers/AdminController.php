@@ -921,10 +921,10 @@ class AdminController extends Controller
         DB::transaction(function () use ($req, $id){
             $user = User::findOrFail($id);
             $user->password = Hash::make($req->password);
-            $user->save();
+            $user->update();
         });
 
-        return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil mengubah data akun.');
+        return redirect()->route('admin.list_akun')->with('sukses', 'Berhasil mengganti password baru.');
     }
 
     /**

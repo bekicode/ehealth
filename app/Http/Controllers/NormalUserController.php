@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class NormalUserController extends Controller
 {
@@ -146,5 +149,92 @@ class NormalUserController extends Controller
         $empty = count($data);
 
         return view('normal_user.lansia.riwayat_pemeriksaan', compact(['data', 'empty']));
+    }
+
+      
+    /**
+     * Menampilkan view update data akun
+     * 
+     * @return view
+     */
+    public function update_akun()
+    {
+        $data = User::where([
+                    ['is_delete', 0],
+                    ['id', Auth::user()->id],
+                ])->firstOrFail();
+
+        return view('normal_user.update-akun', compact('data'))->with('sukses', 'Berhasil menambahkan data akun.');
+    }
+
+    /**
+     * mengubah data akun
+     * 
+     * @param Request $req
+     * @param user_id $id
+     * 
+     * @return [type]
+     */
+    public function update_akun_act(Request $req)
+    {
+        $req->validate([
+            'nama'=> 'required',
+            // 'nik'=> 'required|digits:16|numeric',
+            // 'no_kk'=> 'required|digits:16|numeric',
+            'no_telp'=> 'numeric',
+            'jenis_kelamin'=> [Rule::in(['Laki-laki', 'Perempuan'])],
+
+        ],
+        [
+            'nama.required'=> 'Kolom "Nama" wajib diisi.',
+            // 'nik.required'=> 'Kolom "NIK" wajib diisi.',
+            // 'nik.digits'=> 'Jumlah digit "NIK" tidak valid.',
+            // 'nik.numeric'=> 'Kolom "NIK" tidak bisa diisikan selain angka.',
+            // 'no_kk.required'=> 'Kolom "No Kartu Keluarga" wajib diisi.',
+            // 'no_kk.digits'=> 'Jumlah digit "No Kartu Keluarga" tidak valid.',
+            // 'no_kk.numeric'=> 'Kolom "No Kartu Keluarga" tidak bisa diisikan selain angka.',
+            'no_telp.numeric'=> 'Jumlah digit "No telepon" tidak valid.',
+            'jenis_kelamin.required'=> 'Kolom "jenis kelamin" wajib diisi.',
+            'jenis_kelamin.in'=> $req->jenis_posyandu . ' tidak valid.',
+        ]);
+
+        DB::transaction(function () use ($req){
+            $user = User::findOrFail(Auth::user()->id);
+            $user->name = $req->nama;
+            $user->no_telp = $req->no_telepon;
+            $user->alamat = $req->alamat;
+            $user->jenis_kelamin = $req->jenis_kelamin;
+            $user->update();
+        });
+
+        return redirect()->route('user.update_akun')->with('sukses', 'Berhasil mengubah data akun '. $req->nama . '.');
+    }
+
+    /**
+     * Mengubah password akun pengguna
+     * 
+     * @param Request $req
+     * 
+     * @return redirect
+     */
+    public function update_password_act(Request $req)
+    {
+        $req->validate([
+            'password.required'=> 'Kolom "Password" wajib diisi.',
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],
+        [
+            'password.required'=> 'Kolom "Password" wajib diisi.',
+            'password.confirmed'=> 'Kolom "Password" dan kolom "Konfirmasi Password" tidak sama.',
+            'password.min'=> 'Kolom "Password" harus minimal 8 karakter.',
+        ]);
+
+        DB::transaction(function () use ($req){
+            $user = User::findOrFail(Auth::user()->id);
+            $user->password = Hash::make($req->password);
+            $user->update();
+        });
+
+        return redirect()->route('user.update_akun')->with('sukses', 'Berhasil mengganti password baru.');
     }
 }

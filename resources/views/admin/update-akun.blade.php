@@ -163,13 +163,13 @@
           <div class="card-body">
             @csrf
             <div class="form-group">
-              <label for="password">Password Akun</label>
+              <label for="password">Password Baru</label>
               <input
                 type="password"
                 name="password"
                 class="form-control @error('password') is-invalid @enderror"
                 id="password"
-                placeholder="password Pengguna ..."
+                placeholder="password Baru ..."
                 value="{{ old('password') }}"
                 required
               />

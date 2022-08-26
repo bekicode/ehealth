@@ -6,7 +6,7 @@
 
 @section('css')
   <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}"> --}}
 @endsection
 
 @section('content')
@@ -97,7 +97,7 @@
   {{-- <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script> --}}
   <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
   {{-- <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script> --}}
-  <script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script>
+  {{-- <script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script> --}}
 
   <!-- Select2 -->
   <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>

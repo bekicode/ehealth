@@ -40,6 +40,11 @@ Route::prefix('user')->controller(NormalUserController::class)->middleware(['isN
     // lansia
     Route::get('/lansia', 'list_lansia')->name('list_lansia');
     Route::get('/lansia/riwayat/{id}', 'riwayat_lansia')->name('riwayat_lansia');
+
+    // update profile
+    Route::get('/akun/update', 'update_akun')->name('update_akun');
+    Route::post('/akun/update', 'update_akun_act')->name('update_akun_act');
+    Route::post('/akun/update-password}', 'update_password_act')->name('update_password_act');
 });
 
 // Kader

@@ -55,7 +55,7 @@
           <img src="{{ asset('dist-adminlte/img/avatar-icon.webp') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{ route('user.update_akun') }}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 

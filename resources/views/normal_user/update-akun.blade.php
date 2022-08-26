@@ -1,9 +1,12 @@
 @extends('layouts.admin')
 
 @section('title')
-    Update Data Akun
+    Update Profile
 @endsection
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+@endsection
 
 @section('content')
 
@@ -12,12 +15,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Update Data Akun</h1>
+        <h1>Update Profile</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{ route('kader.list_akun') }}">Akun</a></li>
-          <li class="breadcrumb-item active">Update Data Akun</li>
+          <li class="breadcrumb-item"><a href="#">Dashboard </a></li>
+          <li class="breadcrumb-item active">Update Profile</li>
         </ol>
       </div>
     </div>
@@ -27,14 +30,22 @@
   <div class="container-fluid">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Akun</h3>
+          <h3 class="card-title">Profile</h3>
         </div>
       
-        <form action="{{ route('kader.update_akun_act', $data->id) }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('user.update_akun_act') }}" enctype="multipart/form-data" method="POST">
           <div class="card-body">
             @csrf
             <div class="form-group">
-              <label for="nama">Nama Pengguna</label>
+              <label for="nik">NIK</label>
+              <h4>{{ $data->nik }}</h4>
+            </div>
+            <div class="form-group">
+              <label for="no_kk">No Kartu Keluarga</label>
+              <h4>{{ $data->no_kk }}</h4>
+            </div>
+            <div class="form-group">
+              <label for="nama">Nama</label>
               <input
                 type="text"
                 name="nama"
@@ -45,38 +56,6 @@
                 required
               />
               @error('nama') <label class="text-danger">{{ $message }}</label> @enderror
-            </div>
-            <div class="form-group">
-              <label for="nik">NIK Pengguna</label>
-              <input
-                name="nik"
-                class="form-control @error('nik') is-invalid @enderror"
-                id="nik"
-                placeholder="NIK Pengguna ..."
-                value="{{ $data->nik }}"
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                type = "number"
-                maxlength = "16"
-                min="0"
-                required
-              />
-              @error('nik') <label class="text-danger">{{ $message }}</label> @enderror
-            </div>
-            <div class="form-group">
-              <label for="no_kk">No Kartu Keluarga Pengguna</label>
-              <input
-                name="no_kk"
-                class="form-control @error('no_kk') is-invalid @enderror"
-                id="no_kk"
-                placeholder="No Kartu Keluarga ..."
-                value="{{ $data->no_kk }}"
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                type = "number"
-                maxlength = "16"
-                min="0"
-                required
-              />
-              @error('no_kk') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
             <div class="form-group">
               <label for="no_telepon">No telepon</label>
@@ -116,20 +95,6 @@
               </select>
               @error('jenis_kelamin') <label class="text-danger">{{ $message }}</label> @enderror
             </div>
-            @if ($data->role == "1" || $data->role == "2")
-            <div class="form-group">
-              <label for="exampleSelectRounded0">Hak akses(Role)</label>
-              <select 
-                name="role" 
-                id="exampleSelectRounded0" 
-                class="custom-select rounded-0 @error('role') is-invalid @enderror" 
-                required>
-                <option value="1" @if ($data->role == "1" ) selected @endif>Pengguna</option>
-                <option value="2" @if ($data->role == "2" ) selected @endif>Kader</option>
-              </select>
-              @error('role') <label class="text-danger">{{ $message }}</label> @enderror
-            </div>
-            @endif
           </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -139,7 +104,6 @@
     </div>
 </section>
 
-@if ($data->role == "1" || $data->role == "2")
 <section class="content">
   <div class="container-fluid">
       <div class="card">
@@ -147,7 +111,7 @@
           <h3 class="card-title">Ubah password</h3>
         </div>
       
-        <form action="{{ route('kader.update_password_act', $data->id) }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('user.update_password_act', $data->id) }}" enctype="multipart/form-data" method="POST">
           <div class="card-body">
             @csrf
             <div class="form-group">
@@ -157,7 +121,7 @@
                 name="password"
                 class="form-control @error('password') is-invalid @enderror"
                 id="password"
-                placeholder="password Baru ..."
+                placeholder="password Pengguna ..."
                 value="{{ old('password') }}"
                 required
               />
@@ -184,6 +148,16 @@
       </div>
     </div>
 </section>
-@endif
 
+@endsection
+
+@section('js')
+  <script src="{{ asset('plugins/toastr/toastr.min.js')}}"></script>
+  <script>
+    @if (session('sukses'))
+      $('.toastrDefaultSuccess').ready(function() {
+        toastr.success('{{ session("sukses") }}')
+      });
+    @endif
+  </script>
 @endsection
