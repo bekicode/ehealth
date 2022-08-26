@@ -979,6 +979,7 @@ class AdminController extends Controller
         if($img->save($lokasi."/".$name)){
             DB::transaction(function () use ($req, $slug, $name){
                 $artikel = new Artikel();
+                $artikel->id_user = Auth::user()->id;
                 $artikel->title = $req->title;
                 $artikel->image = $name;
                 $artikel->slug = $slug;

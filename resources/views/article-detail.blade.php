@@ -13,7 +13,7 @@
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
               <li class="nav-item"><a class="nav-link" aria-current="page" href="{{url('/')}}">Home</a></li>
-              <li class="nav-item"><a class="nav-link fw-bold active" href="{{route('article')}}">Artikel</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('article')}}">Artikel</a></li>
             </ul>
           </div>
         </div>
@@ -30,29 +30,44 @@
           <!--/.bg-holder-->
 
           <div class="row flex-center">
-            <div class="col-auto text-center">
-              <h2 class="fw-bold">Artikel</h2>
-              <hr class="mx-auto text-dark" style="height:2px;width:50px" />
-            </div>
           </div>
           <div class="row h-100 justify-content-center pt-6">
-            @if(count($artikel) > 0)
-            @foreach($artikel as $a)
-            <div class="col-12 col-sm-9 col-md-4 mt-4">
-              <div class="card rounded-3 shadow"><img class="card-img-top" src="{{asset('image/'.$a->image)}}" alt="" />
+            <div class="col-12 col-md-9">
+                <div class="text-center">
+                <h2 class="fw-bold">{{ $artikel->title }}</h2>
+                <hr class="mx-auto text-dark" style="height:2px;width:50px" />
+                </div>
+              <div class="card rounded-3 shadow"><img class="card-img-top" src="{{asset('image/'.$artikel->image)}}" alt="" />
                 <div class="card-body p-4 text-center text-md-start">
-                  <h5 class="fw-bold">{{ (strlen(strip_tags($a->title)) > 25 ) ? substr_replace(strip_tags($a->title),'...',25) : $a->title; }}</h5>
-                  <p class="card-text">{{ (strlen(strip_tags($a->description)) > 45 ) ? substr_replace(strip_tags($a->description),'...',50) : $a->description; }}</p><a class="stretched-link text-decoration-none" href="{{route('article-detail',$a->slug)}}" role="button">Lihat Selengkapnya
-                    <svg class="bi bi-arrow-right-short" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
-                    </svg></a>
+                <span>Oleh: {{$artikel->username}} | Diperbaharui pada tanggal {{ date('d M Y H:i:s',strtotime($artikel->updated_at)) }}</span>
+                  <p class="card-text">{!! $artikel->description !!}</p>
                 </div>
               </div>
             </div>
-            @endforeach
-            @else
-            <h4 class="text-center">Tidak ada artikel</h4>
-            @endif
+            <div class="col-12 col-md-3">
+                <div class="sticky-top" style="z-index: 0; top: 100px;">
+                    <div class="text-center">
+                    <h4 class="fw-bold">Artikel Lainnya</h4>
+                    <hr class="mx-auto text-dark" style="height:2px;width:50px" />
+                    </div>
+                  <div class="card rounded-3 shadow">
+                    @foreach($allarticle as $a)
+                    <a href="{{ route('article-detail', $a->slug) }}" style="">
+                      <div class="row g-0">
+                            <div class="col-md-4">
+                            <img style="width:80px; height:80px; border-radius: 1.25rem 0 0 1.25rem;" src="{{asset('image/'.$a->image)}}" class="img-fluid" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{(strlen(strip_tags($a->title)) > 25 ) ? substr_replace(strip_tags($a->title),'...',25) : $a->title;}}</h5>
+                            </div>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+                  </div>
+                </div>
+            </div>
           </div>
         </div>
       </section>

@@ -63,7 +63,7 @@
       }
 
       .content-4-1 .div-input:focus-within {
-        border: 1px solid #2ec49c;
+        border: 1px solid #458FF6;
         color: #2a3240;
         transition: 0.3s;
       }
@@ -82,7 +82,7 @@
       .content-4-1 .div-input .icon-toggle-empty-4-1 path,
       .content-4-1 .div-input:focus-within .icon path {
         transition: 0.3;
-        fill: #2ec49c;
+        fill: #458FF6;
         transition: 0.3s;
       }
 
@@ -111,8 +111,8 @@
 
       .content-4-1 .btn-fill {
         font: 500 1.25rem/1.75rem Poppins, sans-serif;
-        background-image: linear-gradient(rgba(91, 203, 173, 1),
-            rgba(39, 194, 153, 1));
+        background-image: linear-gradient(rgb(91, 143, 203),
+            rgb(39, 132, 194));
         padding: 0.75rem 1rem;
         margin-top: 2.25rem;
         border-radius: 0.75rem;
@@ -120,7 +120,7 @@
       }
 
       .content-4-1 .btn-fill:hover {
-        background-image: linear-gradient(#2ec49c, #2ec49c);
+        background-image: linear-gradient(#458FF6, #458FF6);
         transition: 0.5s;
       }
 
@@ -131,12 +131,12 @@
       }
 
       .content-4-1 .green-bottom-caption {
-        color: #2ec49c;
+        color: #458FF6;
         font-weight: 500;
       }
 
       .content-4-1 .green-bottom-caption:hover {
-        color: #2ec49c;
+        color: #458FF6;
         cursor: pointer;
         text-decoration: underline;
       }
@@ -281,7 +281,7 @@
           x.type = "text";
           document
             .getElementById("icon-toggle")
-            .setAttribute("fill", "#2ec49c");
+            .setAttribute("fill", "#458FF6");
         } else {
           x.type = "password";
           document
