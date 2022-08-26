@@ -42,9 +42,14 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="{{asset('asset/vendors/@popperjs/popper.min.js')}}"></script>
-    <script src="{{asset('asset/vendors/bootstrap/bootstrap.min.js')}}"></script>
-    <script src="{{asset('asset/vendors/is/is.min.js')}}"></script>
+    {{-- <script src="{{asset('asset/vendors/@popperjs/popper.min.js')}}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+    
+    {{-- <script src="{{asset('asset/vendors/bootstrap/bootstrap.min.js')}}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0-beta2/js/bootstrap.min.js"></script>
+    
+    {{-- <script src="{{asset('asset/vendors/is/is.min.js')}}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="{{asset('asset/js/theme.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
