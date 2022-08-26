@@ -16,6 +16,7 @@
               <li class="nav-item"><a class="nav-link" href="#visimisi">Visi & Misi Desa</a></li>
               <li class="nav-item"><a class="nav-link" href="#alamat">Alamat</a></li>
               <li class="nav-item"><a class="nav-link" href="#artikel">Artikel</a></li>
+              <li class="nav-item"><a class="nav-link" href="#tka">Tumbuh Kembang Anak</a></li>
               <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
             </ul>
           </div>
@@ -275,6 +276,400 @@
 
     </section> 
     
+      <section id="tkatop">
+
+      </section>
+      <section class="py-8" id="tka">
+        <div class="bg-holder" style="background-image:url({{asset('asset/img/illustrations/dot-2.png')}});background-position:center right;background-size:auto;margin-left:-180px;margin-top:20px;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container-lg">
+          <div class="row justify-content-center">
+            <div class="col-auto text-center">
+              <h2 class="fw-bold">Stimulasi, Deteksi dan Intervensi Dini Tumbuh Kembang Anak</h2>
+              <hr class="w-25 mx-auto text-dark" style="height:2px;" />
+            </div>
+          </div>
+          <div class="row justify-content-start">
+            <div class="pb-3"></div>
+            <div class="col-12">
+				<p>
+          Mengenal perkembangan pertumbuhan anak
+          <br>
+          Keberhasilan anak dalam mencapai pertumbuhan dan perkembangan yang optimal akan mempengaruhi masa depan suatu bangsa. Tahun-tahun pertama merupakan periode terpenting dalam pertumbuhan dan perkembangan baik positif maupun negatif. Nutrisi yang cukup, status kesehatan yang baik, pengasuhan yang benar dan stimulasi yang tepat akan membantu anak untuk tumbuh dan berkembang untuk mencapai kemampuan optimal.
+          <br>
+          Pengertian pertumbuhan dan perkembangan
+          <br>
+          Pertumbuhan adalah bertambahnya ukuran dan jumlah sel serta jaringan interseluler, berarti bertambahnya ukuran fisik dan struktur tubuh sebagian atau keseluruhan. Perkembangan adalah bertambahnya struktur dan fungsi tubuh yang lebih kompleks dalam kemampuan gerak, bicara, sosialisasi dan kemandirian. Pertumbuhan terjadi secara simultan dengan perkembangan. 
+          <br>
+          Faktor mempengaruhi tumbuh kembang anak
+          <br>
+          Kualitas tumbuh kembang anak merupakan hasil interaksi berbagai faktor yang mempengaruhi mulai dari faktor internal maupun eksternal. 
+				
+        <div class="collapse" id="collapseExample">
+          <ol type="a">
+            <li>
+              Faktor internal yang mempengaruhi tumbuh kembang anak seperti: ras/etnik, keluarga, umur, jenis kelamin, dan genetik. 
+            </li>
+            <li>
+              Faktor eksternal yang mempengaruhi tumbuh kembang anak dibagi menjadi tiga yaitu faktor prenatal, persalinan dan pasca persalinan. 
+              <ol>
+                <li>
+                  Faktor prenatal (sebelum kelahiran) seperti: gizi, mekanis, toksin/zat kimia, endokrin, radiasi, infeksi, kelainan imunologi, anoksia embrio, dan psikologi ibu. 
+                </li>
+                <li>
+                  Faktor persalinan (sewaktu kelahiran) seperti komplikasi persalinan yang terjadi pada bayi seperti trauma kepala, asfiksia yang dapat merusak jaringan otak. 
+                </li>
+                <li>
+                  Faktor pasca persalinan (sesudah kelahiran) seperti: gizi, penyakit kronis, lingkungan fisis dan kimia, psikologis, endokrin, sosio-ekonomi, lingkungan pengasuhan, stimulasi, dan obat-obatan.
+                </li>
+              </ol>
+            </li>
+          </ol>
+          Tahapan perkembangan anak menurut umur
+          <br>
+          <ol>
+            <li>
+              Umur 0-3 bulan
+              <br>
+              Mengangkat kepala setinggi 45*
+              <br>
+              Menggerakkan kepala dari kiri/kanan ke tengah.
+              <br>
+              Melihat dan menatap wajah anda.
+              <br>
+              Mengoceh spontan atau bereaksi dengan mengoceh.
+              <br>
+              Suka tertawa keras.
+              <br>
+              Beraksi terkejut terhadap suara keras.
+              <br>
+              Membalas tersenyum ketika diajak bicara/tersenyum.
+              <br>
+              Mengenal ibu dengan penglihatan penciuman, pendengaran, kontak.
+              <br>
+            </li>
+            <li>
+              Umur 3-6 bulan
+              <br>
+              Berbalik dari telungkup ke terlentang.
+              <br>
+              Mengangkat kepala setinggi 90*
+              <br>
+              Mempertahankan posisi kepala tetap tegak dan stabil.
+              <br>
+              Menggenggam pensil.
+              <br>
+              Meraih benda yang ada dalam jangkauannya. 
+              <br>
+              Memegang tangannya sendiri. 
+              <br>
+              Berusaha memperluas pandangan.
+              <br>
+              Mengarahkan matanya pada benda-benda kecil.
+              <br>
+              Mengeluarkan suara gembira bernada tinggi atau memekik. 
+              <br>
+              Tersenyum ketika melihat mainan/gambar yang menarik saat bermain sendiri.
+              <br>
+            </li>
+            <li>
+              Umur 6-9 bulan
+              <br>
+              Duduk (sikap tripoid - sendiri)
+              <br>
+              Belajar berdiri, kedua kakinya menyangga sebagian berat badan.
+              <br>
+              Merangkak meraih mainan atau mendekati seseorang.
+              <br>
+              Memindahkan benda dari tangan satu ke tangan yang lain.
+              <br>
+              Memungut 2 benda, masing-masing lengan pegang 1 benda pada saat yang bersamaan. 
+              <br>
+              Memungut benda sebesar kacang dengan cara meraup. 
+              <br>
+              Bersuara tanpa arti, mamama, bababa, dadada, tatata. 
+              <br>
+              Mencari mainan/benda yang dijatuhkan.
+              <br>
+              Bermain tepuk tangan/ciluk baa. 
+              <br>
+              Bergembira dengan melempar benda. 
+              <br>
+              Makan kue sendiri
+              <br>
+            </li>
+            <li>
+              Umur 9-12 bulan
+              <br>
+              Mengangkat benda ke posisi berdiri.
+              <br>
+              Belajar berdiri selama 30 detik atau berpegangan di kursi.
+              <br>
+              Dapat berjalan dengan dituntun.
+              <br>
+              Mengulurkan lengan/badan untuk meraih mainan yang diinginkan.
+              <br>
+              Menggenggam erat pensil. 
+              <br>
+              Memasukkan benda ke mulut.
+              <br>
+              Mengulang menirukan bunyi yang didengarkan. 
+              <br>
+              Menyebut 2-3 suku kata yang sama tanpa arti.
+              <br>
+              Mengeksplorasi sekitar, ingin tau, ingin menyentuh apa saja.
+              <br>
+              Bereaksi terhadap suara yang perlahan atau bisikan.
+              <br>
+              Senang diajak bermain “CILUK BAA”.
+              <br>
+              Mengenal anggota keluarga, takut pada orang yang belum dikenali Umur 12-18 bulan
+              <br>
+            </li>
+            <li>
+              Umur 12-18 bulan
+              <br>
+              Berdiri sendiri tanpa berpegangan.
+              <br>
+              Membungkuk memungut mainan kemudian berdiri kembali.
+              <br>
+              Berjalan mundur 5 langkah. 
+              <br>
+              Memanggil ayah dengan kata “papa”. Memanggil ibu dengan kata “mama” 
+              <br>
+              Menumpuk 2 kubus. 
+              <br>
+              Memasukkan kubus di kotak.
+              <br>
+              Menunjuk apa yang diinginkan tanpa menangis/merengek, anak bisa mengeluarkan suara yang menyenangkan atau menarik tangan ibu.
+              <br>
+              Memperlihatkan rasa cemburu / bersaing.
+              <br>
+            </li>
+            <li>
+              Umur 18-24 bulan
+              <br>
+              Berdiri sendiri tanpa berpegangan selama 30 detik. 
+              <br>
+              Berjalan tanpa terhuyung-huyung. 
+              <br>
+              Bertepuk tangan, melambai-lambai. 
+              <br>
+              Menumpuk 4 buah kubus. 
+              <br>
+              Memungut benda kecil dengan ibu jari dan jari telunjuk. 
+              <br>
+              Menggelindingkan bola kearah sasaran. 
+              <br>
+              Menyebut 3-6 kata yang mempunyai arti.
+              <br>
+              Membantu/menirukan pekerjaan rumah tangga.
+              <br>
+              Memegang cangkir sendiri, belajar makan - minum sendiri
+              <br>
+            </li>
+            <li>
+              Umur 24-36 bulan
+              <br>
+              Jalan naik tangga sendiri.
+              <br>
+              Dapat bermain dengan sendal kecil. 
+              <br>
+              Mencoret-coret pensil pada kertas.
+              <br>
+              Bicara dengan baik menggunakan 2 kata. 
+              <br>
+              Dapat menunjukkan 1 atau lebih bagian tubuhnya ketika diminta. 
+              <br>
+              Melihat gambar dan dapat menyebut dengan benar nama 2 benda atau lebih.
+              <br>
+              Membantu memungut mainannya sendiri atau membantu mengangkat piring jika diminta. 
+              <br>
+              Makan nasi sendiri tanpa banyak tumpah.
+              <br>
+              Melepas pakaiannya sendiri.
+              <br>
+            </li>
+            <li>
+              Umur 36-48 bulan
+              <br>
+              Berdiri 1 kaki 2 detik.
+              <br>
+              Melompat kedua kaki diangkat.
+              <br>
+              Mengayuh sepeda roda tiga. 
+              <br>
+              Menggambar garis lurus. 
+              <br>
+              Menumpuk 8 buah kubus.
+              <br>
+              Mengenal 2-4 warna. 
+              <br>
+              Menyebut nama, umur, tempat. 
+              <br>
+              Mengerti arti kata di atas, dibawah, di depan. 
+              <br>
+              Mendengarkan cerita. 
+              <br>
+              Mencuci dan mengeringkan tangan sendiri.
+              <br>
+              Mengenakan celana panjang, kemeja baju
+              <br>
+            </li>
+            <li>
+              Umur 48-60 bulan
+              <br>
+              Berdiri 1 kaki 6 detik.
+              <br>
+              Melompat-lompat 1 kaki. 
+              <br>
+              Menari.
+              <br>
+              Menggambar tanda silang.
+              <br>
+              Menggambar Lingkaran. 
+              <br>
+              Menggambar orang dengan 3 bagian tubuh.
+              <br>
+              Mengancing baju atau pakaian boneka.
+              <br>
+              Menyebut nama lengkap tanpa dibantu. 
+              <br>
+              Senang menyebut kata-kata baru. 
+              <br>
+              Senang bertanya tentang sesuatu.
+              <br>
+              Menjawab pertanyaan dengan kata-kata yang benar.
+              <br>
+              Bicara mudah dimengerti. 
+              <br>
+              Bisa membandingkan/membedakan sesuatu dari ukuran dan bentuknya. 
+              <br>
+              Menyebut angka, menghitung jari.
+              <br>
+              Menyebut nama-nama hari. 
+              <br>
+              Berpakaian sendiri tanpa dibantu. 
+              <br>
+              Bereaksi tenang dan tidak rewel ketika ditinggal ibu.
+              <br>
+            </li>
+            <li>
+              Umur 60-72 bulan
+              <br>
+              Berjalan lurus. 
+              <br>
+              Berdiri dengan 1 kaki selama 11 detik.
+              <br>
+              Menggambar dengan 6 bagian, menggambar orang lengkap 
+              <br>
+              Menangkap bola kecil dengan kedua tangan. 
+              <br>
+              Menggambar segi empat. 
+              <br>
+              Mengerti arti lawan kata. 
+              <br>
+              Mengerti pembicaraan yang menggunakan 7 kata atau lebih.
+              <br>
+              Menjawab pertanyaan tentang benda terbuat dari apa dan kegunaannya. 
+              <br>
+              Mengenal angka, bisa menghitung angka 5-10 
+              <br>
+              Mengenal warna-warni 
+              <br>
+              Mengungkapkan simpati. 
+              <br>
+              Mengikuti aturan permainan.
+              <br>
+              Berpakaian sendiri tanpa dibantu.
+              <br>
+            </li>
+          </ol>
+          Masalah/Gangguan yang mempengaruhi tumbuh kembang anak
+          <ol>
+            <li>
+              Gangguan bicara dan bahasa
+              <br>
+              Kemampuan berbahasa sensitif terhadap keterlambatan atau kerusakan pada sistem lainnya, sebab melibatkan kemampuan kognitif, motor, psikologis, emosi dan lingkungan sekitar anak.
+            </li>
+            <li>
+              Cerebral palsy
+              <br>
+              Merupakan kelainan gerakan dan postur tubuh yang tidak progresif, yang disebabkan oleh karena suatu kerusakan/gangguan pada sel-sel motorik pada susunan saraf pusat yang sedang tumbuh/belum selesai pertumbuhannya.
+            </li>
+            <li>
+              Sindrom Down
+              <br>
+              Individu yang dapat dikenal dari fenotipnya dan mempunyai kecerdasan yang terbatas, yang terjadi akibat adanya jumlah kromosom 21 yang berlebih. Perkembangannya lebih lambat dari anak yang normal.
+            </li>
+            <li>
+              Perawakan Pendek
+              <br>
+              Merupakan suatu terminologi mengenai tinggi badan yang berada di bawah persentil 3 atau -2 SD pada kurva pertumbuhan yang berlaku pada populasi tersebut. 
+            </li>
+            <li>
+              Gangguan Autisme
+              <br>
+              Merupakan gangguan perkembangan pervasif pada anak yang gejalanya muncul sebelum anak berumur 3 tahun. Pervasif berarti meliputi seluruh aspek perkembangan yang ditemukan pada autisme yang mencakup bidang interaksi sosial, komunikasi dan perilaku.
+            </li>
+            <li>
+              Retardasi Mental
+              <br>
+              Merupakan suatu kondisi yang ditandai oleh intelegensi yang rendah (IQ < 70) yang menyebabkan ketidakmampuan individu untuk belajar dan beradaptasi terhadap tuntutan masyarakat atas kemampuan yang dianggap normal.
+            </li>
+            <li>
+              Gangguan Pemusatan Perhatian dan Hiperaktivitas (GPPH)
+              <br>
+              Merupakan gangguan dimana anak mengalami kesulitan untuk memusatkan perhatian yang seringkali disertai dengan hiperaktivitas.
+            </li>
+          </ol>
+          Stimulasi tumbuh kembang balita
+          <br>
+          Stimulasi adalah kegiatan merangsang kemampuan dasar anak umur 0-6 tahun agar tumbuh dan berkembang secara optimal. Stimulasi tumbuh kembang anak dilakukan oleh orang terdekat (ibu dan ayah), pengasuh, anggota keluarga lain, maupun masyarakat sekitar. Kurangnya stimulasi dapat menyebabkan penyimpangan tumbuh kembang anak bahkan gangguan tetap. Kemampuan dasar anak seperti kemampuan gerak dan bicara perlu dirangsang dengan stimulasi terarah. Perkembangan kemampuan dasar anak mempunyai pola yang tetap dan berlangsung secara berurutan. Ada prinsip yang perlu diperhatikan dalam melakukan stimulasi, yaitu:
+          <ol>
+            <li>
+              Stimulasi dilakukan dengan dilandasi rasa cinta dan kasih sayang. 
+            </li>
+            <li>
+              Selalu tunjukkan sikap dan perilaku yang baik karena anak akan meniru tingkah laku orang-orang yang terdekat dengannya.
+            </li>
+            <li>
+              Berikan stimulasi sesuai dengan kelompok umur anak. 
+            </li>
+            <li>
+              Lakukan stimulasi dengan cara mengajak anak bermain, bernyanyi, bervariasi, menyenangkan, tanpa paksaan dan tidak ada hukuman. 
+            </li>
+            <li>
+              Lakukan stimulasi secara bertahap dan berkelanjutan sesuai umur anak, terhadap ke 4 aspek kemampuan dasar anak. 
+            </li>
+            <li>
+              Gunakan alat bantu/permainan yang sederhana, aman dan ada di sekitar anak. 
+            </li>
+            <li>
+              Berikan kesempatan yang sama pada anak laki-laki dan perempuan. 
+            </li>
+            <li>
+              Anak selalu diberi pujian, bila perlu diberi hadiah atas keberhasilannya
+            </li>
+          </ol>
+        </div>
+        </p>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col text-center">
+              <button type="button" class="border-0 btn btn-lg bg-transparent fw-bold buka" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Lihat Selanjutnya
+              </button>
+              <a href="#tka" class="border-0 btn btn-lg bg-transparent fw-bold tutup" style="display: none;">
+                Tutup
+              </a>
+            </div>
+          </div>
+		</section>
+
       <section id="artikel" class="py-8">
         <div class="bg-holder" style="background-image:url({{asset('asset/img/illustrations/article-bg.png')}});background-position:right center;background-size:auto;">
         </div>
@@ -409,5 +804,49 @@
     <!-- ===============================================-->
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Stimulasi, Deteksi dan Intervensi Dini Tumbuh Kembang Anak</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<p>
+          Mengenal perkembangan pertumbuhan anak
+          <br>
+          Keberhasilan anak dalam mencapai pertumbuhan dan perkembangan yang optimal akan mempengaruhi masa depan suatu bangsa. Tahun-tahun pertama merupakan periode terpenting dalam pertumbuhan dan perkembangan baik positif maupun negatif. Nutrisi yang cukup, status kesehatan yang baik, pengasuhan yang benar dan stimulasi yang tepat akan membantu anak untuk tumbuh dan berkembang untuk mencapai kemampuan optimal.
+          <br>
+          Pengertian pertumbuhan dan perkembangan
+          <br>
+          Pertumbuhan adalah bertambahnya ukuran dan jumlah sel serta jaringan interseluler, berarti bertambahnya ukuran fisik dan struktur tubuh sebagian atau keseluruhan. Perkembangan adalah bertambahnya struktur dan fungsi tubuh yang lebih kompleks dalam kemampuan gerak, bicara, sosialisasi dan kemandirian. Pertumbuhan terjadi secara simultan dengan perkembangan. 
+          <br>
+          Faktor mempengaruhi tumbuh kembang anak
+          <br>
+          Kualitas tumbuh kembang anak merupakan hasil interaksi berbagai faktor yang mempengaruhi mulai dari faktor internal maupun eksternal. 
+          <br>
+          
+				</p>
+      </div>
+    </div>
+  </div>
+</div>
 
+@endsection
+@section('js')
+    <script>
+
+      $(document).ready(function() {
+        $('.buka').click(function(){
+          $(this).hide();
+          $('.tutup').show()
+        });
+        $('.tutup').click(function(){
+          $(this).hide();
+          $('.buka').show();
+          $('#collapseExample').collapse('hide');
+        });
+      });
+    </script>
 @endsection
